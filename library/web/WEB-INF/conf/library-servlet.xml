@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	- Application context definition for library application-specific components
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+ 
+	<bean name="logonSuccessController" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName"><value>logonsuccess</value></property>
+	</bean>          
+    
+    <bean id="logonValidator" class="com.library.web.validator.LogonValidator">
+    	<property name="userService"><ref bean="userService"/></property>
+    </bean>
+    <bean id="accountLookupValidator" class="com.library.web.validator.AccountLookupValidator">
+    </bean>
+    
+	<bean id="logonForm" class="com.library.web.controller.LogonFormController">
+        <property name="sessionForm"><value>true</value></property>
+        <property name="commandName"><value>user</value></property>
+        <property name="commandClass"><value>com.library.command.User</value></property>
+        <property name="validator"><ref bean="logonValidator"/></property>
+        <property name="userService"><ref bean="userService"/></property>
+        <property name="formView"><value>logon</value></property>
+        <property name="successView"><value>logonsuccess.htm</value></property>
+    </bean>
+    
+    <bean id="accountLookupForm" class="com.library.web.controller.AccountLookupController">
+        <property name="sessionForm"><value>true</value></property>
+        <property name="commandName"><value>accountLookupFormBean</value></property>
+        <property name="commandClass"><value>com.library.command.formbean.AccountLookupFormBean</value></property>
+        <property name="validator"><ref bean="accountLookupValidator"/></property>
+        <property name="formView"><value>accountlookup</value></property>
+        <property name="successView"><value>logonsuccess.htm</value></property>
+    </bean>
+    
+    <bean name="tabDemoController" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName"><value>tabDemo</value></property>
+	</bean> 
+	<!-- you can have more than one handler defined -->
+	<bean id="urlMapping" 
+          class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="urlMap">
+			<map>
+				<entry key="/logon.htm">
+					<ref bean="logonForm"/>
+				</entry>
+				<entry key="/accountLookup.htm">
+					<ref bean="accountLookupForm"/>
+				</entry>
+				<entry key="/logonsuccess.htm">
+					<ref bean="logonSuccessController"/>
+				</entry>
+				<entry key="/tabdemo.htm">
+					<ref bean="tabDemoController"/>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

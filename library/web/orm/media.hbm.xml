@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="com.library.command.Media" table="media">
+		<id name="mediaId" column="media_id">
+			<generator class="increment">
+			</generator>
+		</id>
+		<property name="title"  column="title"/>	
+		<property name="volumeNumber"  column="volume_nb"/>
+		<property name="totalVolume"  column="total_volume_nb"/>
+		<many-to-one name="mediaType" class="com.library.command.MediaType"
+			lazy="false" update="false">
+			<column name="media_type_id"/>
+		</many-to-one>
+		<many-to-one name="category" class="com.library.command.MediaCategory"
+			lazy="false" update="false">
+			<column name="media_category_id"/>
+		</many-to-one>
+		<property name="description"  column="description"/>
+		<property name="location"  column="location"/>
+		<property name="author"  column="author"/>
+		<property name="company"  column="company"/>
+		<property name="copies"  column="copies_nb"/>
+		<property name="updatedBy"  column="updated_by"/>
+		<property name="updatedDate"  column="updated_datetime"/>
+	</class>
+
+</hibernate-mapping>
