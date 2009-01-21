@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	- Application context definition for library application-specific components
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+	  <bean id="tilesConfigurer" 
+      class="org.springframework.web.servlet.view.tiles.TilesConfigurer">
+    <property name="definitions">
+      <list>
+        <value>/defs/tiles-def.xml</value>
+      </list>
+    </property>
+  </bean>
+
+  <bean id="viewResolver" 
+      class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="requestContextAttribute" value="requestContext"/>
+    <property name="viewClass" 
+        value="org.springframework.web.servlet.view.tiles.TilesJstlView"/>
+  </bean>
+
+	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName"><value>com.mysql.jdbc.Driver</value></property>
+		<property name="url"><value>jdbc:mysql://localhost:3306/krishna</value></property>
+		<property name="username"><value>root</value></property>
+		<property name="password"><value>mysql</value></property>
+	</bean>
+	
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename"><value>messages</value></property>
+    </bean>
+	
+	<bean id="mySessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource"><ref bean="myDataSource"/></property>
+		<property name="mappingResources">
+			<list>
+				<value>../../orm/user_role.hbm.xml</value>
+				<value>../../orm/contact.hbm.xml</value>
+				<value>../../orm/user.hbm.xml</value>
+				<value>../../orm/account_type.hbm.xml</value>
+				<value>../../orm/account.hbm.xml</value>
+				<value>../../orm/media_type.hbm.xml</value>
+				<value>../../orm/media_category.hbm.xml</value>
+				<value>../../orm/media.hbm.xml</value>
+				<value>../../orm/media_lending.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<value>
+				hibernate.dialect=org.hibernate.dialect.MySQLDialect
+			</value>
+		</property>
+	</bean>
+	<bean id="userdao" class="com.library.dao.UserDAO">
+		<property name="sessionFactory"><ref bean="mySessionFactory"/></property>
+	</bean>
+	<bean id="userService" class="com.library.business.UserService">
+		<property name="userDAO"><ref bean="userdao"/></property>
+	</bean>
+	<bean id="accountdao" class="com.library.dao.AccountDAO">
+		<property name="sessionFactory"><ref bean="mySessionFactory"/></property>
+	</bean>
+	<bean id="accountService" class="com.library.business.AccountService">
+		<property name="accountDAO"><ref bean="accountdao"/></property>
+	</bean>
+	<bean id="mediadao" class="com.library.dao.MediaDAO">
+		<property name="sessionFactory"><ref bean="mySessionFactory"/></property>
+	</bean>
+	<bean id="mediaService" class="com.library.business.MediaService">
+		<property name="mediaDAO"><ref bean="mediadao"/></property>
+	</bean>
+	<bean id="medialendingdao" class="com.library.dao.MediaLendingDAO">
+		<property name="sessionFactory"><ref bean="mySessionFactory"/></property>
+	</bean>
+	<bean id="mediaLendingService" class="com.library.business.MediaLendingService">
+		<property name="mediaLendingDAO"><ref bean="medialendingdao"/></property>
+	</bean>
+	
+</beans>

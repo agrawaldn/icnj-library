@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="com.library.command.Account" table="account">
+		<id name="accountId" column="account_id">
+			<generator class="increment">
+			</generator>
+		</id>
+		<property name="accountNumber"  column="account_nb"/>	
+		<property name="startDate"  column="start_datetime"/>
+		<property name="endDate"  column="end_datetime"/>
+		<many-to-one name="accountType" class="com.library.command.AccountType"
+			lazy="false" update="false">
+			<column name="account_type_id"/>
+		</many-to-one>
+		<many-to-one name="contact" class="com.library.command.Contact"
+			lazy="false" update="false">
+			<column name="contact_id"/>
+		</many-to-one>
+		<property name="activeFlag"  column="active_flag"/>
+		<property name="updatedBy"  column="updated_by"/>
+		<property name="updatedDate"  column="updated_datetime"/>
+	</class>
+	<sql-query name="fetchAccount">
+		<return class="com.library.command.Account"/>
+		<![CDATA[
+			select * from account where account_nb = :accountNumber
+		]]>
+	</sql-query>	
+</hibernate-mapping>

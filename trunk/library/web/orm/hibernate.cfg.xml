@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+
+    <session-factory>
+
+		<!-- Database connection settings -->
+		<property name="connection.driver_class">
+			com.mysql.jdbc.Driver
+		</property>
+		<property name="connection.url">
+			jdbc:mysql://localhost:3306/test
+		</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">mysql</property>
+
+        <!-- JDBC connection pool (using c3p0 for Production use) -->
+        <property name="c3p0.min_size">1</property>
+        <property name="c3p0.max_size">5</property>
+        <property name="c3p0.timeout">1800</property>
+        <property name="c3p0.max_statements">0</property>
+
+        <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">true</property>
+
+        <!-- Application specific mappings -->
+      
+        
+            <!--  EER mappings -->
+            
+			<mapping resource="User.hbm.xml" />
+	</session-factory>
+</hibernate-configuration>

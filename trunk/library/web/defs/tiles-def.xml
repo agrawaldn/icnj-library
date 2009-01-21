@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+
+
+<tiles-definitions>
+	<definition name="template" page="/WEB-INF/templates/layout.jsp">
+		<put name="body"      type="page" value="/WEB-INF/templates/body.jsp" />
+		<put name="header"  type="page" value="/WEB-INF/templates/header.jsp" />
+		<put name="left-nav"  type="page" value="/WEB-INF/templates/leftnav.jsp" />
+		<put name="footer"    type="page" value="/WEB-INF/templates/footer.jsp" />
+	</definition>
+
+	<definition extends="template" name="logon">
+		<put name="body" type="page" value="/WEB-INF/jsp/logon.jsp" />
+	</definition>    
+	 
+	<definition extends="template" name="logonsuccess">
+		<put name="body" type="page" value="/WEB-INF/jsp/logonsuccess.jsp" />
+	</definition>
+  
+  	<definition name="accountlookup" extends="template" >
+		<put name="body" type="page" value="/WEB-INF/jsp/account_lookup.jsp" />
+	</definition> 
+	
+	<definition name="tabDemo" extends="template" >
+		<put name="body" type="page" value="/WEB-INF/jsp/tab-demo.jsp" />
+	</definition>
+</tiles-definitions>
