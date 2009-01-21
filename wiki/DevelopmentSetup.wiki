@@ -9,8 +9,8 @@ Procedure for setting up the development environment on your local PC
 
 Download and install the following softwares.
 
-# Eclipse 3.4.1
-# Tomcat 5.5
-# MySQL Query browser or any other sql navigation tool
-# Also install SVN plugin for eclipse. Help -> software updates -> add site button -> enter http://subclipse.tigris.org/update_1.4.x in the location box and hit ok -> from the list check subeclipse and hit install -> once installed restart the eclipse
-# To checkout the project Open SVN Repository perspective and right click -> new repository location -> add this url https://icnj-library.googlecode.com/svn/trunk. It will prompt you for user name and password.
+#1 Eclipse 3.4.1
+#2 Tomcat 5.5
+#3 MySQL Query browser or any other sql navigation tool
+#4 Also install SVN plugin for eclipse. Help -> software updates -> add site button -> enter http://subclipse.tigris.org/update_1.4.x in the location box and hit ok -> from the list check subeclipse and hit install -> once installed restart the eclipse
+#5 To checkout the project Open SVN Repository perspective and right click -> new repository location -> add this url https://icnj-library.googlecode.com/svn/trunk. It will prompt you for user name and password.
