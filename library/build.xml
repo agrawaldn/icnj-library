@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="library" default="war" basedir=".">
+	<property name="src.dir" location="${basedir}/src"/>
+	<property name="dist.dir" location="${basedir}/dist"/>
+	<property name="web.dir" location="${basedir}/web"/>
+	<property name="webinf.dir" location="${web.dir}/WEB-INF"/>
+  	<property name="build.classes.dir" value="${webinf.dir}/classes"/>
+  	<property name="lib.dir" value="${webinf.dir}/lib"/>
+  	<property name="war.file" value="${dist.dir}/library.war"/>
+  	
+    <path id="build.class.path">
+        <fileset dir="${lib.dir}">
+            <include name="**/*.jar" />
+        </fileset>
+    </path>  	
+  	    
+    <target name="compile">
+        <javac debug="on" srcdir="${src.dir}" destdir="${build.classes.dir}" includes="**/*.java">
+            <classpath refid="build.class.path" />
+        </javac>
+    </target>
+
+	<target name="war" depends="compile">
+		<war destfile="${war.file}" webxml="${webinf.dir}/web.xml" basedir="${web.dir}">
+	        <lib dir="${lib.dir}" />
+	        <classes dir="${build.classes.dir}" />
+      	</war>
+    </target>
+</project>
