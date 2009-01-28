@@ -18,7 +18,7 @@ public class AccountLookupValidator implements Validator {
 
     public void validate(Object obj, Errors errors) {
         AccountLookupFormBean account = (AccountLookupFormBean) obj;
-        if ( StringUtil.isNullOrEmpty(account.getAccountName())) {
+        if ( StringUtil.isNullOrEmpty(account.getSearchString())) {
         	logger.info("Name not specified.");
         	errors.rejectValue("accountName","error.accountname.empty", null,"Value required");
         } 
