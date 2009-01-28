@@ -24,8 +24,10 @@ public class AccountLookupController extends SimpleFormController  {
 		AccountLookupFormBean command = new AccountLookupFormBean();
 		if(!StringUtil.isNullOrEmpty(searchString)){
 	    	List<Account> accountList = accountService.getMatchingAccounts(searchString);
-	    	logger.debug("accountList size = "+accountList.size());
-	    	command.setAccountList(accountList);
+	    	if(accountList != null){
+	    		logger.debug("accountList size = "+accountList.size());
+	    		command.setAccountList(accountList);
+	    	}
 		}
 		return command;
 	}

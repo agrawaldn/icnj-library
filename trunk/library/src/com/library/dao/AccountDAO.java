@@ -37,14 +37,14 @@ public class AccountDAO {
 		}
 		return returnAccount;
 	}
-	public List<Account> getMatchingAccounts(String accountName){
+	public List<Account> getMatchingAccounts(String searchString){
 		Session session = getSessionFactory().openSession();
 		List<Account> returnAccounts = null;
 		try
 		{
 			Transaction tx = session.beginTransaction();
 			Query query = session.getNamedQuery("fetchAccounts");
-            query.setString("accountName", accountName);
+            query.setString("pattern", "%"+searchString.toLowerCase()+"%");
             List list = query.list();
             if(list != null && !list.isEmpty()){
             	returnAccounts = (List<Account>)list;
