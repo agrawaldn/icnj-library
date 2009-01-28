@@ -18,7 +18,7 @@
 		<put name="body" type="page" value="/WEB-INF/jsp/logonsuccess.jsp" />
 	</definition>
   
-  	<definition name="accountlookup" extends="template" >
+  	<definition name="accountLookup" extends="template" >
 		<put name="body" type="page" value="/WEB-INF/jsp/account_lookup.jsp" />
 	</definition> 
 	

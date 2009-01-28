@@ -4,10 +4,8 @@
 <%@ include file="/WEB-INF/jsp/include.jsp"%>
 
 
-<br>
-<br>
-<form name="form1" method=post>
-<spring:hasBindErrors name="user">
+<form:form method="get" commandName="accountLookupFormBean">
+	<spring:hasBindErrors name="user">
 	<font color="red">
 	<p>There were ${errors.errorCount} error(s) in total:</p>
 	<ul>
@@ -17,25 +15,43 @@
 		</c:forEach>
 	</ul>
 	</font>
-</spring:hasBindErrors>
-<p>
-<table style="WIDTH: 387px; HEIGHT: 236px" cellspacing="0" cellPadding=3
-	width=387 align=center border=0 bgColor=#bcc6ed>
+	</spring:hasBindErrors>
+	<table border="0" cellpadding="5" cellspacing="0" align="center">
+	<tr>
+		<td> Search Name:</td>
+		<td><form:input path="searchString"/></td>
+	</tr>
+	<tr>
+		<td><input type="submit" value="<spring:message code="button.submit"/>">
+		</td> 
+		<td><input type="reset"/></td>
+	</tr>
+	</table>
+</form:form>
 
-	<tr>
-		<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>Account
-		Number:</strong></td>
+<table border="0" cellpadding="5" cellspacing="0" align="center" width="40%">
+<thead>
+<tr align="center">             
+	<th>Account Number</th>             
+	<th>First Name</th>             
+	<th>Last Name</th>   
+</tr>
+</thead>
+<tbody>
+<c:forEach var="account" items="${accountLookupFormBean.accountList}">
+	<tr align="center">
 		<td>
-		<p align="center"><input name="accountNumber"></p>
+			<c:out value="${account.accountNumber}"/>
+		</td>
+
+		<td>
+			<c:out value="${account.contact.firstName}"/>		
+		</td>
+		<td>
+			<c:out value="${account.contact.lastName}"/>	
 		</td>
 	</tr>
-	<tr>
-		<td colspan="2">
-		<p align="center"><input type="submit" value="View Account"
-			name="submit"><input type="reset" value="Reset" name="reset"></p>
-		</td>
-	</tr>
+</c:forEach>
+</tbody>
 </table>
-</P>
-<p align="left">&nbsp;
-</form>
+

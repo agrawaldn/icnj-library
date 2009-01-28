@@ -1,23 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="library" default="war" basedir=".">
+<project name="library" default="compile" basedir=".">
 	<property name="src.dir" location="${basedir}/src"/>
 	<property name="dist.dir" location="${basedir}/dist"/>
 	<property name="web.dir" location="${basedir}/web"/>
 	<property name="webinf.dir" location="${web.dir}/WEB-INF"/>
-  	<property name="build.classes.dir" value="${webinf.dir}/classes"/>
+	<property name="conf.dir" location="${webinf.dir}/conf"/>
+	<property file="${conf.dir}\build.conf"/>
+	<property name="build.classes.dir" value="${webinf.dir}/classes"/>
   	<property name="lib.dir" value="${webinf.dir}/lib"/>
   	<property name="war.file" value="${dist.dir}/library.war"/>
+	<property name="war.file" value="${dist.dir}/library.war"/>
+	<property name="tomcat.webapp.dir" value="${tomcat.home}/webapps"/>
   	
     <path id="build.class.path">
         <fileset dir="${lib.dir}">
             <include name="**/*.jar" />
         </fileset>
-    </path>  	
-  	    
-    <target name="compile">
+    </path>  
+	
+	<target name="tomcat-start">
+	    <java jar="${tomcat.home}/bin/bootstrap.jar" fork="true">
+	        <jvmarg value="-Dcatalina.home=${tomcat.home}"/>
+	    </java>
+	</target>
+
+	<target name="tomcat-stop">
+	    <java jar="${tomcat.home}/bin/bootstrap.jar" fork="true">
+	        <jvmarg value="-Dcatalina.home=${tomcat.home}"/>
+	        <arg line="stop"/>
+	    </java>
+	</target>
+	
+	<target name="clean">
+	  <delete>
+		<fileset dir="${build.classes.dir}" includes="*.properties"/>
+	  </delete>
+	  <delete file="${tomcat.webapp.dir}/library.war"/>
+	  <!-- <delete dir="${tomcat.webapp.dir}/library"/> -->
+	</target>
+    
+	<target name="compile" depends="clean">
         <javac debug="on" srcdir="${src.dir}" destdir="${build.classes.dir}" includes="**/*.java">
             <classpath refid="build.class.path" />
         </javac>
+        <copy  todir="${build.classes.dir}">
+          <fileset dir="${conf.dir}" includes="*.properties"/>
+        </copy>
+
     </target>
 
 	<target name="war" depends="compile">
@@ -26,4 +55,8 @@
 	        <classes dir="${build.classes.dir}" />
       	</war>
     </target>
+		
+	<target name="deploy" depends="war">
+		<copy todir="${tomcat.webapp.dir}" file="${war.file}" />
+	</target>
 </project>

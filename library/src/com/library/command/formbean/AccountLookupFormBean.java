@@ -5,6 +5,9 @@
 package com.library.command.formbean;
 
 import java.io.Serializable;
+import java.util.List;
+
+import com.library.command.Account;
 
 /**
  * @author dagrawal
@@ -16,6 +19,8 @@ public class AccountLookupFormBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private int accountNumber;
+	private String searchString;
+	private List<Account> accountList;
 
 	/**
 	 * @param accountNumber the accountNumber to set
@@ -28,5 +33,29 @@ public class AccountLookupFormBean implements Serializable {
 	 */
 	public int getAccountNumber() {
 		return accountNumber;
+	}
+	/**
+	 * @param accountList the accountList to set
+	 */
+	public void setAccountList(List<Account> accountList) {
+		this.accountList = accountList;
+	}
+	/**
+	 * @return the accountList
+	 */
+	public List<Account> getAccountList() {
+		return accountList;
+	}
+	/**
+	 * @param searchString the accountName to set
+	 */
+	public void setSearchString(String searchString) {
+		this.searchString = searchString;
+	}
+	/**
+	 * @return the accountName
+	 */
+	public String getSearchString() {
+		return searchString;
 	}
 }

@@ -4,6 +4,8 @@
  */
 package com.library.business;
 
+import java.util.List;
+
 import com.library.command.Account;
 import com.library.dao.AccountDAO;
 
@@ -17,7 +19,9 @@ public class AccountService {
 	public Account getAccount(int accountNumber){
 		return accountDAO.getAccount(accountNumber);
 	}
-	
+	public List<Account> getMatchingAccounts(String accountName){
+		return accountDAO.getMatchingAccounts(accountName);
+	}
 	/**
 	 * @param accountDAO the accountDAO to set
 	 */
