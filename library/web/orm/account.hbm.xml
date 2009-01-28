@@ -33,7 +33,7 @@
 	<sql-query name="fetchAccounts">
 		<return class="com.library.command.Account"/>
 		<![CDATA[
-			select a.* from account a, contact c where a.contact_id = c.contact_id and c.first_name = :accountName
+			select a.* from account a, contact c where a.contact_id = c.contact_id and (lower(c.first_name) like :pattern or lower(c.last_name) like :pattern)
 		]]>
 	</sql-query>		
 </hibernate-mapping>
