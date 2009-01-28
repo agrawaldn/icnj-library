@@ -31,12 +31,13 @@
     </bean>
     
     <bean id="accountLookupForm" class="com.library.web.controller.AccountLookupController">
-        <property name="sessionForm"><value>true</value></property>
+        <property name="sessionForm"><value>false</value></property>
         <property name="commandName"><value>accountLookupFormBean</value></property>
         <property name="commandClass"><value>com.library.command.formbean.AccountLookupFormBean</value></property>
+        <!-- <property name="methodNameResolver"><ref bean="actionResolver"/></property> -->
         <property name="validator"><ref bean="accountLookupValidator"/></property>
-        <property name="formView"><value>accountlookup</value></property>
-        <property name="successView"><value>logonsuccess.htm</value></property>
+        <property name="accountService"><ref bean="accountService"/></property>
+        <!--  <property name="successView"><value>accountLookup.htm</value></property> -->
     </bean>
     
     <bean name="tabDemoController" class="org.springframework.web.servlet.mvc.ParameterizableViewController">

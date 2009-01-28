@@ -30,4 +30,10 @@
 			select * from account where account_nb = :accountNumber
 		]]>
 	</sql-query>	
+	<sql-query name="fetchAccounts">
+		<return class="com.library.command.Account"/>
+		<![CDATA[
+			select a.* from account a, contact c where a.contact_id = c.contact_id and c.first_name = :accountName
+		]]>
+	</sql-query>		
 </hibernate-mapping>

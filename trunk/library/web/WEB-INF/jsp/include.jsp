@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="str" uri="http://jakarta.apache.org/taglibs/string-1.1" %>
 <%@ taglib prefix="spring" uri="/spring" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <STYLE type=text/css media=all>BODY {
 	FONT: 0.8em arial, helvetica, sans-serif

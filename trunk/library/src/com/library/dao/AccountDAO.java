@@ -37,7 +37,26 @@ public class AccountDAO {
 		}
 		return returnAccount;
 	}
-	
+	public List<Account> getMatchingAccounts(String accountName){
+		Session session = getSessionFactory().openSession();
+		List<Account> returnAccounts = null;
+		try
+		{
+			Transaction tx = session.beginTransaction();
+			Query query = session.getNamedQuery("fetchAccounts");
+            query.setString("accountName", accountName);
+            List list = query.list();
+            if(list != null && !list.isEmpty()){
+            	returnAccounts = (List<Account>)list;
+            }
+            tx.commit();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return returnAccounts;
+	}
 
 	/**
 	 * @return Returns the sessionFactory.

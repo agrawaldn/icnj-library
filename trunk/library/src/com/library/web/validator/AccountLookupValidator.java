@@ -6,6 +6,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import com.library.command.formbean.AccountLookupFormBean;
+import com.library.util.StringUtil;
 
 public class AccountLookupValidator implements Validator {
 
@@ -17,11 +18,9 @@ public class AccountLookupValidator implements Validator {
 
     public void validate(Object obj, Errors errors) {
         AccountLookupFormBean account = (AccountLookupFormBean) obj;
-        if ( account.getAccountNumber() < 1) {
-        	logger.info("Account number not specified.");
-        	errors.rejectValue("accountNumber","error.accountnumber.empty", null,"Value required");
-//            errors.rejectValue("userName", "error.login.not-specified", null,
-//                    "Value required.");
+        if ( StringUtil.isNullOrEmpty(account.getAccountName())) {
+        	logger.info("Name not specified.");
+        	errors.rejectValue("accountName","error.accountname.empty", null,"Value required");
         } 
     }
 
