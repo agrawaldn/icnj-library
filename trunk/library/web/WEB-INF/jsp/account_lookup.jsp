@@ -34,22 +34,42 @@
 <tr align="center">             
 	<th>Account Number</th>             
 	<th>First Name</th>             
-	<th>Last Name</th>   
+	<th>Last Name</th>
+	<th>Active</th>
+	<th>Start Date</th>
+	<th>End Date</th>
+	<th>Home Phone</th>
+	<th>Cell Phone</th>   
 </tr>
 </thead>
 <tbody>
 <c:forEach var="account" items="${accountLookupFormBean.accountList}">
 	<tr align="center">
 		<td>
-			<c:out value="${account.accountNumber}"/>
+			<a href=""><c:out value="${account.accountNumber}"/></a>
 		</td>
-
 		<td>
 			<c:out value="${account.contact.firstName}"/>		
 		</td>
 		<td>
 			<c:out value="${account.contact.lastName}"/>	
 		</td>
+		<td>
+			<c:out value="${account.activeFlag}"/>
+		</td>
+		<td>
+			<c:out value="${account.startDate}"/>
+		</td>
+		<td>
+			<c:out value="${account.endDate}"/>
+		</td>
+		<td>
+			<c:out value="${contact.contactHome}"/>
+		</td>
+		<td>
+			<c:out value="${contact.contactCell}"/>
+		</td>
+		
 	</tr>
 </c:forEach>
 </tbody>
