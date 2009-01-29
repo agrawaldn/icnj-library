@@ -2,7 +2,7 @@ insert into user_role values(1,'admin','dagrawal',now());
 
 insert into contact values(1,'Devendra','Agrawal','Dev','31 Parkerson Rd','Edison','NJ','USA',7326623814,7328743335,'dagrawal',now());
 
-insert into user values(1,'dagrawal','dagrawal',1,1,'y','dagrawal',now());
+insert into user values(1,'dagrawal',1,'dagrawal',1,'y','dagrawal',now());
 
 insert into account_type values(1,'regular',5,'dagrawal',now());
 
