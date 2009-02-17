@@ -40,6 +40,13 @@
         <!--  <property name="successView"><value>accountLookup.htm</value></property> -->
     </bean>
     
+    <bean id="mediaLookupForm" class="com.library.web.controller.MediaLookupController">
+        <property name="sessionForm"><value>false</value></property>
+        <property name="commandName"><value>mediaLookupFormBean</value></property>
+        <property name="commandClass"><value>com.library.command.formbean.MediaLookupFormBean</value></property>
+        <property name="mediaService"><ref bean="mediaService"/></property>
+    </bean>
+     
     <bean name="tabDemoController" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
 		<property name="viewName"><value>tabDemo</value></property>
 	</bean> 
@@ -56,6 +63,9 @@
 				</entry>
 				<entry key="/logonsuccess.htm">
 					<ref bean="logonSuccessController"/>
+				</entry>
+				<entry key="/mediaLookup.htm">
+					<ref bean="mediaLookupForm"/>
 				</entry>
 				<entry key="/tabdemo.htm">
 					<ref bean="tabDemoController"/>

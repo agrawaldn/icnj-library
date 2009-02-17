@@ -4,6 +4,10 @@
  */
 package com.library.business;
 
+import java.util.List;
+
+import com.library.command.Account;
+import com.library.command.Media;
 import com.library.dao.MediaDAO;
 
 /**
@@ -25,5 +29,13 @@ public class MediaService {
 	 */
 	public MediaDAO getMediaDAO() {
 		return mediaDAO;
+	}
+
+	/**
+	 * @param searchString
+	 * @return
+	 */
+	public List<Media> getMatchingMedias(String searchString) {
+		return getMediaDAO().getMatchingMedias(searchString);
 	}
 }
