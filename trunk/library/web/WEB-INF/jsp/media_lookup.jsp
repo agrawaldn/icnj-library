@@ -4,7 +4,7 @@
 <%@ include file="/WEB-INF/jsp/include.jsp"%>
 
 
-<form:form method="get" commandName="accountLookupFormBean">
+<form:form method="get" commandName="mediaLookupFormBean">
 	<spring:hasBindErrors name="user">
 	<font color="red">
 	<p>There were ${errors.errorCount} error(s) in total:</p>
@@ -18,7 +18,7 @@
 	</spring:hasBindErrors>
 	<table border="0" cellpadding="5" cellspacing="0" align="center">
 	<tr>
-		<td> Search Name:</td>
+		<td> <spring:message code="label.media.search"/></td>
 		<td><form:input path="searchString"/></td>
 	</tr>
 	<tr>
@@ -32,44 +32,39 @@
 <table border="0" cellpadding="5" cellspacing="0" align="center" width="40%">
 <thead>
 <tr align="center">             
-	<th>Account Number</th>             
-	<th>First Name</th>             
-	<th>Last Name</th>
-	<th>Active</th>
-	<th>Start Date</th>
-	<th>End Date</th>
-	<th>Home Phone</th>
-	<th>Cell Phone</th>   
+	<th><spring:message code="label.media.id"/></th>             
+	<th><spring:message code="label.media.title"/></th>	
+	<th><spring:message code="label.media.author"/></th>
+	<th><spring:message code="label.media.type"/></th>
+	<th><spring:message code="label.media.category"/></th>
+	<th><spring:message code="label.media.description"/></th>
+	<th><spring:message code="label.media.company"/></th>
 </tr>
 </thead>
 <tbody>
-<c:forEach var="account" items="${accountLookupFormBean.accountList}">
+<c:forEach var="media" items="${mediaLookupFormBean.mediaList}">
 	<tr align="center">
 		<td>
-			<a href=""><c:out value="${account.accountNumber}"/></a>
+			<c:out value="${media.mediaId}"/>
 		</td>
 		<td>
-			<c:out value="${account.contact.firstName}"/>		
+			<c:out value="${media.title}"/>		
 		</td>
 		<td>
-			<c:out value="${account.contact.lastName}"/>	
+			<c:out value="${media.author}"/>	
 		</td>
 		<td>
-			<c:out value="${account.activeFlag}"/>
+			<c:out value="${media.mediaType.mediaType}"/>	
+		</td>	
+		<td>
+			<c:out value="${media.category.category}"/>	
 		</td>
 		<td>
-			<c:out value="${account.startDate}"/>
+			<c:out value="${media.description}"/>	
 		</td>
 		<td>
-			<c:out value="${account.endDate}"/>
-		</td>
-		<td>
-			<c:out value="${account.contact.contactHome}"/>
-		</td>
-		<td>
-			<c:out value="${account.contact.contactCell}"/>
-		</td>
-		
+			<c:out value="${media.company}"/>	
+		</td>	
 	</tr>
 </c:forEach>
 </tbody>
