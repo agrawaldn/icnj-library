@@ -35,11 +35,25 @@
 	  <delete>
 		<fileset dir="${build.classes.dir}" includes="*.properties"/>
 	  </delete>
-	  <delete file="${tomcat.webapp.dir}/library.war"/>
-	  <!-- <delete dir="${tomcat.webapp.dir}/library"/> -->
+		<delete dir="${build.classes.dir}/com"/>
 	</target>
-    
-	<target name="compile" depends="clean">
+
+	<target name="cleanTomcat">
+	  <delete file="${tomcat.webapp.dir}/library.war"/>
+	  <delete dir="${tomcat.webapp.dir}/library"/> 
+	</target>
+
+	<target name="compile">
+        <javac debug="on" srcdir="${src.dir}" destdir="${build.classes.dir}" includes="**/*.java">
+            <classpath refid="build.class.path" />
+        </javac>
+        <copy  todir="${build.classes.dir}">
+          <fileset dir="${conf.dir}" includes="*.properties"/>
+        </copy>
+
+    </target>
+
+	<target name="cleanCompile" depends="clean">
         <javac debug="on" srcdir="${src.dir}" destdir="${build.classes.dir}" includes="**/*.java">
             <classpath refid="build.class.path" />
         </javac>
@@ -56,7 +70,7 @@
       	</war>
     </target>
 		
-	<target name="deploy" depends="war">
+	<target name="deploy" depends="war,cleanTomcat">
 		<copy todir="${tomcat.webapp.dir}" file="${war.file}" />
 	</target>
 </project>

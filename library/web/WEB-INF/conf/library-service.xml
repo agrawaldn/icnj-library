@@ -25,6 +25,11 @@
     <property name="viewClass" 
         value="org.springframework.web.servlet.view.tiles.TilesJstlView"/>
   </bean>
+  
+	<bean id="paramResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+  		<property name="paramName"><value>action</value></property>
+	</bean>
+  
 <!-- 
     <bean id="actionResolver"
         class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
@@ -39,7 +44,7 @@
 		<property name="username"><value>iskconnj</value></property>
 		<property name="password"><value>Gaurahari-00</value></property>
 	</bean>
- --> 
+--> 
   
  	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName"><value>com.mysql.jdbc.Driver</value></property>
@@ -47,7 +52,7 @@
 		<property name="username"><value>root</value></property>
 		<property name="password"><value>mysql</value></property>
 	</bean>
-  
+   
  <!--	
  	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName"><value>com.mysql.jdbc.Driver</value></property>
