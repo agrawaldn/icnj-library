@@ -17,23 +17,6 @@ public class MediaDAO {
 	
 	private SessionFactory sessionFactory;
 	
-	public void saveUser(User user){
-		Session session = getSessionFactory().openSession();
-		try
-		{
-			Transaction tx = session.beginTransaction();
-			
-			session.save(user);
-			tx.commit();
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			session.close();
-		}
-
-	}
-	
-
 	/**
 	 * @return Returns the sessionFactory.
 	 */
