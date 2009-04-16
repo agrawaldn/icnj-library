@@ -23,5 +23,10 @@
 		<property name="updatedBy"  column="updated_by"/>
 		<property name="updatedDate"  column="updated_datetime"/>
 	</class>
-
+	<sql-query name="fetchMediaLending">
+		<return class="com.library.command.MediaLending"/>
+		<![CDATA[
+			select ml.* from account a, media m, media_lending ml where a.account_id = ml.account_id and ml.media_id = m.media_id and a.account_nb = :accountNumber
+		]]>
+	</sql-query>
 </hibernate-mapping>

@@ -22,9 +22,9 @@
 		<td><form:input path="searchString"/></td>
 	</tr>
 	<tr>
-		<td><input type="submit" value="<spring:message code="button.submit"/>">
-		</td> 
+		<td><input type="submit" value="<spring:message code="button.submit"/>"></td> 
 		<td><input type="reset"/></td>
+		<td><a href="<%= request.getContextPath() %>/viewCart.htm"><spring:message code="label.viewcart"/></a></td>
 	</tr>
 	</table>
 </form:form>
@@ -64,6 +64,9 @@
 		</td>
 		<td>
 			<c:out value="${media.company}"/>	
+		</td>
+		<td>
+			<a href="<%= request.getContextPath() %>/cart.htm?action=addToCart&mediaId=${media.mediaId}"><spring:message code="label.addtocart"/></a>
 		</td>	
 	</tr>
 </c:forEach>

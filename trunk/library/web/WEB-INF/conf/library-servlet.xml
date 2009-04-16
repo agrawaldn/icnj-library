@@ -46,7 +46,19 @@
         <property name="commandClass"><value>com.library.command.formbean.MediaLookupFormBean</value></property>
         <property name="mediaService"><ref bean="mediaService"/></property>
     </bean>
-     
+    
+    <bean id="cartForm" class="com.library.web.controller.CartController">
+        <property name="sessionForm"><value>true</value></property>
+        <property name="commandName"><value>cartBean</value></property>
+        <property name="commandClass"><value>com.library.command.formbean.CartBean</value></property>
+        <property name="mediaLendingService"><ref bean="mediaLendingService"/></property>
+    </bean>
+    
+    <bean id="cartMultiController" class="org.springframework.web.servlet.mvc.multiaction.MultiActionController">
+  		<property name="methodNameResolver"><ref bean="paramResolver"/></property>
+  		<property name="delegate"><ref bean="cartForm"/></property>
+	</bean>     
+    
     <bean name="tabDemoController" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
 		<property name="viewName"><value>tabDemo</value></property>
 	</bean> 
@@ -67,8 +79,11 @@
 				<entry key="/mediaLookup.htm">
 					<ref bean="mediaLookupForm"/>
 				</entry>
-				<entry key="/tabdemo.htm">
-					<ref bean="tabDemoController"/>
+				<entry key="/viewCart.htm">
+					<ref bean="cartForm"/>
+				</entry>
+				<entry key="/cart.htm">
+					<ref bean="cartMultiController"/>
 				</entry>
 			</map>
 		</property>

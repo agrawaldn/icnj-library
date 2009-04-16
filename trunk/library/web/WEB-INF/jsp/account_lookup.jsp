@@ -32,21 +32,21 @@
 <table border="0" cellpadding="5" cellspacing="0" align="center" width="40%">
 <thead>
 <tr align="center">             
-	<th>Account Number</th>             
-	<th>First Name</th>             
-	<th>Last Name</th>
-	<th>Active</th>
-	<th>Start Date</th>
-	<th>End Date</th>
-	<th>Home Phone</th>
-	<th>Cell Phone</th>   
+	<th><spring:message code="label.account.number"/></th>             
+	<th><spring:message code="label.contact.firstname"/></th>             
+	<th><spring:message code="label.contact.lastname"/></th>
+	<th><spring:message code="label.account.active"/></th>
+	<th><spring:message code="label.account.startdate"/></th>
+	<th><spring:message code="label.account.enddate"/></th>
+	<th><spring:message code="label.contact.homephone"/></th>
+	<th><spring:message code="label.contact.cellphone"/></th>   
 </tr>
 </thead>
 <tbody>
 <c:forEach var="account" items="${accountLookupFormBean.accountList}">
 	<tr align="center">
 		<td>
-			<a href=""><c:out value="${account.accountNumber}"/></a>
+			<a href="<%= request.getContextPath() %>/viewCart.htm?accountNo=${account.accountNumber}"><c:out value="${account.accountNumber}"/></a>
 		</td>
 		<td>
 			<c:out value="${account.contact.firstName}"/>		
