@@ -6,6 +6,7 @@ package com.library.command.formbean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.library.command.Account;
@@ -19,6 +20,7 @@ public class CartBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private List<MediaLending> issuedItems;
 	private List<MediaLending> checkoutItems;
+	private Account account;
 	/**
 	 * @param issuedItems the mediaLendingList to set
 	 */
@@ -31,12 +33,11 @@ public class CartBean implements Serializable {
 	public List<MediaLending> getIssuedItems() {
 		return issuedItems;
 	}
+	public void setAccount(Account account){
+		this.account = account;
+	}
 	public Account getAccount(){
-		if (issuedItems!= null && !(issuedItems.isEmpty())){
-			return issuedItems.get(0).getAccount();
-		}else{
-			return null;
-		}
+		return account;
 	}
 	/**
 	 * @param checkoutItems the checkoutItems to set
@@ -66,6 +67,22 @@ public class CartBean implements Serializable {
 				checkoutItems.remove(i);
 			}
 		}
+	}
+	/**
+	 * @param mediaLendingId
+	 */
+	public MediaLending returnItem(int mediaLendingId) {
+		MediaLending returnedItem = null;
+		for(int i=0;i<issuedItems.size();i++){
+			if(issuedItems.get(i).getMediaLendingId() == mediaLendingId){
+				returnedItem = issuedItems.remove(i);
+				returnedItem.setActualReturnDate(new Date());
+				returnedItem.setUpdatedDate(new Date());
+				//TODO get the user name
+				returnedItem.setUpdatedBy("");
+			}
+		}
+		return returnedItem;
 	}
 
 }

@@ -26,7 +26,7 @@
 	<sql-query name="fetchMediaLending">
 		<return class="com.library.command.MediaLending"/>
 		<![CDATA[
-			select ml.* from account a, media m, media_lending ml where a.account_id = ml.account_id and ml.media_id = m.media_id and a.account_nb = :accountNumber
+			select ml.* from account a, media m, media_lending ml where a.account_id = ml.account_id and ml.media_id = m.media_id and a.account_id = :accountId and ml.actual_return_datetime is null
 		]]>
 	</sql-query>
 </hibernate-mapping>

@@ -52,6 +52,7 @@
         <property name="commandName"><value>cartBean</value></property>
         <property name="commandClass"><value>com.library.command.formbean.CartBean</value></property>
         <property name="mediaLendingService"><ref bean="mediaLendingService"/></property>
+        <property name="accountService"><ref bean="accountService"/></property>
     </bean>
     
     <bean id="cartMultiController" class="org.springframework.web.servlet.mvc.multiaction.MultiActionController">

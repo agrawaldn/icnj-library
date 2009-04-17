@@ -15,7 +15,6 @@
 		</tr>
 		<tr>
 			<td><input type="submit" value="<spring:message code="button.additem"/>"></td>
-			<td><input type="submit" value="<spring:message code="button.checkout"/>"></td>
 		</tr>
 	</table>
 </form:form>
@@ -60,6 +59,9 @@
 			<td>
 			<c:out value="${issuedItem.returnDate}"/>	
 		</td>
+		<td>
+			<a href="<%= request.getContextPath() %>/cart.htm?action=returnItem&mediaLendingId=${issuedItem.mediaLendingId}"><spring:message code="label.returnitem"/></a>	
+		</td>
 	</tr>
 </c:forEach>
 <c:forEach var="checkoutItem" items="${cartBean.checkoutItems}">
@@ -95,4 +97,12 @@
 </c:forEach>
 </tbody>
 </table>
+<form:form method="post" action="/library/cart.htm?action=checkout">
+	<table border="0" cellpadding="5" cellspacing="0" align="center" width="40%">
+		<tr>
+			<td><input type="submit" value="<spring:message code="button.checkout"/>"></td>
+		</tr>
+	</table>
+</form:form>
+
 

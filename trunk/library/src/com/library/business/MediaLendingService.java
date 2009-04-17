@@ -24,8 +24,8 @@ public class MediaLendingService {
 	private final Log logger = LogFactory.getLog(MediaLendingService.class);
 	private MediaLendingDAO mediaLendingDAO;
 
-	public List<MediaLending> getMediaLendings(int accountNumber){
-		return getMediaLendingDAO().getMediaLendings(accountNumber);
+	public List<MediaLending> getMediaLendings(int accountId){
+		return getMediaLendingDAO().getMediaLendings(accountId);
 	}
 	
 	/**
@@ -57,5 +57,21 @@ public class MediaLendingService {
 		item.setUpdatedBy("");
 		item.setUpdatedDate(new Date());
 		return item;
+	}
+
+	/**
+	 * @param mediaLendingId
+	 */
+	public void returnItem(MediaLending returnedItem) throws Exception{
+		getMediaLendingDAO().returnItem(returnedItem);
+	}
+
+	/**
+	 * @param checkoutItems
+	 */
+	public void checkout(List<MediaLending> checkoutItems) throws Exception{
+		for(MediaLending checkoutItem:checkoutItems){
+			getMediaLendingDAO().saveItem(checkoutItem);
+		}
 	}
 }
