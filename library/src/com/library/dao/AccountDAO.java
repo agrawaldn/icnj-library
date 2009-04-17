@@ -10,7 +10,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import com.library.command.Account;
-import com.library.command.User;
 
 
 public class AccountDAO {
@@ -69,5 +68,20 @@ public class AccountDAO {
 	 */
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
+	}
+	/**
+	 * @param account
+	 */
+	public void getAccount(Account account) {
+		Session session = getSessionFactory().openSession();
+		try{
+			Transaction tx = session.beginTransaction();
+			session.refresh(account);
+			tx.commit();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
 	}
 }

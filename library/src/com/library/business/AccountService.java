@@ -22,6 +22,15 @@ public class AccountService {
 	public List<Account> getMatchingAccounts(String accountName){
 		return accountDAO.getMatchingAccounts(accountName);
 	}
+	public void getAccount(Account account)throws Exception{
+		if(account == null){
+			//do nothing
+		}else if(account.getAccountId() <= 0 ){
+			throw new Exception("accountId not set in account. Cannot refresh");
+		}else{
+			getAccountDAO().getAccount(account);
+		}
+	}
 	/**
 	 * @param accountDAO the accountDAO to set
 	 */

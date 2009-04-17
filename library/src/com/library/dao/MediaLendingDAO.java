@@ -18,13 +18,13 @@ public class MediaLendingDAO {
 	
 	private SessionFactory sessionFactory;
 	
-	public List<MediaLending> getMediaLendings(int accountNumber){
+	public List<MediaLending> getMediaLendings(int accountId){
 		Session session = getSessionFactory().openSession();
 		List<MediaLending> returnMediaList = null;
 		try{
 			Transaction tx = session.beginTransaction();
 			Query query = session.getNamedQuery("fetchMediaLending");
-            query.setInteger("accountNumber", accountNumber);
+            query.setInteger("accountId", accountId);
             List list = query.list();
             if(list != null && !list.isEmpty()){
             	returnMediaList = (List<MediaLending>)list;
@@ -51,7 +51,16 @@ public class MediaLendingDAO {
 		}
 		return media;
 	}
-
+	public void returnItem(MediaLending returnedItem) throws Exception{
+		Session session = getSessionFactory().openSession();
+		try{
+			Transaction tx = session.beginTransaction();
+			session.update(returnedItem);
+			tx.commit();
+		}finally{
+			session.close();
+		}
+	}
 	/**
 	 * @return Returns the sessionFactory.
 	 */
@@ -63,5 +72,18 @@ public class MediaLendingDAO {
 	 */
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
+	}
+	/**
+	 * @param checkoutItem
+	 */
+	public void saveItem(MediaLending checkoutItem) throws Exception{
+		Session session = getSessionFactory().openSession();
+		try{
+			Transaction tx = session.beginTransaction();
+			session.save(checkoutItem);
+			tx.commit();
+		}finally{
+			session.close();
+		}
 	}
 }
