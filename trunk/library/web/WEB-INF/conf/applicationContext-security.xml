@@ -33,6 +33,7 @@
         scott/wombat
         peter/opal
     -->
+<!--
     <authentication-provider>
         <password-encoder hash="md5"/>
         <user-service>
@@ -42,10 +43,13 @@
             <user name="peter" password="22b5c9accc6e1ba628cedc63a72d57f8" authorities="ROLE_USER" />
 	    </user-service>
 	</authentication-provider>
-<!-- 	
+--> 	
 	<authentication-provider>
-	    <jdbc-user-service data-source-ref="myDataSource"/>
+	    <jdbc-user-service data-source-ref="myDataSource" 
+	    authorities-by-username-query="select a.user_name as username,b.user_role as authority from user a, user_role b 
+	    where a.user_role_id = b.user_role_id and a.user_name=?" 
+	    users-by-username-query="select user_name as username, password, 'TRUE' as enabled from user where user_name=?"/>
     </authentication-provider>
--->
+
 	
 </beans:beans>
