@@ -48,7 +48,7 @@
   
  	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName"><value>com.mysql.jdbc.Driver</value></property>
-		<property name="url"><value>jdbc:mysql://localhost:3306/krishna</value></property>
+		<property name="url"><value>jdbc:mysql://localhost:3306/dagrawal</value></property>
 		<property name="username"><value>root</value></property>
 		<property name="password"><value>mysql</value></property>
 	</bean>

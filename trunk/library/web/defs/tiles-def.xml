@@ -10,14 +10,10 @@
 		<put name="footer"    type="page" value="/WEB-INF/templates/footer.jsp" />
 	</definition>
 
-	<definition name="logon" extends="template">
-		<put name="body" type="page" value="/WEB-INF/jsp/logon.jsp" />
-	</definition>    
+	<definition name="login" extends="template">
+		<put name="body" type="page" value="/WEB-INF/jsp/login.jsp" />
+	</definition> 
 	 
-	<definition name="logonsuccess" extends="template">
-		<put name="body" type="page" value="/WEB-INF/jsp/logonsuccess.jsp" />
-	</definition>
-  
   	<definition name="accountLookup" extends="template" >
 		<put name="body" type="page" value="/WEB-INF/jsp/account_lookup.jsp" />
 	</definition> 
@@ -32,7 +28,4 @@
 	<definition name="viewCart" extends="template" >
 		<put name="body" type="page" value="/WEB-INF/jsp/cart.jsp" />
 	</definition> 
-	<definition name="tabDemo" extends="template" >
-		<put name="body" type="page" value="/WEB-INF/jsp/tab-demo.jsp" />
-	</definition>
 </tiles-definitions>

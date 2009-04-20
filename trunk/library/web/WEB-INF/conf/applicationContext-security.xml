@@ -18,11 +18,11 @@
 	</global-method-security>
  
      <http auto-config="true" access-denied-page="/access_denied.jsp">
-        <intercept-url pattern="/login.jsp*" filters="none"/>  
+        <intercept-url pattern="/login.htm*" filters="none"/>  
         <intercept-url pattern="/admin/editUser.htm" access="ROLE_ADMIN"  />
         <intercept-url pattern="/admin/searchUsers.htm" access="ROLE_ADMIN"  />
         <intercept-url pattern="/**.htm" access="ROLE_USER,ROLE_ADMIN"  />
-    	<form-login login-page="/login.jsp" authentication-failure-url="/login.jsp?login_error=1" default-target-url="/accountLookup.htm"/>
+    	<form-login login-page="/login.htm" authentication-failure-url="/login.htm?login_error=1" default-target-url="/accountLookup.htm"/>
     	<logout logout-success-url="/accountLookup.htm"/>
     </http>
  
