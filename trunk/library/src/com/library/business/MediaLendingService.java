@@ -15,6 +15,9 @@ import com.library.command.Media;
 import com.library.command.MediaLending;
 import com.library.command.formbean.CartBean;
 import com.library.dao.MediaLendingDAO;
+import com.library.util.AuthenticationUtil;
+import com.library.util.Constant;
+import com.library.util.DateUtil;
 
 /**
  * @author dagrawal
@@ -51,11 +54,19 @@ public class MediaLendingService {
 		Media media = mediaLendingDAO.getMedia(mediaId);
 		logger.debug("mediaId "+mediaId+" retrieved: "+media.getTitle());
 		MediaLending item = new MediaLending();
+		Date currentDate = new Date();
+		Date returnDate = null;
 		item.setAccount(account);
 		item.setMedia(media);
-		item.setLendingDate(new Date());
-		item.setUpdatedBy("");
-		item.setUpdatedDate(new Date());
+		item.setLendingDate(currentDate);
+		if(media.getMediaType().getMediaType().equalsIgnoreCase("book")){
+			returnDate = DateUtil.addDays(currentDate,Constant.BOOK_RETURN_DAYS);
+		}else{
+			returnDate = DateUtil.addDays(currentDate,Constant.MEDIA_RETURN_DAYS);
+		}
+		item.setReturnDate(returnDate);
+		item.setUpdatedBy(AuthenticationUtil.getUserName());
+		item.setUpdatedDate(currentDate);
 		return item;
 	}
 
@@ -63,6 +74,9 @@ public class MediaLendingService {
 	 * @param mediaLendingId
 	 */
 	public void returnItem(MediaLending returnedItem) throws Exception{
+		returnedItem.setUpdatedBy(AuthenticationUtil.getUserName());
+		returnedItem.setUpdatedDate(new Date());
+		returnedItem.setActualReturnDate(new Date());
 		getMediaLendingDAO().returnItem(returnedItem);
 	}
 
