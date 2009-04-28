@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<MenuConfig>
+	<Displayers>
+		<Displayer name="Simple"
+			type="net.sf.navigator.displayer.SimpleMenuDisplayer" />
+	</Displayers>
+	<Menus>
+		<Menu name="MainMenu" title="Library" roles="ROLE_LOGGED">
+			<Item title="Account Lookup" page="/accountLookup.htm" />
+			<Item title="Media Lookup" page="/mediaLookup.htm" />
+			<Item title="View Cart" page="/viewCart.htm" />
+			<Item title="Logout" page="/logout.htm" />
+		</Menu>
+	</Menus>
+</MenuConfig>
