@@ -62,6 +62,9 @@ public class CartController extends SimpleFormController  {
 			HttpSession session = request.getSession();
 			logger.debug("session form attribute is: "+getFormSessionAttributeName());
 			object = session.getAttribute(getFormSessionAttributeName() );
+			if(object == null){
+				object = new CartBean();
+			}
 		}
 		else{
 			object = getCommand(accountId);

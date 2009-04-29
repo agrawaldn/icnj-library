@@ -24,7 +24,6 @@
 	<tr>
 		<td><input type="submit" value="<spring:message code="button.submit"/>"></td> 
 		<td><input type="reset"/></td>
-		<td><a href="<%= request.getContextPath() %>/viewCart.htm"><spring:message code="label.viewcart"/></a></td>
 	</tr>
 	</table>
 </form:form>
