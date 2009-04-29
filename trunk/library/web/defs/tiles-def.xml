@@ -13,7 +13,15 @@
 	<definition name="login" extends="template">
 		<put name="body" type="page" value="/WEB-INF/jsp/login.jsp" />
 	</definition> 
-	 
+	
+	<definition name="accessDenied" extends="template">
+		<put name="body" type="page" value="/WEB-INF/jsp/access_denied.jsp" />
+	</definition>
+	
+	<definition name="libraryHome" extends="template">
+		<put name="body" type="page" value="/WEB-INF/jsp/library_home.jsp" />
+	</definition> 
+		 
   	<definition name="accountLookup" extends="template" >
 		<put name="body" type="page" value="/WEB-INF/jsp/account_lookup.jsp" />
 	</definition> 

@@ -30,8 +30,10 @@
             margin: 0;
             padding: 0;
             width: 150px; /* Width of Menu Items */
-            border-bottom: 1px solid #ccc;
-            background: #fff; /* IE6 Bug */
+            /*border-bottom: 1px solid #ccc;*/
+            border-bottom: 1px solid #333;
+            /*background: #fff; */
+            background: #ECE2D7;
             font-size: 100%;
         }
 
@@ -45,7 +47,9 @@
             text-decoration: none;
             color: #777;
             padding: 5px;
-            border: 1px solid #ccc;
+            /*border: 1px solid #ccc;*/
+            border: 1px solid #333;
+            border-right: 1px solid #ccc;
             border-bottom: 0;
         }
 
@@ -78,8 +82,8 @@
         ul#primary-nav li.menubar { background: transparent url(images/arrow.gif) right center no-repeat; }
 
         ul#primary-nav li:hover,
-        ul#primary-nav li.over { background-color: #f9f9f9; }
-
+        /*ul#primary-nav li.over { background-color: #f9f9f9; }*/
+		ul#primary-nav li.over { background-color: #F7BE81; }
         ul#primary-nav li a:hover { color: #E2144A; }
 
     </style>

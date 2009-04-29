@@ -17,7 +17,7 @@
 	<global-method-security secured-annotations="enabled">
 	</global-method-security>
  
-     <http auto-config="true" access-denied-page="/access_denied.jsp">
+     <http auto-config="true" access-denied-page="/accessDenied.htm">
         <intercept-url pattern="/login.htm*" filters="none"/>  
         <intercept-url pattern="/admin/editUser.htm" access="ROLE_ADMIN"  />
         <intercept-url pattern="/admin/searchUsers.htm" access="ROLE_ADMIN"  />
