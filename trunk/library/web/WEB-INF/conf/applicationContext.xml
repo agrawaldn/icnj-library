@@ -57,13 +57,13 @@
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
         <property name="basename"><value>messages</value></property>
     </bean>
-<!-- 
+ 
 	<bean id="menu" class="net.sf.navigator.menu.MenuLoader">
   		<property name="menuConfig">
-      		<value>/WEB-INF/config/menu-config.xml</value>
+      		<value>/WEB-INF/conf/menu-config.xml</value>
    		</property>
  	</bean>
--->	
+	
 	<bean id="mySessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="dataSource"><ref bean="myDataSource"/></property>
 		<property name="mappingResources">

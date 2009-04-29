@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<MenuConfig>
+	<Displayers>
+	    <Displayer   name="DropDown"
+	                 type="net.sf.navigator.displayer.DropDownMenuDisplayer"/>
+	    <Displayer   name="Simple"
+	                 type="net.sf.navigator.displayer.SimpleMenuDisplayer"/>
+	    <Displayer   name="CoolMenu"
+	                 type="net.sf.navigator.displayer.CoolMenuDisplayer"/>
+	    <Displayer   name="CoolMenu4"
+	                 type="net.sf.navigator.displayer.CoolMenuDisplayer4"/>
+	    <Displayer   name="MenuForm"
+	                 type="net.sf.navigator.example.PermissionsFormMenuDisplayer"/>
+	    <Displayer   name="ListMenu"
+	                 type="net.sf.navigator.displayer.ListMenuDisplayer"/>
+	    <Displayer   name="TabbedMenu"
+	                 type="net.sf.navigator.displayer.TabbedMenuDisplayer"/>
+		<Displayer 	 name="CSSListMenu" 
+					 type="net.sf.navigator.displayer.CSSListMenuDisplayer"/>       				 
+	</Displayers>
+	<Menus>
+		<Menu name="HomeMenu" title="Home" page="/home.htm" roles="ROLE_LOGGED"/>
+		<Menu name="SundayFestivalMenu" title="Sunday Festival" page="/home.htm" roles="ROLE_LOGGED"/>
+		<Menu name="NewsMenu" title="News" page="/home.htm" roles="ROLE_LOGGED"/>
+		<Menu name="TempleProjectMenu" title="Temple Project" page="/home.htm" roles="ROLE_LOGGED"/>
+		<Menu name="KrishnaKidsMenu" title="Krishna Kids" page="/home.htm" roles="ROLE_LOGGED"/>
+		<Menu name="ServicesMenu" title="Services" roles="ROLE_LOGGED">
+			<Item title="Samskaras" page="/home.htm" />
+			<Item title="Bhakti Vriksha" page="/home.htm" />
+			<Item title="Bhakti Shastri" page="/home.htm" />
+			<Item title="Universities" page="/home.htm" />
+		</Menu>
+		<Menu name="LibraryMenu" title="Library" roles="ROLE_LOGGED">
+			<Item title="Account">
+				<Item title="Account Lookup" page="/accountLookup.htm" />
+			</Item>
+			<Item title="Media Lookup" page="/mediaLookup.htm" />
+			<Item title="View Cart" page="/viewCart.htm" />
+			<Item title="Logout" page="/logout.htm" />
+		</Menu>
+		<Menu name="JapaConferenceMenu" title="Japa Conference" page="/home.htm" roles="ROLE_LOGGED"/>
+		<Menu name="NewsLetterMenu" title="News Letter" page="/home.htm" roles="ROLE_LOGGED"/>
+		<Menu name="AboutUsMenu" title="About Us" page="/home.htm" roles="ROLE_LOGGED"/>
+		<Menu name="DirectionsMenu" title="Directions" page="/home.htm" roles="ROLE_LOGGED"/>
+		<Menu name="ContactUsMenu" title="Contact Us" page="/home.htm" roles="ROLE_LOGGED"/>
+	</Menus>
+</MenuConfig>
