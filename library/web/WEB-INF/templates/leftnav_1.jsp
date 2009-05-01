@@ -1,7 +1,8 @@
 <%@ taglib uri="http://struts-menu.sf.net/tag-el" prefix="menu" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
+<html>
+<head>
     <script type="text/javascript">
     /*<![CDATA[*/
     function IEHoverPseudo() {
@@ -28,9 +29,11 @@
         ul#primary-nav ul {
             margin: 0;
             padding: 0;
-            width: 187px; 						/* Width of Menu Items */
-            /*border-bottom: 1px solid #969FA7;*/	/* bottom of the last menu item*/
-            background: #323337;				/*color of the menu items*/
+            width: 150px; /* Width of Menu Items */
+            /*border-bottom: 1px solid #ccc;*/
+            border-bottom: 1px solid #333;
+            /*background: #fff; */
+            background: #ECE2D7;
             font-size: 100%;
         }
 
@@ -42,10 +45,11 @@
         ul#primary-nav li a {
             display: block;
             text-decoration: none;
-            color: #F5F6CE;						/*normal text color*/
+            color: #777;
             padding: 5px;
-            /*border: 1px solid #969FA7;*/			/*border of each menu item*/
-            border: 0;
+            /*border: 1px solid #ccc;*/
+            border: 1px solid #333;
+            border-right: 1px solid #ccc;
             border-bottom: 0;
         }
 
@@ -57,7 +61,7 @@
         ul#primary-nav ul {
             position: absolute;
             display: none;
-            left: 187px; /* Set 1px less than menu width */
+            left: 149px; /* Set 1px less than menu width */
             top: 0;
         }
 
@@ -75,17 +79,17 @@
         ul#primary-nav li li.over ul,
         ul#primary-nav li li li.over ul { display: block; } /* The magic */
 
-        ul#primary-nav li.menubar { background: transparent url(http://dt-dagrawal.research.att.com:8080/library/images/arrow_right.gif) right center no-repeat; }
+        ul#primary-nav li.menubar { background: transparent url(images/arrow.gif) right center no-repeat; }
 
         ul#primary-nav li:hover,
-        ul#primary-nav li.over, /*{ background-color: #000000; }*//*bg color of menu when selected and has submenu*/
-        ul#primary-nav li a:hover { color: #E2144A; background: #969FA7;}		/*color of text when mouse over*/
+        /*ul#primary-nav li.over { background-color: #f9f9f9; }*/
+		ul#primary-nav li.over { background-color: #F7BE81; }
+        ul#primary-nav li a:hover { color: #E2144A; }
 
     </style>
 
-<table cellspacing=0 cellpadding=0 bgcolor=#323337 border=0>
-	<tr>
-	<td>
+</head>    
+<body>
 	<menu:useMenuDisplayer name="CSSListMenu" id="primary-nav">
   		<menu:displayMenu name="HomeMenu"/>
   		<menu:displayMenu name="SundayFestivalMenu"/>
@@ -100,6 +104,5 @@
   		<menu:displayMenu name="DirectionsMenu"/>
   		<menu:displayMenu name="ContactUsMenu"/>
 	</menu:useMenuDisplayer>
-	</td>
-	</tr>
-</table>
+</body>
+</html>	
