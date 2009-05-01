@@ -46,32 +46,11 @@
   		<property name="delegate"><ref bean="cartForm"/></property>
 	</bean>     
     
-	<bean name="loginController" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
-		<property name="viewName"><value>login</value></property>
-	</bean> 
-	
-	<bean name="homeView" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
-		<property name="viewName"><value>libraryHome</value></property>
-	</bean> 
-	
-	<bean name="accessDeniedView" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
-		<property name="viewName"><value>accessDenied</value></property>
-	</bean> 
-	
 	<!-- you can have more than one handler defined -->
 	<bean id="urlMapping" 
           class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="urlMap">
 			<map>
-				<entry key="/login.htm">
-					<ref bean="loginController"/>
-				</entry>
-				<entry key="/home.htm">
-					<ref bean="homeView"/>
-				</entry>
-				<entry key="/accesDenied.htm">
-					<ref bean="accessDeniedView"/>
-				</entry>
 				<entry key="/accountLookup.htm">
 					<ref bean="accountLookupForm"/>
 				</entry>

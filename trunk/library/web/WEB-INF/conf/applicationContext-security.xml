@@ -17,13 +17,13 @@
 	<global-method-security secured-annotations="enabled">
 	</global-method-security>
  
-     <http auto-config="true" access-denied-page="/accessDenied.htm">
-        <intercept-url pattern="/login.htm*" filters="none"/>  
+     <http auto-config="true" access-denied-page="/static/access_denied.jsp">
+        <intercept-url pattern="/static/*" filters="none"/>  
         <intercept-url pattern="/admin/editUser.htm" access="ROLE_ADMIN"  />
         <intercept-url pattern="/admin/searchUsers.htm" access="ROLE_ADMIN"  />
         <intercept-url pattern="/**.htm" access="ROLE_USER,ROLE_ADMIN"  />
-    	<form-login login-page="/login.htm" authentication-failure-url="/login.htm?login_error=1" default-target-url="/accountLookup.htm"/>
-    	<logout logout-success-url="/accountLookup.htm"/>
+    	<form-login login-page="/static/login.jsp" authentication-failure-url="/static/login.jsp?login_error=1" default-target-url="/static/library_home.jsp"/>
+    	<logout logout-success-url="/static/library_home.jsp"/>
     </http>
  
     <!--

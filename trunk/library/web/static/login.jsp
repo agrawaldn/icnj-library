@@ -1,12 +1,15 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
 <%@ page import="org.springframework.security.ui.webapp.AuthenticationProcessingFilter" %>
 <%@ page import="org.springframework.security.ui.AbstractProcessingFilter" %>
 <%@ page import="org.springframework.security.AuthenticationException" %>
+<%@ taglib prefix="tiles" uri="/tags-tiles" %>
 
-<html>
-<head><title>Logon</title></head>
-<body> 
+<tiles:insert definition="template">
+  <tiles:put name="body" type="string">
+
+<BR><BR><BR><BR><BR><BR>
 <center>
-<form action="j_spring_security_check">
+<form action="<%= request.getContextPath() %>/j_spring_security_check">
 		<table width="25%" border="1">
 			<tr>
 				<td align="center" bgcolor="lightblue">Log on</td>
@@ -17,7 +20,8 @@
 						<tr>
 							<td width="33%" align="right"><label for="j_username">Username: </label> </td>
 							<td width="66%" align="left">
-								<input type="text" name="j_username" id="j_username" <c:if test="${not empty param.login_error}">value='<%= session.getAttribute(AuthenticationProcessingFilter.SPRING_SECURITY_LAST_USERNAME_KEY) %>'</c:if>/> 
+								<!--  <input type="text" name="j_username" id="j_username" <c:if test="${not empty param.login_error}">value='<%= session.getAttribute(AuthenticationProcessingFilter.SPRING_SECURITY_LAST_USERNAME_KEY) %>'</c:if>/> -->
+								<input type="text" name="j_username" id="j_username"/> 
 							</td>
 							
 						</tr>
@@ -44,5 +48,5 @@
 		</table>
 </form>
 </center>
-</body>
-</html>
+ </tiles:put>
+</tiles:insert> 
