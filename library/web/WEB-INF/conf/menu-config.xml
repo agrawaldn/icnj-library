@@ -20,18 +20,19 @@
 					 type="net.sf.navigator.displayer.CSSListMenuDisplayer"/>       				 
 	</Displayers>
 	<Menus>
-		<Menu name="HomeMenu" title="Home" page="/static/library_home.jsp" roles="ROLE_LOGGED"/>
-		<Menu name="SundayFestivalMenu" title="Sunday Festival" page="/static/library_home.jsp" roles="ROLE_LOGGED"/>
-		<Menu name="NewsMenu" title="News" page="/static/library_home.jsp" roles="ROLE_LOGGED"/>
-		<Menu name="TempleProjectMenu" title="Temple Project" page="/static/library_home.jsp" roles="ROLE_LOGGED"/>
-		<Menu name="KrishnaKidsMenu" title="Krishna Kids" page="/static/library_home.jsp" roles="ROLE_LOGGED"/>
+		<Menu name="HomeMenu" title="Home" page="/static/home.jsp" roles="ROLE_LOGGED"/>
+		<Menu name="SundayFestivalMenu" title="Sunday Festival" page="/static/sunday_festival.jsp" roles="ROLE_LOGGED"/>
+		<Menu name="NewsMenu" title="News" page="/static/news.jsp" roles="ROLE_LOGGED"/>
+		<Menu name="TempleProjectMenu" title="Temple Project" page="/static/temple_project.jsp" roles="ROLE_LOGGED"/>
+		<Menu name="KrishnaKidsMenu" title="Krishna Kids" page="/static/krishna_kids.jsp" roles="ROLE_LOGGED"/>
 		<Menu name="ServicesMenu" title="Services" roles="ROLE_LOGGED">
-			<Item title="Samskaras" page="/static/library_home.jsp" />
-			<Item title="Bhakti Vriksha" page="/static/library_home.jsp" />
-			<Item title="Bhakti Shastri" page="/static/library_home.jsp" />
-			<Item title="Universities" page="/static/library_home.jsp" />
+			<Item title="Samskaras" page="/static/samskaras.jsp" />
+			<Item title="Bhakti Vriksha" page="/static/bhakti_vriksha.jsp" />
+			<Item title="Bhakti Shastri" page="/static/bhakti_shastri.jsp" />
+			<Item title="Universities" page="/static/universities.jsp" />
+			<Item title="Library" page="/static/library_home.jsp" />
 		</Menu>
-		<Menu name="LibraryMenu" title="Library" roles="ROLE_LOGGED">
+		<Menu name="LibraryMenu" title="Library" page="/static/library_home.jsp" roles="ROLE_LOGGED">
 			<Item title="Account">
 				<Item title="Account Lookup" page="/accountLookup.htm" />
 			</Item>
@@ -39,10 +40,10 @@
 			<Item title="View Cart" page="/viewCart.htm" />
 			<Item title="Logout" page="/logout.htm" />
 		</Menu>
-		<Menu name="JapaConferenceMenu" title="Japa Conference" page="/static/library_home.jsp" roles="ROLE_LOGGED"/>
-		<Menu name="NewsLetterMenu" title="News Letter" page="/static/library_home.jsp" roles="ROLE_LOGGED"/>
-		<Menu name="AboutUsMenu" title="About Us" page="/static/library_home.jsp" roles="ROLE_LOGGED"/>
-		<Menu name="DirectionsMenu" title="Directions" page="/static/library_home.jsp" roles="ROLE_LOGGED"/>
-		<Menu name="ContactUsMenu" title="Contact Us" page="/static/library_home.jsp" roles="ROLE_LOGGED"/>
+		<Menu name="JapaConferenceMenu" title="Japa Conference" page="/static/japa_conference.jsp" roles="ROLE_LOGGED"/>
+		<Menu name="NewsLetterMenu" title="News Letter" page="/static/news_letter.jsp" roles="ROLE_LOGGED"/>
+		<Menu name="AboutUsMenu" title="About Us" page="/static/about_us.jsp" roles="ROLE_LOGGED"/>
+		<Menu name="DirectionsMenu" title="Directions" page="/static/directions.jsp" roles="ROLE_LOGGED"/>
+		<Menu name="ContactUsMenu" title="Contact Us" page="/static/contact_us.jsp" roles="ROLE_LOGGED"/>
 	</Menus>
 </MenuConfig>

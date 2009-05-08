@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<flash_parameters>
+    <preferences>
+        <golbal>
+            <basic_property movieWidth="550" movieHeight="260" html_title="Homeshow" loadStyle="Pie" hideAdobeMenu="false" photoDynamicShow="true" enableURL="true" transitionArray=""/>
+            <title_property photoTitle="false" photoTitleX="5" photoTitleY="5" photoTitleSize="15" photoTitleFont="Verdana" photoTitleColor="0xffffff"/>
+            <music_property path="" stream="true" loop="true"/>
+            <photo_property topPadding="0" bottomPadding="0" leftPadding="0" rightPadding="0"/>
+            <properties enable="true" backgroundColor="0xffffff" backgroundAlpha="30" cssText="a:link{text-decoration: underline;} a:hover{color:#ff0000; text-decoration: none;} a:active{color:#0000ff;text-decoration: none;} .blue {color:#0000ff; font-size:15px; font-style:italic; text-decoration: underline;} .body{color:#ff5500;font-size:20px;}" align="top"/>
+        </golbal>
+        <thumbnail>
+            <basic_property showPrview="false" prviewWidth="100" prviewHeight="75" lineColor="0x4b4b4b" numberColor="0x4b4b4b" hovrColor="0xffcc66" prviewBorderColor=""/>
+        </thumbnail>
+    </preferences>
+    <album>
+        <slide jpegURL="thumbs/t_0001.jpg" d_URL="slides/p_0001.jpg" transition="29" panzoom="1" URLTarget="0" phototime="3" url="../home/slides/p_0001.jpg" title="p_0001" width="550" height="260"/>
+		<slide jpegURL="thumbs/t_0002.jpg" d_URL="slides/slides/p_0002.jpg" transition="29" panzoom="1" URLTarget="0" phototime="3" url="../home/slides/p_0002.jpg" title="p_0001" width="550" height="260"/>
+        <slide jpegURL="thumbs/t_0003.jpg" d_URL="slides/slides/p_0003.jpg" transition="29" panzoom="1" URLTarget="0" phototime="3" url="../news.html" title="p_0003" width="550" height="260"/>
+        <slide jpegURL="thumbs/t_0004.jpg" d_URL="slides/slides/p_0004.jpg" transition="29" panzoom="1" URLTarget="0" phototime="3" url="../sunday.html" title="p_0004" width="550" height="260"/>
+		<slide jpegURL="thumbs/t_0005.jpg" d_URL="slides/japaspeaker.jpg" transition="29" panzoom="1" URLTarget="0" phototime="3" url="../japa.html" title="p_0005" width="550" height="260"/>
+		</album>
+</flash_parameters>
