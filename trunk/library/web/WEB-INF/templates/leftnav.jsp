@@ -75,7 +75,7 @@
         ul#primary-nav li li.over ul,
         ul#primary-nav li li li.over ul { display: block; } /* The magic */
 
-        ul#primary-nav li.menubar { background: transparent url(http://dt-dagrawal.research.att.com:8080/library/images/arrow_right.gif) right center no-repeat; }
+        ul#primary-nav li.menubar { background: transparent url(<%= request.getContextPath() %>/images/arrow_right.gif) right center no-repeat; }
 
         ul#primary-nav li:hover,
         ul#primary-nav li.over, /*{ background-color: #000000; }*//*bg color of menu when selected and has submenu*/
