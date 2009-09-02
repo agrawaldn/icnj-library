@@ -9,7 +9,7 @@ import org.springframework.web.servlet.mvc.SimpleFormController;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.library.business.UserService;
-import com.library.command.User;
+import com.library.domain.User;
 
 public class LogonFormController extends SimpleFormController {
 	private final Log logger = LogFactory.getLog(SimpleFormController.class);

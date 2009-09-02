@@ -15,11 +15,11 @@ import org.springframework.web.servlet.mvc.SimpleFormController;
 import com.library.business.AccountService;
 import com.library.business.MediaLendingService;
 import com.library.business.MediaService;
-import com.library.command.Account;
-import com.library.command.Media;
-import com.library.command.MediaLending;
 import com.library.command.formbean.CartBean;
 import com.library.command.formbean.MediaLookupFormBean;
+import com.library.domain.Account;
+import com.library.domain.Media;
+import com.library.domain.MediaLending;
 import com.library.util.StringUtil;
 
 public class CartController extends SimpleFormController  {
@@ -37,7 +37,7 @@ public class CartController extends SimpleFormController  {
 	    		command.setAccount(issuedItems.get(0).getAccount());
 	    	}else{
 	    		Account account = new Account();
-	    		account.setAccountId(accountId);
+	    		account.setId(accountId);
 	    		try {
 	    			getAccountService().getAccount(account);
 					logger.debug("retreived account number "+account.getAccountNumber());
@@ -121,7 +121,7 @@ public class CartController extends SimpleFormController  {
 		} catch (Exception e) {
 			logger.error("checkout failed ",e);
 		}
-		command = getCommand(command.getAccount().getAccountId());
+		command = getCommand(command.getAccount().getId());
 		request.getSession().setAttribute(getFormSessionAttributeName(),command);
 		return new ModelAndView("viewCart","cartBean",command);
 	}

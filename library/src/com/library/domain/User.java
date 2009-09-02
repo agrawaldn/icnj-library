@@ -2,17 +2,17 @@
  * Created by: dagrawal on Dec 29, 2008
  * Contact: dev.agrawal@gmail.com for help
  */
-package com.library.command;
+package com.library.domain;
 
 import java.io.Serializable;
 import java.util.Date;
 
-public class User implements Serializable{
+public class User extends DomainVO{
 	/**
 	 * Field: serialVersionUID Field Type: long
 	 */
 	private static final long serialVersionUID = 1L;
-	private int userId;
+//	private int userId;
 	private String userName;
     private String password;
     private UserRole userRole;
@@ -38,13 +38,13 @@ public class User implements Serializable{
 
     }
 
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+//	public int getUserId() {
+//		return userId;
+//	}
+//
+//	public void setUserId(int userId) {
+//		this.userId = userId;
+//	}
 
 	public UserRole getUserRole() {
 		return userRole;

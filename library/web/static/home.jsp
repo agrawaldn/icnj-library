@@ -11,13 +11,13 @@
         <TR>
           <TD width=5 rowSpan=4>&nbsp;</TD>
           <TD width=5 rowSpan=4>&nbsp;</TD>
-          <TD colSpan=5 height=121><IFRAME 
+          <TD colSpan=5 height=121><!-- <IFRAME 
             src="<%= request.getContextPath() %>/static/html/homeshow.html" 
             frameBorder=0 width=550 scrolling=no 
             height=260>
     <div align="center"><a href="<%= request.getContextPath() %>/static/html/homeshow.html">Hmm, you are using a very old browser.
       Click here to go directly to included content.</a></div>
-    </IFRAME></TD></TR>
+    </IFRAME> --></TD></TR>
         <TR>
           <TD bgColor=#ffffff colSpan=5>&nbsp;</TD></TR>
         <TR>

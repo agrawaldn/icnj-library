@@ -46,7 +46,7 @@
 <c:forEach var="account" items="${accountLookupFormBean.accountList}">
 	<tr align="center">
 		<td>
-			<a href="<%= request.getContextPath() %>/viewCart.htm?accountId=${account.accountId}"><c:out value="${account.accountNumber}"/></a>
+			<a href="<%= request.getContextPath() %>/viewCart.htm?accountId=${account.id}"><c:out value="${account.accountNumber}"/></a>
 		</td>
 		<td>
 			<c:out value="${account.contact.firstName}"/>		

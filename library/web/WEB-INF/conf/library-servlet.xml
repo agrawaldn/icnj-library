@@ -41,6 +41,13 @@
         <property name="accountService"><ref bean="accountService"/></property>
     </bean>
     
+    <bean id="addAccountController" class="com.library.web.controller.AccountMaintenanceController">
+        <property name="sessionForm"><value>false</value></property>
+        <property name="commandName"><value>account</value></property>
+        <property name="commandClass"><value>com.library.domain.Account</value></property>
+        <property name="accountService"><ref bean="accountService"/></property>
+    </bean>
+    
     <bean id="cartMultiController" class="org.springframework.web.servlet.mvc.multiaction.MultiActionController">
   		<property name="methodNameResolver"><ref bean="paramResolver"/></property>
   		<property name="delegate"><ref bean="cartForm"/></property>
@@ -62,6 +69,9 @@
 				</entry>
 				<entry key="/cart.htm">
 					<ref bean="cartMultiController"/>
+				</entry>
+				<entry key="/addAccount.htm">
+					<ref bean="addAccountController"/>
 				</entry>
 			</map>
 		</property>

@@ -88,28 +88,24 @@ CREATE UNIQUE INDEX `account_type_uk` ON `account_type` (`account_type` ASC) ;
 -- -----------------------------------------------------
 -- Table `account`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `account` (
-  `account_id` INT NOT NULL ,
-  `account_nb` INT NOT NULL ,
-  `contact_id` INT NOT NULL ,
-  `start_datetime` DATETIME NOT NULL ,
-  `end_datetime` DATETIME NULL ,
-  `account_type_id` INT NOT NULL ,
-  `active_flag` CHAR(1) NOT NULL DEFAULT 'y' ,
-  `updated_by` VARCHAR(30) NULL ,
-  `updated_datetime` DATETIME NULL ,
-  PRIMARY KEY (`account_id`) ,
-  CONSTRAINT `account_fk`
-    FOREIGN KEY (`contact_id` )
-    REFERENCES `contact` (`contact_id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `account_fk1`
-    FOREIGN KEY (`account_type_id` )
-    REFERENCES `account_type` (`account_type_id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+DROP TABLE IF EXISTS `account`;
+CREATE TABLE  `account` (
+  `account_id` int(11) NOT NULL AUTO_INCREMENT,
+  `account_nb` bigint(20) unsigned NOT NULL,
+  `contact_id` int(11) NOT NULL,
+  `start_datetime` datetime NOT NULL,
+  `end_datetime` datetime DEFAULT NULL,
+  `account_type_id` int(11) NOT NULL,
+  `active_flag` char(1) NOT NULL DEFAULT 'y',
+  `updated_by` varchar(30) DEFAULT NULL,
+  `updated_datetime` datetime DEFAULT NULL,
+  PRIMARY KEY (`account_id`),
+  UNIQUE KEY `account_uk` (`account_nb`,`start_datetime`),
+  KEY `account_fk` (`contact_id`),
+  KEY `account_fk1` (`account_type_id`),
+  CONSTRAINT `account_fk` FOREIGN KEY (`contact_id`) REFERENCES `contact` (`contact_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `account_fk1` FOREIGN KEY (`account_type_id`) REFERENCES `account_type` (`account_type_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 CREATE UNIQUE INDEX `account_uk` ON `account` (`account_nb` ASC, `start_datetime` ASC) ;
 

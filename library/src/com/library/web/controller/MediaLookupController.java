@@ -11,8 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
 import com.library.business.MediaService;
-import com.library.command.Media;
 import com.library.command.formbean.MediaLookupFormBean;
+import com.library.domain.Media;
 import com.library.util.StringUtil;
 
 public class MediaLookupController extends SimpleFormController  {

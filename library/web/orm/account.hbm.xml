@@ -4,19 +4,19 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-	<class name="com.library.command.Account" table="account">
-		<id name="accountId" column="account_id">
+	<class name="com.library.domain.Account" table="account">
+		<id name="id" column="account_id">
 			<generator class="increment">
 			</generator>
 		</id>
 		<property name="accountNumber"  column="account_nb"/>	
 		<property name="startDate"  column="start_datetime"/>
 		<property name="endDate"  column="end_datetime"/>
-		<many-to-one name="accountType" class="com.library.command.AccountType"
+		<many-to-one name="accountType" class="com.library.domain.AccountType"
 			lazy="false" update="false">
 			<column name="account_type_id"/>
 		</many-to-one>
-		<many-to-one name="contact" class="com.library.command.Contact"
+		<many-to-one name="contact" class="com.library.domain.Contact"
 			lazy="false" update="false">
 			<column name="contact_id"/>
 		</many-to-one>
@@ -25,13 +25,13 @@
 		<property name="updatedDate"  column="updated_datetime"/>
 	</class>
 	<sql-query name="fetchAccount">
-		<return class="com.library.command.Account"/>
+		<return class="com.library.domain.Account"/>
 		<![CDATA[
 			select * from account where account_nb = :accountNumber
 		]]>
 	</sql-query>	
 	<sql-query name="fetchAccounts">
-		<return class="com.library.command.Account"/>
+		<return class="com.library.domain.Account"/>
 		<![CDATA[
 			select a.* from account a, contact c where a.contact_id = c.contact_id and (lower(c.first_name) like :pattern or lower(c.last_name) like :pattern)
 		]]>

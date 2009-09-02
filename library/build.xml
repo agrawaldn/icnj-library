@@ -17,32 +17,12 @@
             <include name="**/*.jar" />
         </fileset>
     </path>  
-	
-	<target name="tomcat-start">
-	    <java jar="${tomcat.home}/bin/bootstrap.jar" fork="true">
-	        <jvmarg value="-Dcatalina.home=${tomcat.home}"/>
-	    </java>
-	</target>
-
-	<target name="tomcat-stop">
-	    <java jar="${tomcat.home}/bin/bootstrap.jar" fork="true">
-	        <jvmarg value="-Dcatalina.home=${tomcat.home}"/>
-	        <arg line="stop"/>
-	    </java>
-	</target>
-	
 	<target name="clean">
 	  <delete>
 		<fileset dir="${build.classes.dir}" includes="*.properties"/>
 	  </delete>
 		<delete dir="${build.classes.dir}/com"/>
 	</target>
-
-	<target name="cleanTomcat">
-	  <delete file="${tomcat.webapp.dir}/library.war"/>
-	  <delete dir="${tomcat.webapp.dir}/library"/> 
-	</target>
-
 	<target name="compile">
         <javac debug="on" srcdir="${src.dir}" destdir="${build.classes.dir}" includes="**/*.java">
             <classpath refid="build.class.path" />
@@ -69,8 +49,32 @@
 	        <classes dir="${build.classes.dir}" />
       	</war>
     </target>
-		
-	<target name="deploy" depends="war,cleanTomcat">
+	<target name="tomcat-stop">
+	    <java jar="${tomcat.home}/bin/bootstrap.jar" fork="true">
+	        <jvmarg value="-Dcatalina.home=${tomcat.home}"/>
+	        <arg line="stop"/>
+	    </java>
+	</target>
+	<target name="tomcat-start">
+		<java jar="${tomcat.home}/bin/bootstrap.jar" fork="true">
+	        <jvmarg value="-Dcatalina.home=${tomcat.home}"/>
+	    </java>
+	</target>
+	<target name="tomcat-clean">
+	  <delete file="${tomcat.webapp.dir}/library.war"/>
+	  <delete dir="${tomcat.webapp.dir}/library"/> 
+	</target>	
+	<target name="tomcat-deploy" depends="war">
+		<antcall target="tomcat-clean" />
 		<copy todir="${tomcat.webapp.dir}" file="${war.file}" />
+	</target>
+	<target name="tomcat-deploy-start" depends="war">
+		<antcall target="tomcat-clean" />
+		<copy todir="${tomcat.webapp.dir}" file="${war.file}" />
+		<antcall target="tomcat-start" />
+	</target>
+	<target name="tomcat-restart" depends="tomcat-stop">
+		<antcall target="tomcat-stop" />
+		<antcall target="tomcat-start" />
 	</target>
 </project>

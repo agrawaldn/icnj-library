@@ -9,9 +9,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import com.library.command.Media;
-import com.library.command.MediaLending;
-import com.library.command.User;
+import com.library.domain.Media;
+import com.library.domain.MediaLending;
+import com.library.domain.User;
 
 
 public class MediaLendingDAO {

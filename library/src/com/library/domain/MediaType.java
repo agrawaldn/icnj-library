@@ -2,7 +2,7 @@
  * Created by: dagrawal on Dec 29, 2008
  * Contact: dev.agrawal@gmail.com for help
  */
-package com.library.command;
+package com.library.domain;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -11,39 +11,52 @@ import java.util.Date;
  * @author dagrawal
  *
  */
-public class UserRole implements Serializable {
+public class MediaType extends DomainVO {
+
 	/**
 	 * Field: serialVersionUID Field Type: long
 	 */
 	private static final long serialVersionUID = 1L;
-	private int userRoleId;
-	private String userRole;
+//	private int mediaTypeId;
+	private String mediaType;
+	private String description;
 	private String updatedBy;
 	private Date updatedDate;
-	
 	/**
-	 * @param userRoleId the userRoleId to set
+	 * @param mediaTypeId the mediaTypeId to set
 	 */
-	public void setUserRoleId(int userRoleId) {
-		this.userRoleId = userRoleId;
+//	public void setMediaTypeId(int mediaTypeId) {
+//		this.mediaTypeId = mediaTypeId;
+//	}
+//	/**
+//	 * @return the mediaTypeId
+//	 */
+//	public int getMediaTypeId() {
+//		return mediaTypeId;
+//	}
+	/**
+	 * @param mediaType the mediaType to set
+	 */
+	public void setMediaType(String mediaType) {
+		this.mediaType = mediaType;
 	}
 	/**
-	 * @return the userRoleId
+	 * @return the mediaType
 	 */
-	public int getUserRoleId() {
-		return userRoleId;
+	public String getMediaType() {
+		return mediaType;
 	}
 	/**
-	 * @param userRole the userRole to set
+	 * @param description the description to set
 	 */
-	public void setUserRole(String userRole) {
-		this.userRole = userRole;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	/**
-	 * @return the userRole
+	 * @return the description
 	 */
-	public String getUserRole() {
-		return userRole;
+	public String getDescription() {
+		return description;
 	}
 	/**
 	 * @param updatedBy the updatedBy to set
@@ -69,6 +82,5 @@ public class UserRole implements Serializable {
 	public Date getUpdatedDate() {
 		return updatedDate;
 	}
-	
 
 }

@@ -2,7 +2,7 @@
  * Created by: dagrawal on Dec 29, 2008
  * Contact: dev.agrawal@gmail.com for help
  */
-package com.library.command;
+package com.library.domain;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -11,28 +11,28 @@ import java.util.Date;
  * @author dagrawal
  *
  */
-public class MediaCategory implements Serializable {
+public class MediaCategory extends DomainVO {
 
 	/**
 	 * Field: serialVersionUID Field Type: long
 	 */
 	private static final long serialVersionUID = 1L;
-	private int mediaCategoryId;
+//	private int mediaCategoryId;
 	private String category;
 	private String updatedBy;
 	private Date updatedDate;
 	/**
 	 * @param mediaCategoryId the mediaCategoryId to set
 	 */
-	public void setMediaCategoryId(int mediaCategoryId) {
-		this.mediaCategoryId = mediaCategoryId;
-	}
-	/**
-	 * @return the mediaCategoryId
-	 */
-	public int getMediaCategoryId() {
-		return mediaCategoryId;
-	}
+//	public void setMediaCategoryId(int mediaCategoryId) {
+//		this.mediaCategoryId = mediaCategoryId;
+//	}
+//	/**
+//	 * @return the mediaCategoryId
+//	 */
+//	public int getMediaCategoryId() {
+//		return mediaCategoryId;
+//	}
 	/**
 	 * @param category the category to set
 	 */

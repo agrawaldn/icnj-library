@@ -2,7 +2,7 @@
  * Created by: dagrawal on Dec 29, 2008
  * Contact: dev.agrawal@gmail.com for help
  */
-package com.library.command;
+package com.library.domain;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -11,52 +11,39 @@ import java.util.Date;
  * @author dagrawal
  *
  */
-public class MediaType implements Serializable {
-
+public class UserRole extends DomainVO {
 	/**
 	 * Field: serialVersionUID Field Type: long
 	 */
 	private static final long serialVersionUID = 1L;
-	private int mediaTypeId;
-	private String mediaType;
-	private String description;
+//	private int userRoleId;
+	private String userRole;
 	private String updatedBy;
 	private Date updatedDate;
+	
 	/**
-	 * @param mediaTypeId the mediaTypeId to set
+	 * @param userRoleId the userRoleId to set
 	 */
-	public void setMediaTypeId(int mediaTypeId) {
-		this.mediaTypeId = mediaTypeId;
+//	public void setUserRoleId(int userRoleId) {
+//		this.userRoleId = userRoleId;
+//	}
+//	/**
+//	 * @return the userRoleId
+//	 */
+//	public int getUserRoleId() {
+//		return userRoleId;
+//	}
+	/**
+	 * @param userRole the userRole to set
+	 */
+	public void setUserRole(String userRole) {
+		this.userRole = userRole;
 	}
 	/**
-	 * @return the mediaTypeId
+	 * @return the userRole
 	 */
-	public int getMediaTypeId() {
-		return mediaTypeId;
-	}
-	/**
-	 * @param mediaType the mediaType to set
-	 */
-	public void setMediaType(String mediaType) {
-		this.mediaType = mediaType;
-	}
-	/**
-	 * @return the mediaType
-	 */
-	public String getMediaType() {
-		return mediaType;
-	}
-	/**
-	 * @param description the description to set
-	 */
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	/**
-	 * @return the description
-	 */
-	public String getDescription() {
-		return description;
+	public String getUserRole() {
+		return userRole;
 	}
 	/**
 	 * @param updatedBy the updatedBy to set
@@ -82,5 +69,6 @@ public class MediaType implements Serializable {
 	public Date getUpdatedDate() {
 		return updatedDate;
 	}
+	
 
 }

@@ -5,37 +5,38 @@
 package com.library.business;
 
 import java.util.List;
-
-import com.library.command.Account;
-import com.library.command.Media;
-import com.library.dao.MediaDAO;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import com.library.domain.Media;
+import com.library.service.DomainService;
 
 /**
  * @author dagrawal
  *
  */
 public class MediaService {
-	private MediaDAO mediaDAO;
+	private final Log logger = LogFactory.getLog(getClass());
+	private DomainService domainService;
 
 	/**
-	 * @param mediaDAO the mediaDAO to set
+	 * @param domainService the domainService to set
 	 */
-	public void setMediaDAO(MediaDAO mediaDAO) {
-		this.mediaDAO = mediaDAO;
+	public void setDomainService(DomainService domainService) {
+		this.domainService = domainService;
 	}
-
 	/**
-	 * @return the mediaDAO
+	 * @return the domainService
 	 */
-	public MediaDAO getMediaDAO() {
-		return mediaDAO;
+	public DomainService getDomainService() {
+		return domainService;
 	}
-
 	/**
 	 * @param searchString
 	 * @return
 	 */
 	public List<Media> getMatchingMedias(String searchString) {
-		return getMediaDAO().getMatchingMedias(searchString);
+		String[] keys = {"pattern"};
+		String[] values = {"%"+searchString.toLowerCase()+"%"}; 
+		return (List<Media>)this.getDomainService().executeNamedQuery("fetchMedias", keys, values);
 	}
 }

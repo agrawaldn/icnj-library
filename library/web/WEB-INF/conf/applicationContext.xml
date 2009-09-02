@@ -85,23 +85,17 @@
 			</value>
 		</property>
 	</bean>
-	<bean id="userdao" class="com.library.dao.UserDAO">
-		<property name="sessionFactory"><ref bean="mySessionFactory"/></property>
-	</bean>
 	<bean id="userService" class="com.library.business.UserService">
-		<property name="userDAO"><ref bean="userdao"/></property>
-	</bean>
-	<bean id="accountdao" class="com.library.dao.AccountDAO">
-		<property name="sessionFactory"><ref bean="mySessionFactory"/></property>
+		<property name="domainService"><ref bean="domainService"/></property>
 	</bean>
 	<bean id="accountService" class="com.library.business.AccountService">
-		<property name="accountDAO"><ref bean="accountdao"/></property>
-	</bean>
-	<bean id="mediadao" class="com.library.dao.MediaDAO">
-		<property name="sessionFactory"><ref bean="mySessionFactory"/></property>
+		<property name="domainService"><ref bean="domainService"/></property>
 	</bean>
 	<bean id="mediaService" class="com.library.business.MediaService">
-		<property name="mediaDAO"><ref bean="mediadao"/></property>
+		<property name="domainService"><ref bean="domainService"/></property>
+	</bean>
+	<bean id="domainService" class="com.library.service.DomainService">
+		<property name="sessionFactory"><ref bean="mySessionFactory"/></property>
 	</bean>
 	<bean id="medialendingdao" class="com.library.dao.MediaLendingDAO">
 		<property name="sessionFactory"><ref bean="mySessionFactory"/></property>

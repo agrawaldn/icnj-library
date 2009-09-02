@@ -4,8 +4,8 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-	<class name="com.library.command.UserRole" table="user_role">
-		<id name="userRoleId" column="user_role_id">
+	<class name="com.library.domain.UserRole" table="user_role">
+		<id name="id" column="user_role_id">
 			<generator class="increment">
 			</generator>
 		</id>

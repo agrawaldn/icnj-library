@@ -4,19 +4,19 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-	<class name="com.library.command.Media" table="media">
-		<id name="mediaId" column="media_id">
+	<class name="com.library.domain.Media" table="media">
+		<id name="id" column="media_id">
 			<generator class="increment">
 			</generator>
 		</id>
 		<property name="title"  column="title"/>	
 		<property name="volumeNumber"  column="volume_nb"/>
 		<property name="totalVolume"  column="total_volumes_nb"/>
-		<many-to-one name="mediaType" class="com.library.command.MediaType"
+		<many-to-one name="mediaType" class="com.library.domain.MediaType"
 			lazy="false" update="false">
 			<column name="media_type_id"/>
 		</many-to-one>
-		<many-to-one name="category" class="com.library.command.MediaCategory"
+		<many-to-one name="category" class="com.library.domain.MediaCategory"
 			lazy="false" update="false">
 			<column name="media_category_id"/>
 		</many-to-one>
@@ -29,7 +29,7 @@
 		<property name="updatedDate"  column="updated_datetime"/>
 	</class>
 	<sql-query name="fetchMedias">
-		<return class="com.library.command.Media"/>
+		<return class="com.library.domain.Media"/>
 		<![CDATA[
 			select m.* from media m, media_category mc, media_type mt where m.media_category_id = mc.media_category_id and m.media_type_id = mt.media_type_id and (lower(m.title) like :pattern or lower(m.author) like :pattern)
 		]]>
