@@ -36,7 +36,7 @@
 <c:forEach var="issuedItem" items="${cartBean.issuedItems}">
 	<tr align="center">
 		<td>
-			<c:out value="${issuedItem.media.mediaId}"/>
+			<c:out value="${issuedItem.media.id}"/>
 		</td>
 		<td>
 			<c:out value="${issuedItem.media.title}"/>		
@@ -60,14 +60,14 @@
 			<c:out value="${issuedItem.returnDate}"/>	
 		</td>
 		<td>
-			<a href="<%= request.getContextPath() %>/cart.htm?action=returnItem&mediaLendingId=${issuedItem.mediaLendingId}"><spring:message code="label.returnitem"/></a>	
+			<a href="<%= request.getContextPath() %>/cart.htm?action=returnItem&mediaLendingId=${issuedItem.id}"><spring:message code="label.returnitem"/></a>	
 		</td>
 	</tr>
 </c:forEach>
 <c:forEach var="checkoutItem" items="${cartBean.checkoutItems}">
 	<tr align="center">
 		<td>
-			<c:out value="${checkoutItem.media.mediaId}"/>
+			<c:out value="${checkoutItem.media.id}"/>
 		</td>
 		<td>
 			<c:out value="${checkoutItem.media.title}"/>		
@@ -91,7 +91,7 @@
 			<c:out value="${checkoutItem.returnDate}"/>	
 		</td>
 		<td>
-			<a href="<%= request.getContextPath() %>/cart.htm?action=removeFromCart&mediaId=${checkoutItem.media.mediaId}"><spring:message code="label.removefromcart"/></a>	
+			<a href="<%= request.getContextPath() %>/cart.htm?action=removeFromCart&mediaId=${checkoutItem.media.id}"><spring:message code="label.removefromcart"/></a>	
 		</td>
 	</tr>
 </c:forEach>

@@ -7,7 +7,7 @@ package com.library.command.formbean;
 import java.io.Serializable;
 import java.util.List;
 
-import com.library.command.Media;
+import com.library.domain.Media;
 
 public class MediaLookupFormBean implements Serializable {
 	/**

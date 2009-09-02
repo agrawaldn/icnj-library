@@ -4,8 +4,8 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-	<class name="com.library.command.MediaCategory" table="media_category">
-		<id name="mediaCategoryId" column="media_category_id">
+	<class name="com.library.domain.MediaCategory" table="media_category">
+		<id name="id" column="media_category_id">
 			<generator class="increment">
 			</generator>
 		</id>

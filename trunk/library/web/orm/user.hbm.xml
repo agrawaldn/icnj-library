@@ -4,19 +4,19 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-	<class name="com.library.command.User" table="user">
-		<id name="userId" column="user_id">
+	<class name="com.library.domain.User" table="user">
+		<id name="id" column="user_id">
 			<generator class="increment">
 				
 			</generator>
 		</id>
 		<property name="userName"  column="user_name"/>	
 		<property name="password"  column="password"/>
-		<many-to-one name="userRole" class="com.library.command.UserRole"
+		<many-to-one name="userRole" class="com.library.domain.UserRole"
 			lazy="false" update="false">
 			<column name="user_role_id"/>
 		</many-to-one>
-		<many-to-one name="contact" class="com.library.command.Contact"
+		<many-to-one name="contact" class="com.library.domain.Contact"
 			lazy="false" update="false">
 			<column name="contact_id"/>
 		</many-to-one>
@@ -25,7 +25,7 @@
 		<property name="updatedDate"  column="updated_datetime"/>
 	</class>
 	<sql-query name="validateUser">
-		<return class="com.library.command.User"/>
+		<return class="com.library.domain.User"/>
 		<![CDATA[
 			select * from user where user_name = :userName and password = :password
 		]]>

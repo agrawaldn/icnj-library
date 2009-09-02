@@ -2,22 +2,24 @@
  * Created by: dagrawal on Dec 29, 2008
  * Contact: dev.agrawal@gmail.com for help
  */
-package com.library.command;
+package com.library.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import com.library.util.DateUtil;
 
 /**
  * @author dagrawal
  *
  */
-public class Account implements Serializable {
+public class Account extends DomainVO {
 	/**
 	 * Field: serialVersionUID Field Type: long
 	 */
 	private static final long serialVersionUID = 1L;
-	private int accountId;
-	private int accountNumber;
+//	private int accountId;
+	private long accountNumber;
 	private Contact contact;
 	private Date startDate;
 	private Date endDate;
@@ -28,25 +30,25 @@ public class Account implements Serializable {
 	/**
 	 * @param accountId the accountId to set
 	 */
-	public void setAccountId(int accountId) {
-		this.accountId = accountId;
-	}
-	/**
-	 * @return the accountId
-	 */
-	public int getAccountId() {
-		return accountId;
-	}
+//	public void setAccountId(int accountId) {
+//		this.accountId = accountId;
+//	}
+//	/**
+//	 * @return the accountId
+//	 */
+//	public int getAccountId() {
+//		return accountId;
+//	}
 	/**
 	 * @param accountNumber the accountNumber to set
 	 */
-	public void setAccountNumber(int accountNumber) {
+	public void setAccountNumber(long accountNumber) {
 		this.accountNumber = accountNumber;
 	}
 	/**
 	 * @return the accountNumber
 	 */
-	public int getAccountNumber() {
+	public long getAccountNumber() {
 		return accountNumber;
 	}
 	/**
@@ -67,6 +69,9 @@ public class Account implements Serializable {
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
+	public void setStartDate(String startDate){
+		this.setStartDate(DateUtil.parseDate(startDate, DateUtil.dateFormat));
+	}
 	/**
 	 * @return the startDate
 	 */
@@ -78,6 +83,9 @@ public class Account implements Serializable {
 	 */
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+	public void setEndDate(String endDate){
+		this.setEndDate(DateUtil.parseDate(endDate, DateUtil.dateFormat));
 	}
 	/**
 	 * @return the endDate

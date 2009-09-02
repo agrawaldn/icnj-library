@@ -6,7 +6,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import com.library.business.UserService;
-import com.library.command.User;
+import com.library.domain.User;
 import com.library.util.StringUtil;
 
 public class LogonValidator implements Validator {

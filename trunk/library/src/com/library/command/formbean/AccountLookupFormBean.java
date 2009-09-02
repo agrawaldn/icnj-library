@@ -7,7 +7,7 @@ package com.library.command.formbean;
 import java.io.Serializable;
 import java.util.List;
 
-import com.library.command.Account;
+import com.library.domain.Account;
 
 /**
  * @author dagrawal

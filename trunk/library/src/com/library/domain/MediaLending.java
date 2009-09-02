@@ -2,7 +2,7 @@
  * Created by: dagrawal on Dec 29, 2008
  * Contact: dev.agrawal@gmail.com for help
  */
-package com.library.command;
+package com.library.domain;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -11,13 +11,13 @@ import java.util.Date;
  * @author dagrawal
  *
  */
-public class MediaLending implements Serializable {
+public class MediaLending extends DomainVO {
 
 	/**
 	 * Field: serialVersionUID Field Type: long
 	 */
 	private static final long serialVersionUID = 1L;
-	private int mediaLendingId;
+//	private int mediaLendingId;
 	private Media media;
 	private Account account;
 	private Date lendingDate;
@@ -28,15 +28,15 @@ public class MediaLending implements Serializable {
 	/**
 	 * @param mediaLendingId the mediaLendingId to set
 	 */
-	public void setMediaLendingId(int mediaLendingId) {
-		this.mediaLendingId = mediaLendingId;
-	}
-	/**
-	 * @return the mediaLendingId
-	 */
-	public int getMediaLendingId() {
-		return mediaLendingId;
-	}
+//	public void setMediaLendingId(int mediaLendingId) {
+//		this.mediaLendingId = mediaLendingId;
+//	}
+//	/**
+//	 * @return the mediaLendingId
+//	 */
+//	public int getMediaLendingId() {
+//		return mediaLendingId;
+//	}
 	/**
 	 * @param media the media to set
 	 */

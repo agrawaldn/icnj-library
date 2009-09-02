@@ -2,7 +2,7 @@
  * Created by: dagrawal on Dec 29, 2008
  * Contact: dev.agrawal@gmail.com for help
  */
-package com.library.command;
+package com.library.domain;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -11,13 +11,13 @@ import java.util.Date;
  * @author dagrawal
  *
  */
-public class AccountType implements Serializable {
+public class AccountType extends DomainVO {
 
 	/**
 	 * Field: serialVersionUID Field Type: long
 	 */
 	private static final long serialVersionUID = 1L;
-	private int accountTypeId;
+//	private int accountTypeId;
 	private String accountType;
 	private int maxBorrowLimit;
 	private String updatedBy;
@@ -25,15 +25,15 @@ public class AccountType implements Serializable {
 	/**
 	 * @param accountTypeId the accountTypeId to set
 	 */
-	public void setAccountTypeId(int accountTypeId) {
-		this.accountTypeId = accountTypeId;
-	}
-	/**
-	 * @return the accountTypeId
-	 */
-	public int getAccountTypeId() {
-		return accountTypeId;
-	}
+//	public void setAccountTypeId(int accountTypeId) {
+//		this.accountTypeId = accountTypeId;
+//	}
+//	/**
+//	 * @return the accountTypeId
+//	 */
+//	public int getAccountTypeId() {
+//		return accountTypeId;
+//	}
 	/**
 	 * @param accountType the accountType to set
 	 */

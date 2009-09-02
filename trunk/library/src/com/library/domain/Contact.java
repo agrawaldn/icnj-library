@@ -2,7 +2,7 @@
  * Created by: dagrawal on Dec 29, 2008
  * Contact: dev.agrawal@gmail.com for help
  */
-package com.library.command;
+package com.library.domain;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -11,12 +11,12 @@ import java.util.Date;
  * @author dagrawal
  *
  */
-public class Contact implements Serializable{
+public class Contact extends DomainVO{
 	/**
 	 * Field: serialVersionUID Field Type: long
 	 */
 	private static final long serialVersionUID = 1L;
-	private int contactId;
+//	private int contactId;
 	private String firstName;
 	private String lastName;
 	private String alias;
@@ -29,12 +29,12 @@ public class Contact implements Serializable{
 	private String updatedBy;
 	private Date updatedDate;
 	
-	public int getContactId() {
-		return contactId;
-	}
-	public void setContactId(int contactId) {
-		this.contactId = contactId;
-	}
+//	public int getContactId() {
+//		return contactId;
+//	}
+//	public void setContactId(int contactId) {
+//		this.contactId = contactId;
+//	}
 	public String getFirstName() {
 		return firstName;
 	}

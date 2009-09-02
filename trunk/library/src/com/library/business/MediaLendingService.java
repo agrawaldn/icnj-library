@@ -10,11 +10,11 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.library.command.Account;
-import com.library.command.Media;
-import com.library.command.MediaLending;
 import com.library.command.formbean.CartBean;
 import com.library.dao.MediaLendingDAO;
+import com.library.domain.Account;
+import com.library.domain.Media;
+import com.library.domain.MediaLending;
 import com.library.util.AuthenticationUtil;
 import com.library.util.Constant;
 import com.library.util.DateUtil;

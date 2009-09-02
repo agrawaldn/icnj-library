@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.library.command.Account;
-import com.library.command.Media;
-import com.library.command.MediaLending;
+import com.library.domain.Account;
+import com.library.domain.Media;
+import com.library.domain.MediaLending;
 
 public class CartBean implements Serializable {
 	/**
@@ -63,7 +63,7 @@ public class CartBean implements Serializable {
 	 */
 	public void removeItem(int mediaId) {
 		for(int i=0;i<checkoutItems.size();i++){
-			if(checkoutItems.get(i).getMedia().getMediaId() == mediaId){
+			if(checkoutItems.get(i).getMedia().getId() == mediaId){
 				checkoutItems.remove(i);
 			}
 		}
@@ -74,7 +74,7 @@ public class CartBean implements Serializable {
 	public MediaLending returnItem(int mediaLendingId) {
 		MediaLending returnedItem = null;
 		for(int i=0;i<issuedItems.size();i++){
-			if(issuedItems.get(i).getMediaLendingId() == mediaLendingId){
+			if(issuedItems.get(i).getId() == mediaLendingId){
 				returnedItem = issuedItems.remove(i);
 				returnedItem.setActualReturnDate(new Date());
 				returnedItem.setUpdatedDate(new Date());

@@ -5,6 +5,7 @@
 package com.library.util;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -13,6 +14,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 public class DateUtil {
+	public static final String dateFormat = "mm/dd/yyyy";
+	
 	public static Log logger = LogFactory.getLog(DateUtil.class);
 	
 	public static Date addDays(Date date, int days){
@@ -32,7 +35,16 @@ public class DateUtil {
 		}
 		return day;
 	}
-
+	public static Date parseDate(String date, String format){
+		SimpleDateFormat sdf = new SimpleDateFormat();
+		sdf.applyPattern(format);
+		try {
+			return sdf.parse(date);
+		} catch (ParseException e) {
+			logger.error("unable to parse date "+date, e);
+			return null;
+		}
+	}
 	public static int daysBetween2Dates(Date d1, Date d2){
 		int days = 0;
 		Calendar c1 = Calendar.getInstance();

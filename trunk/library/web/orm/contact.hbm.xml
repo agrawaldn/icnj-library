@@ -4,8 +4,8 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-	<class name="com.library.command.Contact" table="contact">
-		<id name="contactId" column="contact_id">
+	<class name="com.library.domain.Contact" table="contact">
+		<id name="id" column="contact_id">
 			<generator class="increment">
 			</generator>
 		</id>
@@ -21,5 +21,10 @@
 		<property name="updatedBy"  column="updated_by"/>
 		<property name="updatedDate"  column="updated_datetime"/>
 	</class>
-
+	<sql-query name="fetchContact">
+		<return class="com.library.domain.Contact"/>
+		<![CDATA[
+			select a.* from contact a where contact_home = :contactHome and first_name = :firstName
+		]]>
+	</sql-query>
 </hibernate-mapping>
