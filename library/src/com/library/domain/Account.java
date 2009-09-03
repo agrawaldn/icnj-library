@@ -7,6 +7,9 @@ package com.library.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.library.util.DateUtil;
 
 /**
@@ -17,28 +20,15 @@ public class Account extends DomainVO {
 	/**
 	 * Field: serialVersionUID Field Type: long
 	 */
+	private final Log logger = LogFactory.getLog(getClass());
 	private static final long serialVersionUID = 1L;
-//	private int accountId;
 	private long accountNumber;
 	private Contact contact;
 	private Date startDate;
 	private Date endDate;
 	private AccountType accountType;
 	private char activeFlag;
-	private String updatedBy;
-	private Date updatedDate;
-	/**
-	 * @param accountId the accountId to set
-	 */
-//	public void setAccountId(int accountId) {
-//		this.accountId = accountId;
-//	}
-//	/**
-//	 * @return the accountId
-//	 */
-//	public int getAccountId() {
-//		return accountId;
-//	}
+
 	/**
 	 * @param accountNumber the accountNumber to set
 	 */
@@ -66,7 +56,7 @@ public class Account extends DomainVO {
 	/**
 	 * @param startDate the startDate to set
 	 */
-	public void setStartDate(Date startDate) {
+	private void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 	public void setStartDate(String startDate){
@@ -81,7 +71,7 @@ public class Account extends DomainVO {
 	/**
 	 * @param endDate the endDate to set
 	 */
-	public void setEndDate(Date endDate) {
+	private void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 	public void setEndDate(String endDate){
@@ -117,29 +107,4 @@ public class Account extends DomainVO {
 	public char getActiveFlag() {
 		return activeFlag;
 	}
-	/**
-	 * @param updatedBy the updatedBy to set
-	 */
-	public void setUpdatedBy(String updatedBy) {
-		this.updatedBy = updatedBy;
-	}
-	/**
-	 * @return the updatedBy
-	 */
-	public String getUpdatedBy() {
-		return updatedBy;
-	}
-	/**
-	 * @param updatedDate the updatedDate to set
-	 */
-	public void setUpdatedDate(Date updatedDate) {
-		this.updatedDate = updatedDate;
-	}
-	/**
-	 * @return the updatedDate
-	 */
-	public Date getUpdatedDate() {
-		return updatedDate;
-	}
-
 }

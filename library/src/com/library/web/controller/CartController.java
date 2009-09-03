@@ -31,7 +31,7 @@ public class CartController extends SimpleFormController  {
 		CartBean command = new CartBean();
 		if(accountId > 0 && (command.getCheckoutItems() == null)){
 	    	List<MediaLending> issuedItems = getMediaLendingService().getMediaLendings(accountId);
-	    	if(issuedItems != null){
+	    	if(issuedItems != null && issuedItems.size() > 0){
 	    		logger.debug("Number of items issued to account "+accountId+" = "+issuedItems.size());
 	    		command.setIssuedItems(issuedItems);
 	    		command.setAccount(issuedItems.get(0).getAccount());

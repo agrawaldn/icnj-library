@@ -18,6 +18,7 @@ public class AccountMaintenanceController extends SimpleFormController  {
 	private AccountService accountService;
 
 	private Account getCommand(){
+		//logger.debug("getCommand() called in AccountMaintenanceController");
 		Account command = new Account();
 		Contact contact = new Contact();
 		command.setContact(contact);
@@ -32,7 +33,6 @@ public class AccountMaintenanceController extends SimpleFormController  {
 	public ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, 
 	        Object command, BindException errors) throws Exception {
 		Account acct = (Account) command;
-		logger.debug("onSubmit() called for Account creation "+acct.getContact().getFirstName());
 		this.getAccountService().createAccount(acct);
     	return showForm(request, response, errors);
     }

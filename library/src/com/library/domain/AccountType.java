@@ -17,23 +17,9 @@ public class AccountType extends DomainVO {
 	 * Field: serialVersionUID Field Type: long
 	 */
 	private static final long serialVersionUID = 1L;
-//	private int accountTypeId;
 	private String accountType;
 	private int maxBorrowLimit;
-	private String updatedBy;
-	private Date updatedDate;
-	/**
-	 * @param accountTypeId the accountTypeId to set
-	 */
-//	public void setAccountTypeId(int accountTypeId) {
-//		this.accountTypeId = accountTypeId;
-//	}
-//	/**
-//	 * @return the accountTypeId
-//	 */
-//	public int getAccountTypeId() {
-//		return accountTypeId;
-//	}
+
 	/**
 	 * @param accountType the accountType to set
 	 */
@@ -58,29 +44,4 @@ public class AccountType extends DomainVO {
 	public int getMaxBorrowLimit() {
 		return maxBorrowLimit;
 	}
-	/**
-	 * @param updatedBy the updatedBy to set
-	 */
-	public void setUpdatedBy(String updatedBy) {
-		this.updatedBy = updatedBy;
-	}
-	/**
-	 * @return the updatedBy
-	 */
-	public String getUpdatedBy() {
-		return updatedBy;
-	}
-	/**
-	 * @param updatedDate the updatedDate to set
-	 */
-	public void setUpdatedDate(Date updatedDate) {
-		this.updatedDate = updatedDate;
-	}
-	/**
-	 * @return the updatedDate
-	 */
-	public Date getUpdatedDate() {
-		return updatedDate;
-	}
-
 }
