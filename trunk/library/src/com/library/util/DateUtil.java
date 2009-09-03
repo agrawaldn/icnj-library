@@ -14,7 +14,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 public class DateUtil {
-	public static final String dateFormat = "mm/dd/yyyy";
+	public static final String dateFormat = "MM/dd/yyyy";
 	
 	public static Log logger = LogFactory.getLog(DateUtil.class);
 	
@@ -44,6 +44,10 @@ public class DateUtil {
 			logger.error("unable to parse date "+date, e);
 			return null;
 		}
+	}
+	public static String getDateAsString(Date date, String format){
+		SimpleDateFormat sdf = new SimpleDateFormat(format);
+		return sdf.format(date);
 	}
 	public static int daysBetween2Dates(Date d1, Date d2){
 		int days = 0;

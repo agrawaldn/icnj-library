@@ -10,11 +10,10 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.library.command.formbean.CartBean;
-import com.library.dao.MediaLendingDAO;
 import com.library.domain.Account;
 import com.library.domain.Media;
 import com.library.domain.MediaLending;
+import com.library.service.DomainService;
 import com.library.util.AuthenticationUtil;
 import com.library.util.Constant;
 import com.library.util.DateUtil;
@@ -24,34 +23,35 @@ import com.library.util.DateUtil;
  *
  */
 public class MediaLendingService {
-	private final Log logger = LogFactory.getLog(MediaLendingService.class);
-	private MediaLendingDAO mediaLendingDAO;
+	private final Log logger = LogFactory.getLog(getClass());
+	private DomainService domainService;
+
+	/**
+	 * @param domainService the domainService to set
+	 */
+	public void setDomainService(DomainService domainService) {
+		this.domainService = domainService;
+	}
+	/**
+	 * @return the domainService
+	 */
+	public DomainService getDomainService() {
+		return domainService;
+	}
 
 	public List<MediaLending> getMediaLendings(int accountId){
-		return getMediaLendingDAO().getMediaLendings(accountId);
+		String[] keys = {"accountId"};
+		String[] values = {""+accountId}; 
+		return (List<MediaLending>)this.getDomainService().executeNamedQuery("fetchMediaLending", keys, values);
 	}
 	
-	/**
-	 * @param mediaLendingDAO the mediaLendingDAO to set
-	 */
-	public void setMediaLendingDAO(MediaLendingDAO mediaLendingDAO) {
-		this.mediaLendingDAO = mediaLendingDAO;
-	}
-
-	/**
-	 * @return the mediaLendingDAO
-	 */
-	public MediaLendingDAO getMediaLendingDAO() {
-		return mediaLendingDAO;
-	}
-
 	/**
 	 * @param mediaId
 	 * @param account
 	 * @return
 	 */
 	public MediaLending getMediaLending(int mediaId, Account account) {
-		Media media = mediaLendingDAO.getMedia(mediaId);
+		Media media = (Media)this.getDomainService().getDomainObject(Media.class, mediaId);
 		logger.debug("mediaId "+mediaId+" retrieved: "+media.getTitle());
 		MediaLending item = new MediaLending();
 		Date currentDate = new Date();
@@ -65,8 +65,6 @@ public class MediaLendingService {
 			returnDate = DateUtil.addDays(currentDate,Constant.MEDIA_RETURN_DAYS);
 		}
 		item.setReturnDate(returnDate);
-		item.setUpdatedBy(AuthenticationUtil.getUserName());
-		item.setUpdatedDate(currentDate);
 		return item;
 	}
 
@@ -74,10 +72,8 @@ public class MediaLendingService {
 	 * @param mediaLendingId
 	 */
 	public void returnItem(MediaLending returnedItem) throws Exception{
-		returnedItem.setUpdatedBy(AuthenticationUtil.getUserName());
-		returnedItem.setUpdatedDate(new Date());
 		returnedItem.setActualReturnDate(new Date());
-		getMediaLendingDAO().returnItem(returnedItem);
+		this.getDomainService().updateDomainObject(returnedItem);
 	}
 
 	/**
@@ -85,7 +81,7 @@ public class MediaLendingService {
 	 */
 	public void checkout(List<MediaLending> checkoutItems) throws Exception{
 		for(MediaLending checkoutItem:checkoutItems){
-			getMediaLendingDAO().saveItem(checkoutItem);
+			this.getDomainService().saveDomainObject(checkoutItem);
 		}
 	}
 }

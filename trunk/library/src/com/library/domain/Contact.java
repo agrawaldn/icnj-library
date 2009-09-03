@@ -16,7 +16,6 @@ public class Contact extends DomainVO{
 	 * Field: serialVersionUID Field Type: long
 	 */
 	private static final long serialVersionUID = 1L;
-//	private int contactId;
 	private String firstName;
 	private String lastName;
 	private String alias;
@@ -26,15 +25,7 @@ public class Contact extends DomainVO{
 	private String country;
 	private long contactHome;
 	private long contactCell;
-	private String updatedBy;
-	private Date updatedDate;
-	
-//	public int getContactId() {
-//		return contactId;
-//	}
-//	public void setContactId(int contactId) {
-//		this.contactId = contactId;
-//	}
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -89,30 +80,4 @@ public class Contact extends DomainVO{
 	public void setContactCell(long contactCell) {
 		this.contactCell = contactCell;
 	}
-	/**
-	 * @param updatedBy the updatedBy to set
-	 */
-	public void setUpdatedBy(String updatedBy) {
-		this.updatedBy = updatedBy;
-	}
-	/**
-	 * @return the updatedBy
-	 */
-	public String getUpdatedBy() {
-		return updatedBy;
-	}
-	/**
-	 * @param updatedDate the updatedDate to set
-	 */
-	public void setUpdatedDate(Date updatedDate) {
-		this.updatedDate = updatedDate;
-	}
-	/**
-	 * @return the updatedDate
-	 */
-	public Date getUpdatedDate() {
-		return updatedDate;
-	}
-
-	
 }

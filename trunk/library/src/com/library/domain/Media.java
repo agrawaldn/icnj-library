@@ -17,7 +17,6 @@ public class Media extends DomainVO {
 	 * Field: serialVersionUID Field Type: long
 	 */
 	private static final long serialVersionUID = 1L;
-//	private int mediaId;
 	private String title;
 	private MediaType mediaType;
 	private MediaCategory category;
@@ -28,20 +27,7 @@ public class Media extends DomainVO {
 	private String location;
 	private String author;
 	private String company;
-	private String updatedBy;
-	private Date updatedDate;
-	/**
-	 * @param mediaId the mediaId to set
-	 */
-//	public void setMediaId(int mediaId) {
-//		this.mediaId = mediaId;
-//	}
-//	/**
-//	 * @return the mediaId
-//	 */
-//	public int getMediaId() {
-//		return mediaId;
-//	}
+
 	/**
 	 * @param title the title to set
 	 */
@@ -162,29 +148,4 @@ public class Media extends DomainVO {
 	public String getCompany() {
 		return company;
 	}
-	/**
-	 * @param updatedBy the updatedBy to set
-	 */
-	public void setUpdatedBy(String updatedBy) {
-		this.updatedBy = updatedBy;
-	}
-	/**
-	 * @return the updatedBy
-	 */
-	public String getUpdatedBy() {
-		return updatedBy;
-	}
-	/**
-	 * @param updatedDate the updatedDate to set
-	 */
-	public void setUpdatedDate(Date updatedDate) {
-		this.updatedDate = updatedDate;
-	}
-	/**
-	 * @return the updatedDate
-	 */
-	public Date getUpdatedDate() {
-		return updatedDate;
-	}
-
 }

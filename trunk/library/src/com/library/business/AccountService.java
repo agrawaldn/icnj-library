@@ -29,7 +29,7 @@ public class AccountService {
 	public Account getAccount(int accountNumber){
 		String[] keys = {"accountNumber"};
 		String[] values = {""+accountNumber}; 
-		return (Account)this.getDomainService().executeNamedQuery("fetchAccount",keys, values).get(0);
+		return (Account)this.getDomainService().getDomainObject("fetchAccount",keys, values);
 	}
 	public List<Account> getMatchingAccounts(String accountName){
 		String[] keys = {"pattern"};
@@ -49,22 +49,24 @@ public class AccountService {
 	 * @param acct
 	 */
 	public void createAccount(Account acct) {
+		Date now = new Date();
 		if(acct.getStartDate() == null){
-			acct.setStartDate(new Date());
+			logger.debug("No start date was provided. Taking today's date");
+			acct.setStartDate(DateUtil.getDateAsString(now, DateUtil.dateFormat));
 		}
 		if(acct.getEndDate() == null){
-			acct.setEndDate(DateUtil.addDays(new Date(),365));
+			acct.setEndDate(DateUtil.getDateAsString(DateUtil.addDays(acct.getStartDate(),365), DateUtil.dateFormat));
 		}
 		String[] keys = {"accountType"};
 		String[] values = {acct.getAccountType().getAccountType()};
-		acct.setAccountType((AccountType)(this.getDomainService().executeNamedQuery("fetchAccountType", keys, values).get(0)));
-		logger.debug("Creating account with acct no: "+acct.getContact().getContactHome());
+		acct.setAccountType((AccountType)this.getDomainService().getDomainObject("fetchAccountType", keys, values));
+		logger.debug("accountType -> id = "+acct.getAccountType().getId());
 		acct.setAccountNumber(acct.getContact().getContactHome());
 		acct.setActiveFlag('y');
 		String[] keys1 = {"contactHome","firstName"};
 		String[] values1 = {""+acct.getContact().getContactHome(),acct.getContact().getFirstName()};
-		Contact contact = (Contact)(this.getDomainService().executeNamedQuery("fetchContact", keys1, values1).get(0));
-		if(contact.getId() > 0){
+		Contact contact = (Contact)this.getDomainService().getDomainObject("fetchContact", keys1, values1);
+		if(contact != null && contact.getId() > 0){
 			acct.setContact(contact);
 		}else{
 			this.getDomainService().saveDomainObject(acct.getContact());

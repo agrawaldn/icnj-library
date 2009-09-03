@@ -12,14 +12,11 @@ public class User extends DomainVO{
 	 * Field: serialVersionUID Field Type: long
 	 */
 	private static final long serialVersionUID = 1L;
-//	private int userId;
 	private String userName;
     private String password;
     private UserRole userRole;
     private Contact contact;
     private String activeFlag;
-	private String updatedBy;
-	private Date updatedDate;
 
     public String getPassword() {
         return password;
@@ -38,14 +35,6 @@ public class User extends DomainVO{
 
     }
 
-//	public int getUserId() {
-//		return userId;
-//	}
-//
-//	public void setUserId(int userId) {
-//		this.userId = userId;
-//	}
-
 	public UserRole getUserRole() {
 		return userRole;
 	}
@@ -60,34 +49,6 @@ public class User extends DomainVO{
 
 	public void setContact(Contact contact) {
 		this.contact = contact;
-	}
-
-	/**
-	 * @param updatedBy the updatedBy to set
-	 */
-	public void setUpdatedBy(String updatedBy) {
-		this.updatedBy = updatedBy;
-	}
-
-	/**
-	 * @return the updatedBy
-	 */
-	public String getUpdatedBy() {
-		return updatedBy;
-	}
-
-	/**
-	 * @param updatedDate the updatedDateTime to set
-	 */
-	public void setUpdatedDate(Date updatedDate) {
-		this.updatedDate = updatedDate;
-	}
-
-	/**
-	 * @return the updatedDate
-	 */
-	public Date getUpdatedDate() {
-		return updatedDate;
 	}
 
 	/**

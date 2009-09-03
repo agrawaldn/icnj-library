@@ -97,11 +97,8 @@
 	<bean id="domainService" class="com.library.service.DomainService">
 		<property name="sessionFactory"><ref bean="mySessionFactory"/></property>
 	</bean>
-	<bean id="medialendingdao" class="com.library.dao.MediaLendingDAO">
-		<property name="sessionFactory"><ref bean="mySessionFactory"/></property>
-	</bean>
 	<bean id="mediaLendingService" class="com.library.business.MediaLendingService">
-		<property name="mediaLendingDAO"><ref bean="medialendingdao"/></property>
+		<property name="domainService"><ref bean="domainService"/></property>
 	</bean>
 	
 </beans>

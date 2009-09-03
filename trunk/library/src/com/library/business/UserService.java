@@ -22,7 +22,7 @@ public class UserService {
 	public boolean authenticateUser(User user){
 		String[] keys = {"userName","password"};
 		String[] values = {user.getUserName(),user.getPassword()};
-        int userId = ((User)this.getDomainService().executeNamedQuery("validateUser", keys, values).get(0)).getId();
+        int userId = this.getDomainService().getDomainObject("validateUser", keys, values).getId();
 		if(userId > 0){
 			return true;
 		}else{

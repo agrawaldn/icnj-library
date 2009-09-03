@@ -5,6 +5,7 @@
 package com.library.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author dagrawal
@@ -12,7 +13,8 @@ import java.io.Serializable;
  */
 public abstract class DomainVO implements Serializable{
 	private int id;
-
+	private String updatedBy;
+	private Date updatedDate;
 	/**
 	 * @param id the id to set
 	 */
@@ -25,5 +27,33 @@ public abstract class DomainVO implements Serializable{
 	 */
 	public int getId() {
 		return id;
+	}
+
+	/**
+	 * @param updatedBy the updatedBy to set
+	 */
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
+	/**
+	 * @return the updatedBy
+	 */
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	/**
+	 * @param updatedDate the updatedDate to set
+	 */
+	public void setUpdatedDate(Date updatedDate) {
+		this.updatedDate = updatedDate;
+	}
+
+	/**
+	 * @return the updatedDate
+	 */
+	public Date getUpdatedDate() {
+		return updatedDate;
 	}
 }
