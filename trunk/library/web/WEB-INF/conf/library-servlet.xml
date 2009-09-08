@@ -13,10 +13,11 @@
     <bean id="logonValidator" class="com.library.web.validator.LogonValidator">
     	<property name="userService"><ref bean="userService"/></property>
     </bean>
-    <bean id="accountLookupValidator" class="com.library.web.validator.AccountLookupValidator">
-    </bean>
+    <bean id="accountLookupValidator" class="com.library.web.validator.AccountLookupValidator"/>
+    <bean id="accountAddValidator" class="com.library.web.validator.AccountAddValidator"/>
+	<bean id="cartValidator" class="com.library.web.validator.CartValidator"/>
     
-    <bean id="accountLookupForm" class="com.library.web.controller.AccountLookupController">
+    <bean id="accountLookupController" class="com.library.web.controller.AccountLookupController">
         <property name="sessionForm"><value>false</value></property>
         <property name="commandName"><value>accountLookupFormBean</value></property>
         <property name="commandClass"><value>com.library.command.formbean.AccountLookupFormBean</value></property>
@@ -26,17 +27,18 @@
         <!--  <property name="successView"><value>accountLookup.htm</value></property> -->
     </bean>
     
-    <bean id="mediaLookupForm" class="com.library.web.controller.MediaLookupController">
+    <bean id="mediaLookupController" class="com.library.web.controller.MediaLookupController">
         <property name="sessionForm"><value>false</value></property>
         <property name="commandName"><value>mediaLookupFormBean</value></property>
         <property name="commandClass"><value>com.library.command.formbean.MediaLookupFormBean</value></property>
         <property name="mediaService"><ref bean="mediaService"/></property>
     </bean>
     
-    <bean id="cartForm" class="com.library.web.controller.CartController">
+    <bean id="cartController" class="com.library.web.controller.CartController">
         <property name="sessionForm"><value>true</value></property>
         <property name="commandName"><value>cartBean</value></property>
         <property name="commandClass"><value>com.library.command.formbean.CartBean</value></property>
+		<property name="validator"><ref bean="cartValidator"/></property>
         <property name="mediaLendingService"><ref bean="mediaLendingService"/></property>
         <property name="accountService"><ref bean="accountService"/></property>
     </bean>
@@ -45,12 +47,13 @@
         <property name="sessionForm"><value>false</value></property>
         <property name="commandName"><value>account</value></property>
         <property name="commandClass"><value>com.library.domain.Account</value></property>
+       	<property name="validator"><ref bean="accountAddValidator"/></property>
         <property name="accountService"><ref bean="accountService"/></property>
     </bean>
     
     <bean id="cartMultiController" class="org.springframework.web.servlet.mvc.multiaction.MultiActionController">
   		<property name="methodNameResolver"><ref bean="paramResolver"/></property>
-  		<property name="delegate"><ref bean="cartForm"/></property>
+  		<property name="delegate"><ref bean="cartController"/></property>
 	</bean>     
     
 	<!-- you can have more than one handler defined -->
@@ -59,13 +62,13 @@
 		<property name="urlMap">
 			<map>
 				<entry key="/accountLookup.htm">
-					<ref bean="accountLookupForm"/>
+					<ref bean="accountLookupController"/>
 				</entry>
 				<entry key="/mediaLookup.htm">
-					<ref bean="mediaLookupForm"/>
+					<ref bean="mediaLookupController"/>
 				</entry>
 				<entry key="/viewCart.htm">
-					<ref bean="cartForm"/>
+					<ref bean="cartController"/>
 				</entry>
 				<entry key="/cart.htm">
 					<ref bean="cartMultiController"/>

@@ -19,28 +19,45 @@
       	</spring:hasBindErrors>
 	<table border="0" cellpadding="5" cellspacing="0" align="center">
 	<tr>
-		<td> First Name:</td><td><form:input path="contact.firstName"/></td>
-		<td> Last Name:</td><td><form:input path="contact.lastName"/></td>
+		<td> First Name*:</td><td><form:input path="contact.firstName"/></td>
+		<td> Last Name*:</td><td><form:input path="contact.lastName"/></td>
 	</tr>
 	<tr>
 		<td> Known As:</td><td><form:input path="contact.alias"/></td>
-		<td> Street: </td><td><form:input path="contact.streetAddress"/></td>
+		<td> Street*: </td><td><form:input path="contact.streetAddress"/></td>
 	</tr>
 	<tr>
-		<td> City: </td><td><form:input path="contact.city"/></td>
-		<td> State: </td><td><form:input path="contact.state"/></td>
+		<td> City*: </td><td><form:input path="contact.city"/></td>
+		<td> State*: </td><td>
+		<form:select path="contact.state">
+		<form:option value="NJ"></form:option>
+		<form:option value="NY"></form:option>
+		<form:option value="CT"></form:option>
+		<form:option value="PA"></form:option>
+		<form:option value="DE"></form:option>
+		<form:option value="VA"></form:option>
+		<form:option value="MD"></form:option>
+		</form:select>
+		</td>
 	</tr>
 	<tr>
-		<td> Country: </td><td><form:input path="contact.country"/></td>
-		<td> Home Phone: </td><td><form:input path="contact.contactHome"/></td>
+		<td> Country*: </td><td>
+		<form:select path="contact.country">
+		<form:option value="USA"></form:option>
+		</form:select>
+		</td>
+		<td> Home Phone*: </td><td><form:input path="contact.contactHome"/></td>
 	</tr>
 	<tr>
 		<td> Cell Phone: </td><td><form:input path="contact.contactCell"/></td>
-		<td> Account Type:</td><td><form:input path="accountType.accountType"/></td>
+		<td> Account Type*:</td><td>
+		<form:select path="accountType.accountType">
+		<form:option value="regular"></form:option>
+		</form:select></td>
 	</tr>
 	<tr>
 	  	<td> Start Date (<%=DateUtil.dateFormat %>):</td><td><form:input path="startDate"/></td>
-		<td> End Date (<%=DateUtil.dateFormat %>):</td><td><form:input path="endDate"/></td>
+	  	<td> End Date (<%=DateUtil.dateFormat %>):</td><td><form:input path="endDate"/></td>
 	</tr>
 	<tr>
 		<td><input type="submit" value="<spring:message code="button.submit"/>"></td> 
