@@ -56,11 +56,8 @@ public class Account extends DomainVO {
 	/**
 	 * @param startDate the startDate to set
 	 */
-	private void setStartDate(Date startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
-	}
-	public void setStartDate(String startDate){
-		this.setStartDate(DateUtil.parseDate(startDate, DateUtil.dateFormat));
 	}
 	/**
 	 * @return the startDate
@@ -71,11 +68,8 @@ public class Account extends DomainVO {
 	/**
 	 * @param endDate the endDate to set
 	 */
-	private void setEndDate(Date endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
-	}
-	public void setEndDate(String endDate){
-		this.setEndDate(DateUtil.parseDate(endDate, DateUtil.dateFormat));
 	}
 	/**
 	 * @return the endDate

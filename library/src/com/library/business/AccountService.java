@@ -52,15 +52,16 @@ public class AccountService {
 		Date now = new Date();
 		if(acct.getStartDate() == null){
 			logger.debug("No start date was provided. Taking today's date");
-			acct.setStartDate(DateUtil.getDateAsString(now, DateUtil.dateFormat));
+			//acct.setStartDate(DateUtil.getDateAsString(now, DateUtil.dateFormat));
+			acct.setStartDate(now);
 		}
 		if(acct.getEndDate() == null){
-			acct.setEndDate(DateUtil.getDateAsString(DateUtil.addDays(acct.getStartDate(),365), DateUtil.dateFormat));
+			//acct.setEndDate(DateUtil.getDateAsString(DateUtil.addDays(acct.getStartDate(),365), DateUtil.dateFormat));
+			acct.setEndDate(DateUtil.addDays(acct.getStartDate(),365));
 		}
 		String[] keys = {"accountType"};
 		String[] values = {acct.getAccountType().getAccountType()};
 		acct.setAccountType((AccountType)this.getDomainService().getDomainObject("fetchAccountType", keys, values));
-		logger.debug("accountType -> id = "+acct.getAccountType().getId());
 		acct.setAccountNumber(acct.getContact().getContactHome());
 		acct.setActiveFlag('y');
 		String[] keys1 = {"contactHome","firstName"};

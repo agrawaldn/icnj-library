@@ -77,9 +77,6 @@ public class CartBean implements Serializable {
 			if(issuedItems.get(i).getId() == mediaLendingId){
 				returnedItem = issuedItems.remove(i);
 				returnedItem.setActualReturnDate(new Date());
-				returnedItem.setUpdatedDate(new Date());
-				//TODO get the user name
-				returnedItem.setUpdatedBy("");
 			}
 		}
 		return returnedItem;

@@ -1,6 +1,5 @@
 package com.library.web.controller;
 
-import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,16 +8,15 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.validation.BindException;
+import org.springframework.validation.ValidationUtils;
+import org.springframework.web.portlet.bind.PortletRequestDataBinder;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
 import com.library.business.AccountService;
 import com.library.business.MediaLendingService;
-import com.library.business.MediaService;
 import com.library.command.formbean.CartBean;
-import com.library.command.formbean.MediaLookupFormBean;
 import com.library.domain.Account;
-import com.library.domain.Media;
 import com.library.domain.MediaLending;
 import com.library.util.StringUtil;
 
@@ -32,7 +30,7 @@ public class CartController extends SimpleFormController  {
 		if(accountId > 0 && (command.getCheckoutItems() == null)){
 	    	List<MediaLending> issuedItems = getMediaLendingService().getMediaLendings(accountId);
 	    	if(issuedItems != null && issuedItems.size() > 0){
-	    		logger.debug("Number of items issued to account "+accountId+" = "+issuedItems.size());
+	    		//logger.debug("Number of items issued to account "+accountId+" = "+issuedItems.size());
 	    		command.setIssuedItems(issuedItems);
 	    		command.setAccount(issuedItems.get(0).getAccount());
 	    	}else{
@@ -113,17 +111,32 @@ public class CartController extends SimpleFormController  {
 		request.getSession().setAttribute(getFormSessionAttributeName(),command);
 		return new ModelAndView("viewCart","cartBean",command);
 	}
+
+	private boolean hasErrors(CartBean command, ModelAndView cartView ){
+		BindException errors = new BindException(command, "cartBean");
+		if (getValidator().supports(command.getClass())) {
+			ValidationUtils.invokeValidator(getValidator(), command, errors);
+		}
+		if (errors.hasErrors()) { 
+			cartView.addAllObjects(errors.getModel());
+			return true;
+		}
+		return false;
+	}
 	public ModelAndView checkout(HttpServletRequest request, HttpServletResponse response){
 		HttpSession session = request.getSession();
 		CartBean command = (CartBean)session.getAttribute(getFormSessionAttributeName() );
-		try {
-			getMediaLendingService().checkout(command.getCheckoutItems());
-		} catch (Exception e) {
-			logger.error("checkout failed ",e);
+		ModelAndView cartView = new ModelAndView("viewCart","cartBean",command);  
+		if(!hasErrors(command,cartView)){	
+			try {
+				getMediaLendingService().checkout(command.getCheckoutItems());
+			} catch (Exception e) {
+				logger.error("checkout failed ",e);
+			}
+			command = getCommand(command.getAccount().getId());
 		}
-		command = getCommand(command.getAccount().getId());
 		request.getSession().setAttribute(getFormSessionAttributeName(),command);
-		return new ModelAndView("viewCart","cartBean",command);
+		return cartView;
 	}
 	/**
 	 * @param mediaLendingService the mediaLendingService to set
