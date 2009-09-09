@@ -49,25 +49,25 @@
 			<a href="<%= request.getContextPath() %>/viewCart.htm?accountId=${account.id}"><c:out value="${account.accountNumber}"/></a>
 		</td>
 		<td>
-			<c:out value="${account.contact.firstName}"/>		
+			<a href="<%= request.getContextPath() %>/viewCart.htm?accountId=${account.id}"><c:out value="${account.contact.firstName}"/></a>		
 		</td>
 		<td>
-			<c:out value="${account.contact.lastName}"/>	
+			<a href="<%= request.getContextPath() %>/viewCart.htm?accountId=${account.id}"><c:out value="${account.contact.lastName}"/></a>	
 		</td>
 		<td>
-			<c:out value="${account.activeFlag}"/>
+			<a href="<%= request.getContextPath() %>/viewCart.htm?accountId=${account.id}"><c:out value="${account.activeFlag}"/></a>
 		</td>
 		<td>
-			<c:out value="${account.startDate}"/>
+			<a href="<%= request.getContextPath() %>/viewCart.htm?accountId=${account.id}"><c:out value="${account.startDate}"/></a>
 		</td>
 		<td>
-			<c:out value="${account.endDate}"/>
+			<a href="<%= request.getContextPath() %>/viewCart.htm?accountId=${account.id}"><c:out value="${account.endDate}"/></a>
 		</td>
 		<td>
-			<c:out value="${account.contact.contactHome}"/>
+			<a href="<%= request.getContextPath() %>/viewCart.htm?accountId=${account.id}"><c:out value="${account.contact.contactHome}"/></a>
 		</td>
 		<td>
-			<c:out value="${account.contact.contactCell}"/>
+			<a href="<%= request.getContextPath() %>/viewCart.htm?accountId=${account.id}"><c:out value="${account.contact.contactCell}"/></a>
 		</td>
 		
 	</tr>
