@@ -1,13 +1,13 @@
 package com.library.web.validator;
 
+import java.util.Date;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.library.command.formbean.CartBean;
-import com.library.domain.Account;
 
 public class CartValidator implements Validator {
 
@@ -30,6 +30,10 @@ public class CartValidator implements Validator {
         logger.debug("Total items = "+totalItems);
         if (totalItems > maxAllowed) {
         	errors.rejectValue("checkoutItems","error.numberofitemsallowed.exceeded");
+        }
+        if(cart.getAccount().getActiveFlag() == 'n' || cart.getAccount().getActiveFlag() == 'N' 
+        	|| cart.getAccount().getEndDate().before(new Date())){
+        	errors.rejectValue("account","error.account.inactive");
         }
     }
 
