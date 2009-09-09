@@ -4,6 +4,18 @@
 <%@ include file="/WEB-INF/jsp/include.jsp"%>
 
 <form:form method="post" action="/library/mediaLookup.htm">
+<spring:hasBindErrors name="cartBean">
+         <font color="red">
+         <p>There were ${errors.errorCount} error(s) in total:</p>
+         <ul>
+            <c:forEach var="errMsgObj" items="${errors.allErrors}">
+               <li>
+                  <spring:message code="${errMsgObj.code}" text="${errMsgObj.defaultMessage}"/>
+               </li>
+            </c:forEach>
+         </ul>
+         </font>
+      	</spring:hasBindErrors>
 	<table border="0" cellpadding="5" cellspacing="0" align="center" width="40%">
 		<tr align="center">  
 			<td><spring:message code="label.account.number"/></td>
@@ -98,18 +110,6 @@
 </tbody>
 </table>
 <form:form method="post" action="/library/cart.htm?action=checkout">
-		<spring:hasBindErrors name="cartBean">
-         <font color="red">
-         <p>There were ${errors.errorCount} error(s) in total:</p>
-         <ul>
-            <c:forEach var="errMsgObj" items="${errors.allErrors}">
-               <li>
-                  <spring:message code="${errMsgObj.code}" text="${errMsgObj.defaultMessage}"/>
-               </li>
-            </c:forEach>
-         </ul>
-         </font>
-      	</spring:hasBindErrors>
 	<table border="0" cellpadding="5" cellspacing="0" align="center" width="40%">
 		<tr>
 			<td><input type="submit" value="<spring:message code="button.checkout"/>"></td>
