@@ -77,6 +77,7 @@
 				<value>../../orm/media_category.hbm.xml</value>
 				<value>../../orm/media.hbm.xml</value>
 				<value>../../orm/media_lending.hbm.xml</value>
+				<value>../../orm/fees.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

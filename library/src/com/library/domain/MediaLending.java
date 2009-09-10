@@ -4,13 +4,8 @@
  */
 package com.library.domain;
 
-import java.io.Serializable;
 import java.util.Date;
 
-/**
- * @author dagrawal
- *
- */
 public class MediaLending extends DomainVO {
 
 	/**
@@ -22,6 +17,7 @@ public class MediaLending extends DomainVO {
 	private Date lendingDate;
 	private Date returnDate;
 	private Date actualReturnDate;
+	private Fee fee;
 	/**
 	 * @param media the media to set
 	 */
@@ -81,5 +77,17 @@ public class MediaLending extends DomainVO {
 	 */
 	public Date getActualReturnDate() {
 		return actualReturnDate;
+	}
+	/**
+	 * @param fee the fee to set
+	 */
+	public void setFee(Fee fee) {
+		this.fee = fee;
+	}
+	/**
+	 * @return the fee
+	 */
+	public Fee getFee() {
+		return fee;
 	}
 }

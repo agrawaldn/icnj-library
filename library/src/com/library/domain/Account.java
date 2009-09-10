@@ -6,6 +6,7 @@ package com.library.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -28,6 +29,7 @@ public class Account extends DomainVO {
 	private Date endDate;
 	private AccountType accountType;
 	private char activeFlag;
+	private Fee fee;
 
 	/**
 	 * @param accountNumber the accountNumber to set
@@ -100,5 +102,17 @@ public class Account extends DomainVO {
 	 */
 	public char getActiveFlag() {
 		return activeFlag;
+	}
+	/**
+	 * @param fee the fee to set
+	 */
+	public void setFee(Fee fee) {
+		this.fee = fee;
+	}
+	/**
+	 * @return the fee
+	 */
+	public Fee getFee() {
+		return fee;
 	}
 }

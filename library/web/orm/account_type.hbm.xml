@@ -10,7 +10,8 @@
 			</generator>
 		</id>
 		<property name="accountType"  column="account_type"/>
-		<property name="maxBorrowLimit"  column="max_borrow_limit_nb"/>	
+		<property name="maxBorrowLimit"  column="max_borrow_limit_nb"/>
+		<property name="registrationFee"  column="registration_fee"/>	
 		<property name="updatedBy"  column="updated_by"/>
 		<property name="updatedDate"  column="updated_datetime"/>
 	</class>

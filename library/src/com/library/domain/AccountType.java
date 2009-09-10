@@ -19,6 +19,7 @@ public class AccountType extends DomainVO {
 	private static final long serialVersionUID = 1L;
 	private String accountType;
 	private int maxBorrowLimit;
+	private double registrationFee;
 
 	/**
 	 * @param accountType the accountType to set
@@ -43,5 +44,17 @@ public class AccountType extends DomainVO {
 	 */
 	public int getMaxBorrowLimit() {
 		return maxBorrowLimit;
+	}
+	/**
+	 * @param registrationFee the registrationFee to set
+	 */
+	public void setRegistrationFee(double registrationFee) {
+		this.registrationFee = registrationFee;
+	}
+	/**
+	 * @return the registrationFee
+	 */
+	public double getRegistrationFee() {
+		return registrationFee;
 	}
 }

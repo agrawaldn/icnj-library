@@ -21,6 +21,10 @@
 			<column name="contact_id"/>
 		</many-to-one>
 		<property name="activeFlag"  column="active_flag"/>
+		<many-to-one name="fee" class="com.library.domain.Fee"
+			lazy="false" update="false">
+			<column name="fee_id"/>
+		</many-to-one>
 		<property name="updatedBy"  column="updated_by"/>
 		<property name="updatedDate"  column="updated_datetime"/>
 	</class>
