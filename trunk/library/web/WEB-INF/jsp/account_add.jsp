@@ -60,6 +60,15 @@
 	  	<td> End Date (<%=DateUtil.dateFormat %>):</td><td><form:input path="endDate"/></td>
 	</tr>
 	<tr>
+		<td> Registration Fee: </td><td>$50.00<!-- <c:out value="${account.accountType.registrationFee}"/>--></td>
+		<td> Paid:</td><td>
+			<form:select path="fee.paid">
+			<form:option value="n"></form:option>
+			<form:option value="y"></form:option>
+			</form:select>
+		</td>
+	</tr>
+	<tr>
 		<td><input type="submit" value="<spring:message code="button.submit"/>"></td> 
 		<td><input type="reset"/></td>
 	</tr>

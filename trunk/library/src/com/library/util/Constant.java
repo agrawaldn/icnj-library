@@ -11,4 +11,6 @@ package com.library.util;
 public interface Constant {
 	public static final int BOOK_RETURN_DAYS = 21;
 	public static final int MEDIA_RETURN_DAYS = 7;
+	public static final String REGISTRATION_FEE = "registration fee";
+	public static final String LATE_FEE = "late fee";
 }

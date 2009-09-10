@@ -4,7 +4,6 @@
  */
 package com.library.business;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,14 +13,10 @@ import org.apache.commons.logging.LogFactory;
 import com.library.domain.Account;
 import com.library.domain.AccountType;
 import com.library.domain.Contact;
-import com.library.domain.DomainVO;
 import com.library.service.DomainService;
+import com.library.util.Constant;
 import com.library.util.DateUtil;
 
-/**
- * @author dagrawal
- *
- */
 public class AccountService {
 	private final Log logger = LogFactory.getLog(getClass());
 	private DomainService domainService;
@@ -52,16 +47,17 @@ public class AccountService {
 		Date now = new Date();
 		if(acct.getStartDate() == null){
 			logger.debug("No start date was provided. Taking today's date");
-			//acct.setStartDate(DateUtil.getDateAsString(now, DateUtil.dateFormat));
 			acct.setStartDate(now);
 		}
 		if(acct.getEndDate() == null){
-			//acct.setEndDate(DateUtil.getDateAsString(DateUtil.addDays(acct.getStartDate(),365), DateUtil.dateFormat));
 			acct.setEndDate(DateUtil.addDays(acct.getStartDate(),365));
 		}
 		String[] keys = {"accountType"};
 		String[] values = {acct.getAccountType().getAccountType()};
 		acct.setAccountType((AccountType)this.getDomainService().getDomainObject("fetchAccountType", keys, values));
+		acct.getFee().setAmount(acct.getAccountType().getRegistrationFee());
+		acct.getFee().setFeeType(Constant.REGISTRATION_FEE);
+		this.getDomainService().saveDomainObject(acct.getFee());
 		acct.setAccountNumber(acct.getContact().getContactHome());
 		acct.setActiveFlag('y');
 		String[] keys1 = {"contactHome","firstName"};

@@ -18,6 +18,7 @@ import com.library.business.AccountService;
 import com.library.domain.Account;
 import com.library.domain.AccountType;
 import com.library.domain.Contact;
+import com.library.domain.Fee;
 import com.library.util.DateUtil;
 
 public class AccountMaintenanceController extends SimpleFormController  {
@@ -31,6 +32,8 @@ public class AccountMaintenanceController extends SimpleFormController  {
 		command.setContact(contact);
 		AccountType accountType = new AccountType();
 		command.setAccountType(accountType);
+		Fee fee = new Fee();
+		command.setFee(fee);
 		return command;
 	}
 	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception	{    

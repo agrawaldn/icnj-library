@@ -77,6 +77,7 @@ CREATE  TABLE IF NOT EXISTS `account_type` (
   `account_type_id` INT NOT NULL ,
   `account_type` VARCHAR(30) NOT NULL ,
   `max_borrow_limit_nb` INT NULL ,
+  `registration_fee` DECIMAL(5,2) NOT NULL,
   `updated_by` VARCHAR(30) NOT NULL ,
   `updated_datetime` DATETIME NOT NULL ,
   PRIMARY KEY (`account_type_id`) )
@@ -84,6 +85,22 @@ ENGINE = InnoDB;
 
 CREATE UNIQUE INDEX `account_type_uk` ON `account_type` (`account_type` ASC) ;
 
+-- ---------------------------------------------------------
+-- Table `fee`
+-- ---------------------------------------------------------
+DROP TABLE IF EXISTS `fee`;
+CREATE TABLE `fee` (
+  `fee_id` int NOT NULL,
+  `amount` decimal(5,2) NOT NULL,
+  `fee_type` varchar(30),
+  `paid` char(1) NOT NULL DEFAULT 'n',
+  `payment_method` varchar(50) DEFAULT 'cash',
+  `updated_by` varchar(30) DEFAULT NULL,
+  `updated_datetime` datetime DEFAULT NULL,
+  PRIMARY KEY (`fee_id`)
+)ENGINE = InnoDB;
+
+CREATE INDEX `fee_fk` ON `fee` (`fee_id` ASC) ;
 
 -- -----------------------------------------------------
 -- Table `account`
@@ -97,14 +114,17 @@ CREATE TABLE  `account` (
   `end_datetime` datetime DEFAULT NULL,
   `account_type_id` int(11) NOT NULL,
   `active_flag` char(1) NOT NULL DEFAULT 'y',
+  `fee_id` int(11) NOT NULL,
   `updated_by` varchar(30) DEFAULT NULL,
   `updated_datetime` datetime DEFAULT NULL,
   PRIMARY KEY (`account_id`),
   UNIQUE KEY `account_uk` (`account_nb`,`start_datetime`),
   KEY `account_fk` (`contact_id`),
   KEY `account_fk1` (`account_type_id`),
+  KEY `account_fk2` (`fee_id`),
   CONSTRAINT `account_fk` FOREIGN KEY (`contact_id`) REFERENCES `contact` (`contact_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `account_fk1` FOREIGN KEY (`account_type_id`) REFERENCES `account_type` (`account_type_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `account_fk1` FOREIGN KEY (`account_type_id`) REFERENCES `account_type` (`account_type_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `account_fk2` FOREIGN KEY (`fee_id`) REFERENCES `fees` (`fee_id`) ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 CREATE UNIQUE INDEX `account_uk` ON `account` (`account_nb` ASC, `start_datetime` ASC) ;
@@ -190,6 +210,7 @@ CREATE  TABLE IF NOT EXISTS `media_lending` (
   `lending_datetime` DATETIME NOT NULL ,
   `return_datetime` DATETIME NULL ,
   `actual_return_datetime` DATETIME NOT NULL ,
+  `fee_id` int(11),
   `updated_by` VARCHAR(30) NOT NULL ,
   `updated_datetime` DATETIME NOT NULL ,
   PRIMARY KEY (`media_lending_id`) ,
@@ -202,11 +223,17 @@ CREATE  TABLE IF NOT EXISTS `media_lending` (
     FOREIGN KEY (`media_id` )
     REFERENCES `media` (`media_id` )
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION,
+  CONSTRAINT `media_lending_fk2` 
+  	FOREIGN KEY (`fee_id`) 
+  	REFERENCES `fees` (`fee_id`) 
+  	ON UPDATE NO ACTION   
+)ENGINE = InnoDB;
 
 CREATE INDEX `media_lending_fk` ON `media_lending` (`account_id` ASC) ;
 
 CREATE INDEX `media_lending_fk1` ON `media_lending` (`media_id` ASC) ;
+
+CREATE INDEX `media_lending_fk2` ON `media_lending` (`fee_id` ASC) ;
 
 CREATE UNIQUE INDEX `media_lending_uk` ON `media_lending` (`media_id` ASC, `account_id` ASC, `lending_datetime` ASC) ;
