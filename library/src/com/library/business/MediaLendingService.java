@@ -11,6 +11,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.library.domain.Account;
+import com.library.domain.Fee;
 import com.library.domain.Media;
 import com.library.domain.MediaLending;
 import com.library.service.DomainService;
@@ -42,7 +43,19 @@ public class MediaLendingService {
 	public List<MediaLending> getMediaLendings(int accountId){
 		String[] keys = {"accountId"};
 		String[] values = {""+accountId}; 
-		return (List<MediaLending>)this.getDomainService().executeNamedQuery("fetchMediaLending", keys, values);
+		List<MediaLending> lendings = (List<MediaLending>)this.getDomainService().executeNamedQuery("fetchMediaLending", keys, values);
+		for(MediaLending lending : lendings){
+			if(lending.getReturnDate().before(new Date())){
+				Fee fee = new Fee();
+				int daysLate = DateUtil.daysBetween2Dates(lending.getReturnDate(), new Date());
+				double weeksLate = Math.floor(daysLate/7);
+				fee.setAmount(weeksLate*Constant.LATE_FEE_RATE);
+				fee.setFeeType(Constant.LATE_FEE);
+				fee.setPaid('n');
+				lending.setFee(fee);
+			}
+		}
+		return lendings; 
 	}
 	
 	/**
@@ -73,6 +86,9 @@ public class MediaLendingService {
 	 */
 	public void returnItem(MediaLending returnedItem) throws Exception{
 		returnedItem.setActualReturnDate(new Date());
+		if(returnedItem.getFee() != null){
+			this.getDomainService().saveDomainObject(returnedItem.getFee());
+		}
 		this.getDomainService().updateDomainObject(returnedItem);
 	}
 
