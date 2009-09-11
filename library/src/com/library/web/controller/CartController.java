@@ -101,7 +101,10 @@ public class CartController extends SimpleFormController  {
 		HttpSession session = request.getSession();
 		CartBean command = (CartBean)session.getAttribute(getFormSessionAttributeName() );
 		int mediaLendingId = Integer.parseInt(request.getParameter("mediaLendingId"));
+		char paid = request.getParameter("paid").charAt(0);
 		MediaLending returnedItem = command.returnItem(mediaLendingId);
+		returnedItem.getFee().setPaid(paid);
+		logger.debug("paid yes/no = "+paid);
 		try {
 			mediaLendingService.returnItem(returnedItem);
 		} catch (Exception e) {

@@ -209,7 +209,7 @@ CREATE  TABLE IF NOT EXISTS `media_lending` (
   `account_id` INT NOT NULL ,
   `lending_datetime` DATETIME NOT NULL ,
   `return_datetime` DATETIME NULL ,
-  `actual_return_datetime` DATETIME NOT NULL ,
+  `actual_return_datetime` DATETIME NULL ,
   `fee_id` int(11),
   `updated_by` VARCHAR(30) NOT NULL ,
   `updated_datetime` DATETIME NOT NULL ,
