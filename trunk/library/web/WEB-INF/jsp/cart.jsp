@@ -77,10 +77,13 @@
 			$<c:out value="${issuedItem.fee.amount}"/>	
 		</td>
 		<td>
-			<c:out value="${issuedItem.fee.paid}"/>	
+			<select>
+			  <option value="n">No</option>
+			  <option value="y">Yes</option>
+			</select>
 		</td>
 		<td>
-			<a href="<%= request.getContextPath() %>/cart.htm?action=returnItem&mediaLendingId=${issuedItem.id}"><spring:message code="label.returnitem"/></a>	
+			<a href="<%= request.getContextPath() %>/cart.htm?action=returnItem&mediaLendingId=${issuedItem.id}&paid=${issuedItem.fee.paid}"><spring:message code="label.returnitem"/></a>	
 		</td>
 	</tr>
 </c:forEach>
