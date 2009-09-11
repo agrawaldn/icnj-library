@@ -21,7 +21,7 @@
 			<column name="account_id"/>
 		</many-to-one>
 		<many-to-one name="fee" class="com.library.domain.Fee"
-			lazy="false" update="false">
+			lazy="false">
 			<column name="fee_id"/>
 		</many-to-one>
 		<property name="updatedBy"  column="updated_by"/>

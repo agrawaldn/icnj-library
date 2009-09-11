@@ -42,6 +42,8 @@
 	<th><spring:message code="label.media.category"/></th>
 	<th><spring:message code="label.medialending.lendingdate"/></th>
 	<th><spring:message code="label.medialending.returndate"/></th>
+	<th><spring:message code="label.medialending.latefee"/></th>
+	<th><spring:message code="label.medialending.feepaid"/></th>
 </tr>
 </thead>
 <tbody>
@@ -68,8 +70,14 @@
 		<td>
 			<c:out value="${issuedItem.lendingDate}"/>	
 		</td>
-			<td>
+		<td>
 			<c:out value="${issuedItem.returnDate}"/>	
+		</td>
+		<td>
+			$<c:out value="${issuedItem.fee.amount}"/>	
+		</td>
+		<td>
+			<c:out value="${issuedItem.fee.paid}"/>	
 		</td>
 		<td>
 			<a href="<%= request.getContextPath() %>/cart.htm?action=returnItem&mediaLendingId=${issuedItem.id}"><spring:message code="label.returnitem"/></a>	
