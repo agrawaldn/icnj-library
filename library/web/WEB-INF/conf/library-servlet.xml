@@ -15,6 +15,7 @@
     </bean>
     <bean id="accountLookupValidator" class="com.library.web.validator.AccountLookupValidator"/>
     <bean id="accountAddValidator" class="com.library.web.validator.AccountAddValidator"/>
+    <bean id="mediaAddValidator" class="com.library.web.validator.MediaAddValidator"/>
 	<bean id="cartValidator" class="com.library.web.validator.CartValidator"/>
     
     <bean id="accountLookupController" class="com.library.web.controller.AccountLookupController">
@@ -50,7 +51,13 @@
        	<property name="validator"><ref bean="accountAddValidator"/></property>
         <property name="accountService"><ref bean="accountService"/></property>
     </bean>
-    
+    <bean id="mediaController" class="com.library.web.controller.MediaController">
+        <property name="sessionForm"><value>false</value></property>
+        <property name="commandName"><value>media</value></property>
+        <property name="commandClass"><value>com.library.domain.Media</value></property>
+        <property name="validator"><ref bean="mediaAddValidator"/></property>
+        <property name="mediaService"><ref bean="mediaService"/></property>
+    </bean>
     <bean id="cartMultiController" class="org.springframework.web.servlet.mvc.multiaction.MultiActionController">
   		<property name="methodNameResolver"><ref bean="paramResolver"/></property>
   		<property name="delegate"><ref bean="cartController"/></property>
@@ -75,6 +82,9 @@
 				</entry>
 				<entry key="/addAccount.htm">
 					<ref bean="addAccountController"/>
+				</entry>
+				<entry key="/addMedia.htm">
+					<ref bean="mediaController"/>
 				</entry>
 			</map>
 		</property>

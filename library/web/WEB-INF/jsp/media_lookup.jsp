@@ -72,4 +72,13 @@
 </c:forEach>
 </tbody>
 </table>
+<br>
+<br>
+<table border="0" cellpadding="5" cellspacing="0" align="center" width="40%">
+<tr align="center">
+<td align="center">
+<a href="<%= request.getContextPath() %>/addMedia.htm"><spring:message code="label.media.add"/></a>
+</td>
+</tr>
+</table>
 

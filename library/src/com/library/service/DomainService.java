@@ -93,6 +93,14 @@ public class DomainService {
 		}
 		return vo;
 	}
+	public DomainVO getDomainObject(String namedQuery, String key, String value){
+		List list = this.executeNamedQuery(namedQuery, key, value);
+		DomainVO vo = null;
+		if(list != null && !list.isEmpty()){
+			vo = (DomainVO) list.get(0);
+		}
+		return vo;
+	}	
 	public List executeNamedQuery(String namedQuery, String[] keys, String[] values){
 		Session session = getSessionFactory().openSession();
 		List list = null;
@@ -103,6 +111,23 @@ public class DomainService {
             for(int i=0;i<keys.length;i++){
             	query.setString(keys[i], values[i]);
             }
+            list = query.list();
+            tx.commit();
+		}catch(Exception e){
+			logger.error(e.getMessage(), e);
+		}finally{
+			session.close();
+		}
+		return list;
+	}
+	public List executeNamedQuery(String namedQuery, String key, String value){
+		Session session = getSessionFactory().openSession();
+		List list = null;
+		try
+		{
+			Transaction tx = session.beginTransaction();
+			Query query = session.getNamedQuery(namedQuery);
+           	query.setString(key, value);
             list = query.list();
             tx.commit();
 		}catch(Exception e){

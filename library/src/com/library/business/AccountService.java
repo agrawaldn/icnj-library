@@ -52,17 +52,15 @@ public class AccountService {
 		if(acct.getEndDate() == null){
 			acct.setEndDate(DateUtil.addDays(acct.getStartDate(),365));
 		}
-		String[] keys = {"accountType"};
-		String[] values = {acct.getAccountType().getAccountType()};
-		acct.setAccountType((AccountType)this.getDomainService().getDomainObject("fetchAccountType", keys, values));
+		acct.setAccountType((AccountType)this.getDomainService().getDomainObject("fetchAccountType", "accountType", acct.getAccountType().getAccountType()));
 		acct.getFee().setAmount(acct.getAccountType().getRegistrationFee());
 		acct.getFee().setFeeType(Constant.REGISTRATION_FEE);
 		this.getDomainService().saveDomainObject(acct.getFee());
 		acct.setAccountNumber(acct.getContact().getContactHome());
 		acct.setActiveFlag('y');
-		String[] keys1 = {"contactHome","firstName"};
-		String[] values1 = {""+acct.getContact().getContactHome(),acct.getContact().getFirstName()};
-		Contact contact = (Contact)this.getDomainService().getDomainObject("fetchContact", keys1, values1);
+		String[] keys = {"contactHome","firstName"};
+		String[] values = {""+acct.getContact().getContactHome(),acct.getContact().getFirstName()};
+		Contact contact = (Contact)this.getDomainService().getDomainObject("fetchContact", keys, values);
 		if(contact != null && contact.getId() > 0){
 			acct.setContact(contact);
 		}else{
