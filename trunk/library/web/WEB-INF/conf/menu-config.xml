@@ -37,7 +37,10 @@
 				<Item title="Account Lookup" page="/accountLookup.htm" />
 				<Item title="Create New Account" page="/addAccount.htm" />
 			</Item>
-			<Item title="Media Lookup" page="/mediaLookup.htm" />
+			<Item title="Media">
+				<Item title="Media Lookup" page="/mediaLookup.htm" />
+				<Item title="Add New Media" page="/addMedia.htm" />
+			</Item>
 			<Item title="View Cart" page="/viewCart.htm" />
 			<Item title="Logout" page="/logout.htm" />
 		</Menu>

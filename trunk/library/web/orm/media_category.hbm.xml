@@ -13,5 +13,10 @@
 		<property name="updatedBy"  column="updated_by"/>
 		<property name="updatedDate"  column="updated_datetime"/>
 	</class>
-
+	<sql-query name="fetchMediaCategory">
+		<return class="com.library.domain.MediaCategory"/>
+		<![CDATA[
+			select a.* from media_category a where a.category = :mediaCategory
+		]]>
+	</sql-query>
 </hibernate-mapping>

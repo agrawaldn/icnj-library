@@ -7,7 +7,11 @@ package com.library.business;
 import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import com.library.domain.AccountType;
 import com.library.domain.Media;
+import com.library.domain.MediaCategory;
+import com.library.domain.MediaType;
 import com.library.service.DomainService;
 
 /**
@@ -38,5 +42,10 @@ public class MediaService {
 		String[] keys = {"pattern"};
 		String[] values = {"%"+searchString.toLowerCase()+"%"}; 
 		return (List<Media>)this.getDomainService().executeNamedQuery("fetchMedias", keys, values);
+	}
+	public void addMedia(Media media){
+		media.setMediaType((MediaType)this.getDomainService().getDomainObject("fetchMediaType", "mediaType", media.getMediaType().getMediaType()));
+		media.setCategory((MediaCategory)this.getDomainService().getDomainObject("fetchMediaCategory", "mediaCategory",media.getCategory().getCategory()));
+		this.getDomainService().saveDomainObject(media);
 	}
 }
