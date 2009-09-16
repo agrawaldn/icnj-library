@@ -32,7 +32,6 @@
 <thead>
 <tr align="center">             
 	<th></th>
-	<th><spring:message code="label.media.id"/></th>             
 	<th><spring:message code="label.media.title"/></th>	
 	<th><spring:message code="label.media.author"/></th>
 	<th><spring:message code="label.media.type"/></th>
@@ -47,9 +46,6 @@
 		<td>
 			<a href="<%= request.getContextPath() %>/cart.htm?action=addToCart&mediaId=${media.id}"><spring:message code="label.addtocart"/></a>
 		</td>	
-		<td>
-			<c:out value="${media.id}"/>
-		</td>
 		<td>
 			<c:out value="${media.title}"/>		
 		</td>

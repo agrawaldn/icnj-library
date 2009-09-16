@@ -33,6 +33,9 @@ public class MediaController extends SimpleFormController  {
 		Media media = new Media();
 		media.setMediaType(new MediaType());
 		media.setCategory(new MediaCategory());
+		media.setTotalVolume(1);
+		media.setCopies(1);
+		media.setVolumeNumber(1);
 		return media;
 	}
 	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception	{    
