@@ -23,14 +23,14 @@ CREATE  TABLE IF NOT EXISTS `contact` (
   `first_name` VARCHAR(30) NOT NULL ,
   `last_name` VARCHAR(30) NULL ,
   `alias` VARCHAR(45) NULL ,
-  `street_address` VARCHAR(45) NULL ,
-  `city` VARCHAR(30) NULL ,
-  `state` VARCHAR(30) NULL ,
+  `street_address` VARCHAR(45) NOT NULL ,
+  `city` VARCHAR(30) NOT NULL ,
+  `state` VARCHAR(30) NOT NULL ,
   `country` VARCHAR(30) NULL ,
   `contact_home` BIGINT NOT NULL ,
   `contact_cell` BIGINT NULL ,
-  `updated_by` VARCHAR(30) NULL ,
-  `updated_datetime` DATETIME NULL ,
+  `updated_by` VARCHAR(30) NOT NULL ,
+  `updated_datetime` DATETIME NOT NULL ,
   PRIMARY KEY (`contact_id`) )
 ENGINE = InnoDB;
 
@@ -105,27 +105,22 @@ CREATE INDEX `fee_fk` ON `fee` (`fee_id` ASC) ;
 -- -----------------------------------------------------
 -- Table `account`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `account`;
-CREATE TABLE  `account` (
-  `account_id` int(11) NOT NULL AUTO_INCREMENT,
-  `account_nb` bigint(20) unsigned NOT NULL,
-  `contact_id` int(11) NOT NULL,
+CREATE TABLE  IF NOT EXISTS `account` (
+  `account_id` int NOT NULL,
+  `account_nb` bigint unsigned NOT NULL,
+  `contact_id` int NOT NULL,
   `start_datetime` datetime NOT NULL,
   `end_datetime` datetime DEFAULT NULL,
-  `account_type_id` int(11) NOT NULL,
+  `account_type_id` int NOT NULL,
   `active_flag` char(1) NOT NULL DEFAULT 'y',
-  `fee_id` int(11) NOT NULL,
-  `updated_by` varchar(30) DEFAULT NULL,
-  `updated_datetime` datetime DEFAULT NULL,
+  `fee_id` int NOT NULL,
+  `updated_by` varchar(30) NOT NULL,
+  `updated_datetime` datetime NOT NULL,
   PRIMARY KEY (`account_id`),
-  UNIQUE KEY `account_uk` (`account_nb`,`start_datetime`),
-  KEY `account_fk` (`contact_id`),
-  KEY `account_fk1` (`account_type_id`),
-  KEY `account_fk2` (`fee_id`),
   CONSTRAINT `account_fk` FOREIGN KEY (`contact_id`) REFERENCES `contact` (`contact_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `account_fk1` FOREIGN KEY (`account_type_id`) REFERENCES `account_type` (`account_type_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `account_fk2` FOREIGN KEY (`fee_id`) REFERENCES `fees` (`fee_id`) ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  CONSTRAINT `account_fk2` FOREIGN KEY (`fee_id`) REFERENCES `fee` (`fee_id`) ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE UNIQUE INDEX `account_uk` ON `account` (`account_nb` ASC, `start_datetime` ASC) ;
 
@@ -226,7 +221,7 @@ CREATE  TABLE IF NOT EXISTS `media_lending` (
     ON UPDATE NO ACTION,
   CONSTRAINT `media_lending_fk2` 
   	FOREIGN KEY (`fee_id`) 
-  	REFERENCES `fees` (`fee_id`) 
+  	REFERENCES `fee` (`fee_id`) 
   	ON UPDATE NO ACTION   
 )ENGINE = InnoDB;
 

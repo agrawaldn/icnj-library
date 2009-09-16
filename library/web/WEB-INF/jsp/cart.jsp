@@ -34,7 +34,6 @@
 <table border="0" cellpadding="5" cellspacing="0" align="center" width="40%">
 <thead>
 <tr align="center">             
-	<th><spring:message code="label.media.id"/></th>             
 	<th><spring:message code="label.media.title"/></th>
 	<th><spring:message code="label.media.volume"/></th>		
 	<th><spring:message code="label.media.author"/></th>
@@ -49,9 +48,6 @@
 <tbody>
 <c:forEach var="issuedItem" items="${cartBean.issuedItems}">
 	<tr align="center">
-		<td>
-			<c:out value="${issuedItem.media.id}"/>
-		</td>
 		<td>
 			<c:out value="${issuedItem.media.title}"/>		
 		</td>
@@ -89,9 +85,6 @@
 </c:forEach>
 <c:forEach var="checkoutItem" items="${cartBean.checkoutItems}">
 	<tr align="center">
-		<td>
-			<c:out value="${checkoutItem.media.id}"/>
-		</td>
 		<td>
 			<c:out value="${checkoutItem.media.title}"/>		
 		</td>
