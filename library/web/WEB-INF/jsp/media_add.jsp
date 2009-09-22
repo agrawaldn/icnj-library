@@ -24,6 +24,7 @@
 	<tr>
 		<td> Media Type*:</td><td>
 			<form:select path="mediaType.mediaType">
+			<form:option value=""></form:option>
 			<form:option value="book"></form:option>
 			<form:option value="dvd"></form:option>
 			<form:option value="cd"></form:option>
@@ -31,6 +32,7 @@
 		</td>
 		<td> Media Category*:</td><td>
 			<form:select path="category.category">
+			<form:option value=""></form:option>
 			<form:option value="movie"></form:option>
 			<form:option value="bhajan"></form:option>
 			<form:option value="education"></form:option>

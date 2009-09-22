@@ -25,6 +25,14 @@
 			<td><spring:message code="label.contact.name"/></td>
 			<td><c:out value="${cartBean.account.contact.firstName} "/><c:out value="${cartBean.account.contact.lastName}"/></td>
 		</tr>
+		<tr align="center">  
+			<td><spring:message code="label.account.enddate"/></td>
+			<td><c:out value="${cartBean.account.endDate}"/></td>
+		</tr>
+		<tr align="center">  
+			<td><spring:message code="label.medialending.feepaid"/></td>
+			<td><c:out value="${cartBean.account.fee.paid}"/></td>
+		</tr>
 		<tr>
 			<td><input type="submit" value="<spring:message code="button.additem"/>"></td>
 		</tr>
@@ -35,7 +43,6 @@
 <thead>
 <tr align="center">             
 	<th><spring:message code="label.media.title"/></th>
-	<th><spring:message code="label.media.volume"/></th>		
 	<th><spring:message code="label.media.author"/></th>
 	<th><spring:message code="label.media.type"/></th>
 	<th><spring:message code="label.media.category"/></th>
@@ -49,10 +56,10 @@
 <c:forEach var="issuedItem" items="${cartBean.issuedItems}">
 	<tr align="center">
 		<td>
-			<c:out value="${issuedItem.media.title}"/>		
-		</td>
-		<td>
-			<c:out value="${issuedItem.media.volumeNumber}"/>	
+			<c:out value="${issuedItem.media.title}"/>	
+			<c:if test="${issuedItem.media.totalVolume > 1}">
+				- <c:out value="${issuedItem.media.volumeNumber}"/>
+			</c:if>	
 		</td>
 		<td>
 			<c:out value="${issuedItem.media.author}"/>	
@@ -83,13 +90,28 @@
 		</td>
 	</tr>
 </c:forEach>
+</tbody>
+</table>
+<center> ------------------------------- </center>
+<table border="0" cellpadding="5" cellspacing="0" align="center" width="40%">
+<tbody>
+<thead>
+<tr align="center">             
+	<th><spring:message code="label.media.title"/></th>
+	<th><spring:message code="label.media.author"/></th>
+	<th><spring:message code="label.media.type"/></th>
+	<th><spring:message code="label.media.category"/></th>
+	<th><spring:message code="label.medialending.returndate"/></th>
+</tr>
+</thead>
+<tbody>
 <c:forEach var="checkoutItem" items="${cartBean.checkoutItems}">
 	<tr align="center">
 		<td>
-			<c:out value="${checkoutItem.media.title}"/>		
-		</td>
-		<td>
-			<c:out value="${checkoutItem.media.volumeNumber}"/>	
+			<c:out value="${checkoutItem.media.title}"/>	
+			<c:if test="${checkoutItem.media.totalVolume > 1}">
+				- <c:out value="${checkoutItem.media.volumeNumber}"/>
+			</c:if>		
 		</td>
 		<td>
 			<c:out value="${checkoutItem.media.author}"/>	
@@ -101,9 +123,6 @@
 			<c:out value="${checkoutItem.media.category.category}"/>	
 		</td>
 		<td>
-			<c:out value="${checkoutItem.lendingDate}"/>	
-		</td>
-		<td>
 			<c:out value="${checkoutItem.returnDate}"/>	
 		</td>
 		<td>
@@ -113,6 +132,7 @@
 </c:forEach>
 </tbody>
 </table>
+
 <form:form method="post" action="/library/cart.htm?action=checkout">
 	<table border="0" cellpadding="5" cellspacing="0" align="center" width="40%">
 		<tr>

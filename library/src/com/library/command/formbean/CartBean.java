@@ -52,7 +52,7 @@ public class CartBean implements Serializable {
 		return checkoutItems;
 	}
 	
-	public void addItem(MediaLending ml){
+	public void addToCart(MediaLending ml){
 		if(checkoutItems == null){
 			checkoutItems = new ArrayList<MediaLending>();
 		}
@@ -61,7 +61,7 @@ public class CartBean implements Serializable {
 	/**
 	 * @param mediaId
 	 */
-	public void removeItem(int mediaId) {
+	public void removeFromCart(int mediaId) {
 		for(int i=0;i<checkoutItems.size();i++){
 			if(checkoutItems.get(i).getMedia().getId() == mediaId){
 				checkoutItems.remove(i);
@@ -80,5 +80,9 @@ public class CartBean implements Serializable {
 			}
 		}
 		return returnedItem;
+	}
+	public void moveItemsToIssuedList(){
+		this.getIssuedItems().addAll(this.getCheckoutItems());
+		this.setCheckoutItems(null);
 	}
 }

@@ -21,8 +21,9 @@ public class AccountAddValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "contact.contactHome", "error.contacthome.empty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "contact.streetAddress", "error.streetaddress.empty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "contact.city", "error.city.empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fee.paid", "error.feepaid.empty");
         Account account = (Account) obj;
-        if ( account.getContact().getContactHome() <= 0L) {
+        if ( account.getContact().getContactHome() <= 111111111L) {
         	errors.rejectValue("contact.contactHome","error.contacthome.invalid");
         } 
     }

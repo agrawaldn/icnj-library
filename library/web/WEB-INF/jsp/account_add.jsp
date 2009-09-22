@@ -63,6 +63,7 @@
 		<td> Registration Fee: </td><td>$50.00<!-- <c:out value="${account.accountType.registrationFee}"/>--></td>
 		<td> Paid:</td><td>
 			<form:select path="fee.paid">
+			<form:option value=""></form:option>
 			<form:option value="n"></form:option>
 			<form:option value="y"></form:option>
 			</form:select>

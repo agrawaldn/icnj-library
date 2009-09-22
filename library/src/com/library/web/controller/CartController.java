@@ -84,7 +84,7 @@ public class CartController extends SimpleFormController  {
 		String mediaId = request.getParameter("mediaId");
 		logger.debug("adding item with mediaID = "+mediaId);
 		MediaLending ml = getMediaLendingService().getMediaLending(Integer.parseInt(mediaId), command.getAccount());
-		command.addItem(ml);
+		command.addToCart(ml);
 		request.getSession().setAttribute(getFormSessionAttributeName(),command);
 		return new ModelAndView("viewCart","cartBean",command);
     }
@@ -93,7 +93,7 @@ public class CartController extends SimpleFormController  {
 		CartBean command = (CartBean)session.getAttribute(getFormSessionAttributeName() );
 		String mediaId = request.getParameter("mediaId");
 		logger.debug("removing item with mediaID = "+mediaId);
-		command.removeItem(Integer.parseInt(mediaId));
+		command.removeFromCart(Integer.parseInt(mediaId));
 		request.getSession().setAttribute(getFormSessionAttributeName(),command);
 		return new ModelAndView("viewCart","cartBean",command);
 	}
@@ -101,10 +101,12 @@ public class CartController extends SimpleFormController  {
 		HttpSession session = request.getSession();
 		CartBean command = (CartBean)session.getAttribute(getFormSessionAttributeName() );
 		int mediaLendingId = Integer.parseInt(request.getParameter("mediaLendingId"));
-		char paid = request.getParameter("paid").charAt(0);
 		MediaLending returnedItem = command.returnItem(mediaLendingId);
-		returnedItem.getFee().setPaid(paid);
-		logger.debug("paid yes/no = "+paid);
+		if(!StringUtil.isNullOrEmpty(request.getParameter("paid"))){
+			char paid = request.getParameter("paid").charAt(0);
+			returnedItem.getFee().setPaid(paid);
+			logger.debug("paid yes/no = "+paid);
+		}
 		try {
 			mediaLendingService.returnItem(returnedItem);
 		} catch (Exception e) {
@@ -131,12 +133,14 @@ public class CartController extends SimpleFormController  {
 		CartBean command = (CartBean)session.getAttribute(getFormSessionAttributeName() );
 		ModelAndView cartView = new ModelAndView("viewCart","cartBean",command);  
 		if(!hasErrors(command,cartView)){	
+			List<MediaLending> checkoutItems = command.getCheckoutItems();
 			try {
-				getMediaLendingService().checkout(command.getCheckoutItems());
+				getMediaLendingService().checkout(checkoutItems);
 			} catch (Exception e) {
 				logger.error("checkout failed ",e);
 			}
-			command = getCommand(command.getAccount().getId());
+			command.moveItemsToIssuedList();
+			//command = getCommand(command.getAccount().getId());
 		}
 		request.getSession().setAttribute(getFormSessionAttributeName(),command);
 		return cartView;
