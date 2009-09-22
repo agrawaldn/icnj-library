@@ -1,5 +1,5 @@
-CREATE SCHEMA IF NOT EXISTS `dagrawal` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
-USE `dagrawal`;
+CREATE SCHEMA IF NOT EXISTS `library` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
+USE `library`;
 
 -- -----------------------------------------------------
 -- Table `user_role`
@@ -9,8 +9,7 @@ CREATE  TABLE IF NOT EXISTS `user_role` (
   `user_role` VARCHAR(30) NOT NULL ,
   `updated_by` VARCHAR(30) NOT NULL ,
   `updated_datetime` DATETIME NOT NULL ,
-  PRIMARY KEY (`user_role_id`) )
-ENGINE = InnoDB;
+  PRIMARY KEY (`user_role_id`) );
 
 CREATE UNIQUE INDEX `user_role_uk` ON `user_role` (`user_role` ASC) ;
 
@@ -31,8 +30,7 @@ CREATE  TABLE IF NOT EXISTS `contact` (
   `contact_cell` BIGINT NULL ,
   `updated_by` VARCHAR(30) NOT NULL ,
   `updated_datetime` DATETIME NOT NULL ,
-  PRIMARY KEY (`contact_id`) )
-ENGINE = InnoDB;
+  PRIMARY KEY (`contact_id`) );
 
 CREATE UNIQUE INDEX `contact_uk` ON `contact` (`first_name` ASC, `last_name` ASC, `alias` ASC) ;
 
@@ -59,9 +57,7 @@ CREATE  TABLE IF NOT EXISTS `user` (
     FOREIGN KEY (`contact_id` )
     REFERENCES `contact` (`contact_id` )
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-COMMENT = 'users of the system';
+    ON UPDATE NO ACTION);
 
 CREATE UNIQUE INDEX `user_uk` ON `user` (`contact_id` ASC) ;
 
@@ -80,8 +76,7 @@ CREATE  TABLE IF NOT EXISTS `account_type` (
   `registration_fee` DECIMAL(5,2) NOT NULL,
   `updated_by` VARCHAR(30) NOT NULL ,
   `updated_datetime` DATETIME NOT NULL ,
-  PRIMARY KEY (`account_type_id`) )
-ENGINE = InnoDB;
+  PRIMARY KEY (`account_type_id`) );
 
 CREATE UNIQUE INDEX `account_type_uk` ON `account_type` (`account_type` ASC) ;
 
@@ -97,8 +92,7 @@ CREATE TABLE `fee` (
   `payment_method` varchar(50) DEFAULT 'cash',
   `updated_by` varchar(30) DEFAULT NULL,
   `updated_datetime` datetime DEFAULT NULL,
-  PRIMARY KEY (`fee_id`)
-)ENGINE = InnoDB;
+  PRIMARY KEY (`fee_id`));
 
 CREATE INDEX `fee_fk` ON `fee` (`fee_id` ASC) ;
 
@@ -120,7 +114,7 @@ CREATE TABLE  IF NOT EXISTS `account` (
   CONSTRAINT `account_fk` FOREIGN KEY (`contact_id`) REFERENCES `contact` (`contact_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `account_fk1` FOREIGN KEY (`account_type_id`) REFERENCES `account_type` (`account_type_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `account_fk2` FOREIGN KEY (`fee_id`) REFERENCES `fee` (`fee_id`) ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+);
 
 CREATE UNIQUE INDEX `account_uk` ON `account` (`account_nb` ASC, `start_datetime` ASC) ;
 
@@ -138,8 +132,7 @@ CREATE  TABLE IF NOT EXISTS `media_type` (
   `description` VARCHAR(60) NULL ,
   `updated_by` VARCHAR(30) NOT NULL ,
   `updated_datetime` DATETIME NOT NULL ,
-  PRIMARY KEY (`media_type_id`) )
-ENGINE = InnoDB;
+  PRIMARY KEY (`media_type_id`) );
 
 CREATE UNIQUE INDEX `media_type_uk` ON `media_type` (`media_type` ASC) ;
 
@@ -152,8 +145,7 @@ CREATE  TABLE IF NOT EXISTS `media_category` (
   `category` VARCHAR(30) NOT NULL ,
   `updated_by` VARCHAR(30) NOT NULL ,
   `updated_datetime` DATETIME NOT NULL ,
-  PRIMARY KEY (`media_category_id`) )
-ENGINE = InnoDB;
+  PRIMARY KEY (`media_category_id`) );
 
 CREATE UNIQUE INDEX `media_category_uk` ON `media_category` (`category` ASC) ;
 
@@ -185,12 +177,11 @@ CREATE  TABLE IF NOT EXISTS `media` (
     FOREIGN KEY (`media_category_id` )
     REFERENCES `media_category` (`media_category_id` )
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION);
 
 CREATE INDEX `media_fk` ON `media` (`media_type_id` ASC) ;
 
-CREATE UNIQUE INDEX `media_uk` ON `media` (`title` ASC, `media_category_id` ASC) ;
+CREATE UNIQUE INDEX `media_uk` ON `media` (`title` ASC, `media_category_id` ASC, `volume_nb` ASC) ;
 
 CREATE INDEX `media_fk1` ON `media` (`media_category_id` ASC) ;
 
@@ -223,7 +214,7 @@ CREATE  TABLE IF NOT EXISTS `media_lending` (
   	FOREIGN KEY (`fee_id`) 
   	REFERENCES `fee` (`fee_id`) 
   	ON UPDATE NO ACTION   
-)ENGINE = InnoDB;
+);
 
 CREATE INDEX `media_lending_fk` ON `media_lending` (`account_id` ASC) ;
 
