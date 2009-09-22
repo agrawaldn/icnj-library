@@ -101,7 +101,11 @@ public class Account extends DomainVO {
 	 * @return the activeFlag
 	 */
 	public char getActiveFlag() {
-		return activeFlag;
+		if(this.getEndDate().before(new Date())){
+			return 'n';
+		}else{
+			return activeFlag;
+		}
 	}
 	/**
 	 * @param fee the fee to set

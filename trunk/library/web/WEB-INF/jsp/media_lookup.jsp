@@ -47,7 +47,10 @@
 			<a href="<%= request.getContextPath() %>/cart.htm?action=addToCart&mediaId=${media.id}"><spring:message code="label.addtocart"/></a>
 		</td>	
 		<td>
-			<c:out value="${media.title}"/>		
+			<c:out value="${media.title}"/>
+			<c:if test="${media.totalVolume > 1}">
+				- <c:out value="${media.volumeNumber}"/>
+			</c:if>		
 		</td>
 		<td>
 			<c:out value="${media.author}"/>	

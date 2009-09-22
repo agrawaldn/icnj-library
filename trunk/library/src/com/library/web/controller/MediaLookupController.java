@@ -24,7 +24,7 @@ public class MediaLookupController extends SimpleFormController  {
 		if(!StringUtil.isNullOrEmpty(searchString)){
 	    	List<Media> mediaList = getMediaService().getMatchingMedias(searchString);
 	    	if(mediaList != null){
-	    		logger.debug("accountList size = "+mediaList.size());
+	    		logger.debug("mediaList size = "+mediaList.size());
 	    		command.setMediaList(mediaList);
 	    	}
 		}

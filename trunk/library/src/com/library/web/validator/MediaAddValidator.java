@@ -21,6 +21,10 @@ public class MediaAddValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "mediaType.mediaType", "error.mediatype.empty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "category.category", "error.category.empty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "company", "error.company.empty");
+        Media media = (Media) obj;
+       	if(media.getTotalVolume() < media.getVolumeNumber()){
+       		errors.rejectValue("totalVolume","error.totalvolume.invalid");
+       	}
     }
 
 }
