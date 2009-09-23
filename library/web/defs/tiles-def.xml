@@ -24,10 +24,10 @@
 	<definition name="viewCart" extends="template" >
 		<put name="body" type="page" value="/WEB-INF/jsp/cart.jsp" />
 	</definition> 
-	<definition name="addAccount" extends="template" >
+	<definition name="viewAccount" extends="template" >
 		<put name="body" type="page" value="/WEB-INF/jsp/account_add.jsp" />
 	</definition>
 	<definition name="addMedia" extends="template" >
 		<put name="body" type="page" value="/WEB-INF/jsp/media_add.jsp" />
-	</definition> 
+	</definition>
 </tiles-definitions>

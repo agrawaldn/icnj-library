@@ -21,7 +21,7 @@ public class AccountService {
 	private final Log logger = LogFactory.getLog(getClass());
 	private DomainService domainService;
 
-	public Account getAccount(int accountNumber){
+	public Account getAccount(long accountNumber){
 		String[] keys = {"accountNumber"};
 		String[] values = {""+accountNumber}; 
 		return (Account)this.getDomainService().getDomainObject("fetchAccount",keys, values);
@@ -43,9 +43,28 @@ public class AccountService {
 	/**
 	 * @param acct
 	 */
-	public void createAccount(Account acct) {
+	public void updateAccount(Account acct){
+		logger.info("updating account_id:"+acct.getId()+" contact_id:"+acct.getContact().getId());
+		Account oldAcct = this.getAccount(acct.getAccountNumber());
+		if(acct.getEndDate() == null){
+			acct.setEndDate(oldAcct.getEndDate());
+		}
+		acct.setAccountNumber(acct.getContact().getContactHome());
+		if(acct.getEndDate().after(oldAcct.getEndDate())){ //renewing subscription
+			logger.info("renewing subscription for account number "+acct.getAccountNumber()+" upto "+acct.getEndDate());
+			acct.getFee().setId(0);//create a new fee record
+			acct.getFee().setAmount(acct.getAccountType().getRegistrationFee());
+			acct.getFee().setFeeType(Constant.REGISTRATION_FEE);
+			this.getDomainService().saveDomainObject(acct.getFee());
+		}
+		this.getDomainService().updateDomainObject(acct.getContact());
+		this.getDomainService().updateDomainObject(acct.getFee());
+		this.getDomainService().updateDomainObject(acct);
+	}
+	public void createAccount(Account acct){
+		logger.info("creating new account for "+acct.getContact().getFirstName()+" "+acct.getContact().getLastName());
 		Date now = new Date();
-		if(acct.getStartDate() == null){
+		if(acct.getStartDate() == null ){ 
 			logger.debug("No start date was provided. Taking today's date");
 			acct.setStartDate(now);
 		}
@@ -67,7 +86,6 @@ public class AccountService {
 			this.getDomainService().saveDomainObject(acct.getContact());
 		}
 		this.getDomainService().saveDomainObject(acct);
-		
 	}
 	/**
 	 * @param domainService the domainService to set

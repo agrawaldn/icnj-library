@@ -4,7 +4,14 @@
 <%@ include file="/WEB-INF/jsp/include.jsp"%>
 <%@ page import="com.library.util.DateUtil"%>
 
-<form:form method="post" commandName="account" action="/library/addAccount.htm">
+<form:form method="post" commandName="account" action="/library/viewAccount.htm">
+	<form:hidden path="id"/>
+	<form:hidden path="accountNumber"/>
+	<form:hidden path="accountType.id"/>
+	<form:hidden path="contact.id"/>
+	<form:hidden path="fee.id"/>	
+	<form:hidden path="fee.amount"/>
+	<form:hidden path="fee.feeType"/>	
 		<spring:hasBindErrors name="account">
          <font color="red">
          <p>There were ${errors.errorCount} error(s) in total:</p>

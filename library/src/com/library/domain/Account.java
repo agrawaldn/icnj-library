@@ -101,7 +101,7 @@ public class Account extends DomainVO {
 	 * @return the activeFlag
 	 */
 	public char getActiveFlag() {
-		if(this.getEndDate().before(new Date())){
+		if(this.getEndDate() != null && this.getEndDate().before(new Date())){
 			return 'n';
 		}else{
 			return activeFlag;

@@ -10,19 +10,19 @@
 			</generator>
 		</id>
 		<property name="accountNumber"  column="account_nb"/>	
-		<property name="startDate"  column="start_datetime"/>
+		<property name="startDate"  column="start_datetime" update="false"/>
 		<property name="endDate"  column="end_datetime"/>
 		<many-to-one name="accountType" class="com.library.domain.AccountType"
 			lazy="false" update="false">
 			<column name="account_type_id"/>
 		</many-to-one>
 		<many-to-one name="contact" class="com.library.domain.Contact"
-			lazy="false" update="false">
+			lazy="false">
 			<column name="contact_id"/>
 		</many-to-one>
 		<property name="activeFlag"  column="active_flag"/>
 		<many-to-one name="fee" class="com.library.domain.Fee"
-			lazy="false" update="false">
+			lazy="false">
 			<column name="fee_id"/>
 		</many-to-one>
 		<property name="updatedBy"  column="updated_by"/>
