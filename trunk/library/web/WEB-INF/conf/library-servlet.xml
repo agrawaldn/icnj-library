@@ -14,7 +14,9 @@
     	<property name="userService"><ref bean="userService"/></property>
     </bean>
     <bean id="accountLookupValidator" class="com.library.web.validator.AccountLookupValidator"/>
-    <bean id="accountAddValidator" class="com.library.web.validator.AccountAddValidator"/>
+    <bean id="accountValidator" class="com.library.web.validator.AccountValidator">
+    	<property name="accountService"><ref bean="accountService"/></property>
+    </bean>
     <bean id="mediaAddValidator" class="com.library.web.validator.MediaAddValidator"/>
 	<bean id="cartValidator" class="com.library.web.validator.CartValidator"/>
     
@@ -44,11 +46,11 @@
         <property name="accountService"><ref bean="accountService"/></property>
     </bean>
     
-    <bean id="addAccountController" class="com.library.web.controller.AccountMaintenanceController">
+    <bean id="accountController" class="com.library.web.controller.AccountController">
         <property name="sessionForm"><value>false</value></property>
         <property name="commandName"><value>account</value></property>
         <property name="commandClass"><value>com.library.domain.Account</value></property>
-       	<property name="validator"><ref bean="accountAddValidator"/></property>
+       	<property name="validator"><ref bean="accountValidator"/></property>
         <property name="accountService"><ref bean="accountService"/></property>
     </bean>
     <bean id="mediaController" class="com.library.web.controller.MediaController">
@@ -80,8 +82,8 @@
 				<entry key="/cart.htm">
 					<ref bean="cartMultiController"/>
 				</entry>
-				<entry key="/addAccount.htm">
-					<ref bean="addAccountController"/>
+				<entry key="/viewAccount.htm">
+					<ref bean="accountController"/>
 				</entry>
 				<entry key="/addMedia.htm">
 					<ref bean="mediaController"/>

@@ -35,7 +35,7 @@
 		<Menu name="LibraryMenu" title="Library" page="/static/library_home.jsp" roles="ROLE_LOGGED">
 			<Item title="Account">
 				<Item title="Account Lookup" page="/accountLookup.htm" />
-				<Item title="Create New Account" page="/addAccount.htm" />
+				<Item title="Create New Account" page="/viewAccount.htm" />
 			</Item>
 			<Item title="Media">
 				<Item title="Media Lookup" page="/mediaLookup.htm" />

@@ -11,6 +11,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.validation.BindException;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
@@ -20,21 +21,31 @@ import com.library.domain.AccountType;
 import com.library.domain.Contact;
 import com.library.domain.Fee;
 import com.library.util.DateUtil;
+import com.library.util.StringUtil;
 
-public class AccountMaintenanceController extends SimpleFormController  {
-	private final Log logger = LogFactory.getLog(AccountMaintenanceController.class);
+public class AccountController extends SimpleFormController  {
+	private final Log logger = LogFactory.getLog(AccountController.class);
 	private AccountService accountService;
 
-	private Account getCommand(){
-		//logger.debug("getCommand() called in AccountMaintenanceController");
-		Account command = new Account();
-		Contact contact = new Contact();
-		command.setContact(contact);
-		AccountType accountType = new AccountType();
-		command.setAccountType(accountType);
-		Fee fee = new Fee();
-		command.setFee(fee);
-		return command;
+	private Account getCommand(int accountId){
+		logger.debug("AccountController --> getCommand() called with accountId = "+accountId);
+		Account account = new Account();
+		if(accountId <= 0){
+			Contact contact = new Contact();
+			account.setContact(contact);
+			AccountType accountType = new AccountType();
+			account.setAccountType(accountType);
+			Fee fee = new Fee();
+			account.setFee(fee);
+		}else{
+			account.setId(accountId);
+			try {
+				accountService.getAccount(account);
+			} catch (Exception e) {
+				logger.error("AccountController.getCommand()",e);
+			}
+		}
+		return account;
 	}
 	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception	{    
 		DateFormat df = new SimpleDateFormat(DateUtil.dateFormat);    
@@ -43,15 +54,39 @@ public class AccountMaintenanceController extends SimpleFormController  {
 		super.initBinder(request,binder);
 	}
 	public Object formBackingObject(HttpServletRequest request) {
-		return getCommand();
+		logger.debug("AccountController --> formBackingObject() called");
+		Object command = null;
+		String acctId = request.getParameter("accountId");
+		int accountId = 0;
+		if(!StringUtil.isNullOrEmpty(acctId)){
+			accountId = Integer.parseInt(acctId);
+		}
+		command = getCommand(accountId);
+		return command;
 		
 	}
 	public ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, 
 	        Object command, BindException errors) throws Exception {
 		Account acct = (Account) command;
-		this.getAccountService().createAccount(acct);
+		//logger.debug("account_id = "+acct.getId());
+		if(acct.getId() > 0){
+			this.getAccountService().updateAccount(acct);
+		}else{
+			this.getAccountService().createAccount(acct);
+		}
     	return showForm(request, response, errors);
     }
+	private boolean hasErrors(Account command, ModelAndView accountView ){
+		BindException errors = new BindException(command, "account");
+		if (getValidator().supports(command.getClass())) {
+			ValidationUtils.invokeValidator(getValidator(), command, errors);
+		}
+		if (errors.hasErrors()) { 
+			accountView.addAllObjects(errors.getModel());
+			return true;
+		}
+		return false;
+	}
 	/**
 	 * @param accountService the accountService to set
 	 */
