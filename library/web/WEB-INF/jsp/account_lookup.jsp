@@ -37,39 +37,33 @@
 	<th><spring:message code="label.contact.lastname"/></th>
 	<th><spring:message code="label.account.active"/></th>
 	<th><spring:message code="label.account.startdate"/></th>
-	<th><spring:message code="label.account.enddate"/></th>
-	<th><spring:message code="label.contact.homephone"/></th>
-	<th><spring:message code="label.contact.cellphone"/></th>   
+	<th><spring:message code="label.account.enddate"/></th>   
 </tr>
 </thead>
 <tbody>
 <c:forEach var="account" items="${accountLookupFormBean.accountList}">
 	<tr align="center">
 		<td>
-			<a href="<%= request.getContextPath() %>/viewCart.htm?accountId=${account.id}"><c:out value="${account.accountNumber}"/></a>
+			<a href="<%= request.getContextPath() %>/viewAccount.htm?accountId=${account.id}"><c:out value="${account.accountNumber}"/></a>
 		</td>
 		<td>
-			<a href="<%= request.getContextPath() %>/viewCart.htm?accountId=${account.id}"><c:out value="${account.contact.firstName}"/></a>		
+			<a href="<%= request.getContextPath() %>/viewAccount.htm?accountId=${account.id}"><c:out value="${account.contact.firstName}"/></a>		
 		</td>
 		<td>
-			<a href="<%= request.getContextPath() %>/viewCart.htm?accountId=${account.id}"><c:out value="${account.contact.lastName}"/></a>	
+			<a href="<%= request.getContextPath() %>/viewAccount.htm?accountId=${account.id}"><c:out value="${account.contact.lastName}"/></a>	
 		</td>
 		<td>
-			<a href="<%= request.getContextPath() %>/viewCart.htm?accountId=${account.id}"><c:out value="${account.activeFlag}"/></a>
+			<a href="<%= request.getContextPath() %>/viewAccount.htm?accountId=${account.id}"><c:out value="${account.activeFlag}"/></a>
 		</td>
 		<td>
-			<a href="<%= request.getContextPath() %>/viewCart.htm?accountId=${account.id}"><c:out value="${account.startDate}"/></a>
+			<a href="<%= request.getContextPath() %>/viewAccount.htm?accountId=${account.id}"><c:out value="${account.startDate}"/></a>
 		</td>
 		<td>
-			<a href="<%= request.getContextPath() %>/viewCart.htm?accountId=${account.id}"><c:out value="${account.endDate}"/></a>
+			<a href="<%= request.getContextPath() %>/viewAccount.htm?accountId=${account.id}"><c:out value="${account.endDate}"/></a>
 		</td>
 		<td>
-			<a href="<%= request.getContextPath() %>/viewCart.htm?accountId=${account.id}"><c:out value="${account.contact.contactHome}"/></a>
+			<input type="button" onclick="window.location.href='<%= request.getContextPath() %>/viewCart.htm?accountId=${account.id}'" value="<spring:message code="label.viewcart"/>"/>
 		</td>
-		<td>
-			<a href="<%= request.getContextPath() %>/viewCart.htm?accountId=${account.id}"><c:out value="${account.contact.contactCell}"/></a>
-		</td>
-		
 	</tr>
 </c:forEach>
 </tbody>

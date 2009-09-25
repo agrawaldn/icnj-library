@@ -52,6 +52,7 @@ public class AccountService {
 		acct.setAccountNumber(acct.getContact().getContactHome());
 		if(acct.getEndDate().after(oldAcct.getEndDate())){ //renewing subscription
 			logger.info("renewing subscription for account number "+acct.getAccountNumber()+" upto "+acct.getEndDate());
+			acct.setActiveFlag('y');//activate the account
 			acct.getFee().setId(0);//create a new fee record
 			acct.getFee().setAmount(acct.getAccountType().getRegistrationFee());
 			acct.getFee().setFeeType(Constant.REGISTRATION_FEE);

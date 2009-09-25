@@ -35,6 +35,7 @@
 		</tr>
 		<tr>
 			<td><input type="submit" value="<spring:message code="button.additem"/>"></td>
+			<td><input type="button" onclick="window.location.href='<%= request.getContextPath() %>/viewAccount.htm?accountId=${cartBean.account.id}'" value="<spring:message code="label.account.viewedit"/>"></td>
 		</tr>
 	</table>
 </form:form>
@@ -86,7 +87,7 @@
 			</select>
 		</td>
 		<td>
-			<a href="<%= request.getContextPath() %>/cart.htm?action=returnItem&mediaLendingId=${issuedItem.id}&paid=${issuedItem.fee.paid}"><spring:message code="label.returnitem"/></a>	
+			<input type="button" onclick="window.location.href='<%= request.getContextPath() %>/cart.htm?action=returnItem&mediaLendingId=${issuedItem.id}&paid=${issuedItem.fee.paid}'" value="<spring:message code="label.returnitem"/>"/>	
 		</td>
 	</tr>
 </c:forEach>
@@ -126,7 +127,7 @@
 			<c:out value="${checkoutItem.returnDate}"/>	
 		</td>
 		<td>
-			<a href="<%= request.getContextPath() %>/cart.htm?action=removeFromCart&mediaId=${checkoutItem.media.id}"><spring:message code="label.removefromcart"/></a>	
+			<input type="button" onclick="window.location.href='<%= request.getContextPath() %>/cart.htm?action=removeFromCart&mediaId=${checkoutItem.media.id}'" value="<spring:message code="label.removefromcart"/>"/>	
 		</td>
 	</tr>
 </c:forEach>
