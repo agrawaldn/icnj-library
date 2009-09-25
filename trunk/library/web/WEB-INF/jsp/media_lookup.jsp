@@ -36,7 +36,6 @@
 	<th><spring:message code="label.media.author"/></th>
 	<th><spring:message code="label.media.type"/></th>
 	<th><spring:message code="label.media.category"/></th>
-	<th><spring:message code="label.media.description"/></th>
 	<th><spring:message code="label.media.company"/></th>
 </tr>
 </thead>
@@ -44,7 +43,7 @@
 <c:forEach var="media" items="${mediaLookupFormBean.mediaList}">
 	<tr align="center">
 		<td>
-			<a href="<%= request.getContextPath() %>/cart.htm?action=addToCart&mediaId=${media.id}"><spring:message code="label.addtocart"/></a>
+			<input type="button" onclick="window.location.href='<%= request.getContextPath() %>/cart.htm?action=addToCart&mediaId=${media.id}'" value="<spring:message code="label.addtocart"/>"/>
 		</td>	
 		<td>
 			<c:out value="${media.title}"/>
@@ -62,9 +61,6 @@
 			<c:out value="${media.category.category}"/>	
 		</td>
 		<td>
-			<c:out value="${media.description}"/>	
-		</td>
-		<td>
 			<c:out value="${media.company}"/>	
 		</td>
 	</tr>
@@ -76,7 +72,7 @@
 <table border="0" cellpadding="5" cellspacing="0" align="center" width="40%">
 <tr align="center">
 <td align="center">
-<a href="<%= request.getContextPath() %>/addMedia.htm"><spring:message code="label.media.add"/></a>
+<input type="button" onclick="window.location.href='<%= request.getContextPath() %>/addMedia.htm'" value="<spring:message code="label.media.add"/>"/>
 </td>
 </tr>
 </table>

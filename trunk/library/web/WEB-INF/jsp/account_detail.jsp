@@ -3,7 +3,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ include file="/WEB-INF/jsp/include.jsp"%>
 <%@ page import="com.library.util.DateUtil"%>
-
+<BR>
+<BR>
 <form:form method="post" commandName="account" action="/library/viewAccount.htm">
 	<form:hidden path="id"/>
 	<form:hidden path="accountNumber"/>
@@ -79,6 +80,7 @@
 	<tr>
 		<td><input type="submit" value="<spring:message code="button.submit"/>"></td> 
 		<td><input type="reset"/></td>
+		<td><input type="button" onclick="window.location.href='<%=request.getContextPath() %>/viewCart.htm?accountId=${id}'" value="<spring:message code="label.viewcart"/>"></td>
 	</tr>
 	</table>
 </form:form>

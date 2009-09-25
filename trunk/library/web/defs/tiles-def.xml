@@ -25,7 +25,7 @@
 		<put name="body" type="page" value="/WEB-INF/jsp/cart.jsp" />
 	</definition> 
 	<definition name="viewAccount" extends="template" >
-		<put name="body" type="page" value="/WEB-INF/jsp/account_add.jsp" />
+		<put name="body" type="page" value="/WEB-INF/jsp/account_detail.jsp" />
 	</definition>
 	<definition name="addMedia" extends="template" >
 		<put name="body" type="page" value="/WEB-INF/jsp/media_add.jsp" />
