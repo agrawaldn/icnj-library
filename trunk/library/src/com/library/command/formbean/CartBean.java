@@ -31,7 +31,10 @@ public class CartBean implements Serializable {
 	 * @return the mediaLendingList
 	 */
 	public List<MediaLending> getIssuedItems() {
-		return issuedItems;
+		if(issuedItems == null){
+			return new ArrayList<MediaLending>();
+		}else
+			return issuedItems;
 	}
 	public void setAccount(Account account){
 		this.account = account;
@@ -49,7 +52,10 @@ public class CartBean implements Serializable {
 	 * @return the checkoutItems
 	 */
 	public List<MediaLending> getCheckoutItems() {
-		return checkoutItems;
+		if(checkoutItems == null){
+			return new ArrayList<MediaLending>();
+		}else
+			return checkoutItems;
 	}
 	
 	public void addToCart(MediaLending ml){
