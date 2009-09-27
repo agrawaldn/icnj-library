@@ -27,7 +27,8 @@ public class CartController extends SimpleFormController  {
 	
 	private CartBean getCommand(int accountId){
 		CartBean command = new CartBean();
-		if(accountId > 0 && (command.getCheckoutItems() == null)){
+		logger.debug("getCommand() --> accountId = "+accountId);
+		if(accountId > 0 && (command.getCheckoutItems() == null || command.getCheckoutItems().size() < 1)){
 	    	List<MediaLending> issuedItems = getMediaLendingService().getMediaLendings(accountId);
 	    	if(issuedItems != null && issuedItems.size() > 0){
 	    		//logger.debug("Number of items issued to account "+accountId+" = "+issuedItems.size());
@@ -48,9 +49,9 @@ public class CartController extends SimpleFormController  {
 		return command;
 	}
 	public Object formBackingObject(HttpServletRequest request) {
-		logger.debug("CartController --> formBackingObject called...");
 		Object object = null;
 		String acctId = request.getParameter("accountId");
+		logger.debug("formBackingObject() --> accountId = "+acctId);
 		int accountId = 0;
 		if(!StringUtil.isNullOrEmpty(acctId)){
 			accountId = Integer.parseInt(acctId);
