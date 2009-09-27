@@ -80,7 +80,7 @@
 	<tr>
 		<td><input type="submit" value="<spring:message code="button.submit"/>"></td> 
 		<td><input type="reset"/></td>
-		<td><input type="button" onclick="window.location.href='<%=request.getContextPath() %>/viewCart.htm?accountId=${id}'" value="<spring:message code="label.viewcart"/>"/></td>
+		<td><input type="button" onclick=window.location.href="<%=request.getContextPath() %>/viewCart.htm?accountId=${account.id}" value="<spring:message code='label.viewcart'/>"/></td>
 	</tr>
 	</table>
 </form:form>
